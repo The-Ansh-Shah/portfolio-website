@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
 import { getAllProjects, getProjectBySlug } from '@/lib/projects';
 import SectionContainer from '@/components/SectionContainer';
-import { MDXRemote } from 'next-mdx-remote/rsc';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface ProjectPageProps {
   params: Promise<{
@@ -109,7 +110,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         )}
 
         <article className="prose prose-lg prose-slate max-w-none">
-          <MDXRemote source={content} />
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
         </article>
       </SectionContainer>
     </>
