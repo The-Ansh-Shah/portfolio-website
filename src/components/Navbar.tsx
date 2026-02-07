@@ -78,9 +78,14 @@ export default function Navbar() {
       className={cn(
         'sticky top-0 z-50 w-full border-b transition-all duration-300',
         scrolled
-          ? 'border-accent/30 bg-primary-dark/95 backdrop-blur-lg shadow-lg'
-          : 'border-accent/10 bg-primary-dark/80 backdrop-blur-md'
+          ? 'border-accent/20 bg-primary-dark/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(27,26,85,0.37)]'
+          : 'border-accent/10 bg-primary-dark/40 backdrop-blur-lg'
       )}
+      style={{
+        background: scrolled
+          ? 'linear-gradient(to bottom, rgba(7, 15, 43, 0.7), rgba(7, 15, 43, 0.5))'
+          : 'linear-gradient(to bottom, rgba(7, 15, 43, 0.5), rgba(7, 15, 43, 0.3))',
+      }}
     >
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <a

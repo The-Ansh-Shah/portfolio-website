@@ -20,6 +20,18 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       {...cardHover}
       className="group relative overflow-hidden rounded-2xl border border-accent/30 bg-accent/10 backdrop-blur-sm transition-all"
     >
+      {/* Project Image Placeholder */}
+      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-accent via-secondary to-muted">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center">
+            <div className="mb-2 text-4xl font-bold text-white/30">{project.title.split(' ')[0]}</div>
+            <div className="text-sm text-white/20">Project Image</div>
+          </div>
+        </div>
+        {/* Decorative grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+      </div>
+
       <div className="p-6">
         <h3 className="mb-2 text-xl font-semibold text-white transition-colors group-hover:text-muted">
           {project.title}
