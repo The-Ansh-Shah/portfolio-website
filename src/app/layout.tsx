@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Portfolio | Your Name',
-  description: 'A modern portfolio website showcasing projects and work',
+  title: 'Ansh Shah | EECS @ UC Berkeley',
+  description: 'Computer Architecture Engineer specializing in RISC-V CPU design, ASIC implementation, and embedded systems security. UC Berkeley EECS student passionate about building efficient systems at the hardware-software interface.',
 };
 
 export default function RootLayout({

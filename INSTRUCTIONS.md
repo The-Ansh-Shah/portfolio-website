@@ -1,168 +1,236 @@
-# ROLE
+# MASTER INSTRUCTIONS — PORTFOLIO REBUILD
 
-You are a senior full-stack engineer building a modern portfolio-style project website.
+You are acting as a senior frontend architect and design engineer.
 
-You must:
+Your goal is NOT incremental edits — you will REFACTOR and UPGRADE the existing Next.js portfolio into a cohesive, visually impressive, single-page experience while preserving performance, accessibility, and stability.
 
-* scaffold the entire repository
-* create directories and files
-* implement working code, not pseudocode
-* prioritize simplicity, elegance, and performance
-
-You act autonomously and make strong technical decisions.
+You must follow ALL instructions strictly.
 
 ---
 
-# TECH STACK (DO NOT CHANGE)
+# PRIMARY OBJECTIVE
 
-Use the following technologies:
+Transform the existing multi-page portfolio into:
 
-* Next.js (latest, App Router)
-* React
-* TypeScript
-* Tailwind CSS
-* Framer Motion (for animations)
-* shadcn/ui components when useful
+✅ a SINGLE SCROLLABLE PAGE  
+✅ smooth anchor navigation instead of page routes  
+✅ visually striking but elegant design  
+✅ highly animated but performant interface  
+✅ cohesive modern design language
 
-Reasons:
+The site must feel:
 
-* Large ecosystem and conventions
-* Maximum AI familiarity
-* Fast development and clean structure
-
----
-
-# DESIGN GOALS
-
-Style should be:
-
-* minimal
-* elegant
-* modern
-* smooth motion
-* high whitespace
-* tasteful transitions
-
-Primary color palette:
-
-* #19183b
-* #708993
-* #a1c2bd
-* #e7f2ef
-
-Use subtle scroll-based animations:
-
-* fade-in on scroll
-* staggered entrance
-* cards lifting slightly on hover
-
-DO NOT overanimate.
+- premium
+- fluid
+- technical
+- clean
+- impressive without being overdesigned.
 
 ---
 
-# SITE STRUCTURE
+# CONTENT SOURCES (AUTHORITATIVE)
 
-Create a website with:
+Use these sources as truth:
 
-## Pages
+1. Resume (primary source of projects, skills, experience)
+2. LinkedIn: https://linkedin.com/in/ansh-shah-eecs
 
-* Home
-* Projects (main listing)
-* Individual Project page
-* About
-* Contact
+Extract:
+
+- real project descriptions
+- technical expertise
+- roles and responsibilities
+- short professional bio
+
+DO NOT invent information.
+
+Rewrite content to sound:
+
+- concise
+- technical
+- confident.
 
 ---
 
-## Projects System
+# HERO SECTION REQUIREMENTS
 
-Projects should be:
+Top hero text:
 
-* data-driven
-* loaded from structured content files
+Hi, I'm Ansh Shah
+
+CRITICAL:
+
+This text MUST NEVER disappear or conditionally render.
+
+Add typing animation cycling through short descriptors:
+
+Examples (derive from resume):
+
+- "EECS @ UC Berkeley"
+- "Computer Architecture Engineer"
+- "RISC-V + ASIC Design"
+- "Systems Builder"
+- "Hardware + Software"
+
+Requirements:
+
+- smooth typewriter animation
+- loop infinitely
+- no layout shift
+- performance optimized.
+
+---
+
+# SITE STRUCTURE (ONE PAGE)
+
+Convert site into sections:
+
+1. Hero
+2. About / Bio
+3. Skills
+4. Experience
+5. Projects (primary focus)
+6. Contact
+
+Navbar links must:
+
+- smooth-scroll to sections
+- NOT navigate routes.
+
+Remove multi-page navigation structure.
+
+---
+
+# NAVBAR
+
+Change home label from:
+
+"Portfolio"
+
+to something more distinctive such as:
+
+"Ansh.dev" or similar professional branding.
+
+Navbar must:
+
+- sticky
+- subtle animation on scroll
+- active section highlight.
+
+---
+
+# DESIGN THEME
+
+Replace palette with:
+
+https://colorhunt.co/palette/070f2b1b1a55535c919290c3
+
+Colors:
+
+Primary Dark: #070f2b  
+Deep Accent: #1b1a55  
+Secondary: #535c91  
+Muted Light: #9290c3
+
+Design direction:
+
+- modern technical aesthetic
+- dark, elegant
+- slightly futuristic
+- soft gradients allowed.
+
+---
+
+# ANIMATION REQUIREMENTS
+
+Upgrade animation sophistication using Framer Motion.
 
 Use:
 
-/content/projects/*.mdx
+- staggered reveal on scroll
+- parallax-like subtle motion
+- smooth fade + translate transitions
+- hover elevation effects
+- animated background accents (subtle, not distracting).
 
-Each project contains:
+Avoid:
 
-* title
-* description
-* tags
-* images
-* links
+- excessive bouncing
+- gimmicky motion.
 
----
-
-# COMPONENT ARCHITECTURE
-
-Use reusable components:
-
-* Navbar
-* HeroSection
-* ProjectCard
-* ProjectGrid
-* Footer
-* SectionContainer
-
-Prefer composition over duplication.
+Animations must feel intentional and premium.
 
 ---
 
-# STYLING RULES
+# PROJECTS SECTION
 
-Use Tailwind utility classes.
+Populate using resume content.
 
-Avoid custom CSS unless necessary.
+Each project must include:
 
-Use consistent spacing scale.
+- title
+- short technical description
+- key technologies
+- key achievement metric (if present in resume)
+- GitHub/demo links when available.
 
-Use large readable typography.
+Cards should:
 
----
-
-# PERFORMANCE RULES
-
-* Use server components when possible
-* Lazy load images
-* Optimize for fast first paint
-* Avoid unnecessary client-side JS
-
----
-
-# WORKFLOW
-
-Build in this order:
-
-1. Scaffold full directory structure
-2. Setup Next.js configuration
-3. Setup Tailwind theme using color palette
-4. Build layout + navigation
-5. Implement Home page
-6. Create Projects data system
-7. Build Projects listing
-8. Build Project detail page
-9. Add animations with Framer Motion
-10. Final polish
+- animate into view
+- have hover depth effect
+- maintain accessibility.
 
 ---
 
-# CODE STYLE
+# BIO SECTION
 
-* Clean, readable
-* Strong typing
-* Avoid over-abstraction
-* Prefer clarity over cleverness
+Create short professional bio synthesized from:
+
+- resume
+- LinkedIn.
+
+Tone:
+
+- professional
+- concise
+- technically confident.
 
 ---
 
-# OUTPUT FORMAT
+# TECHNICAL CONSTRAINTS
 
-When generating files:
+Maintain:
 
-* Always show file path
-* Provide complete file contents
-* Maintain project consistency
+- Next.js App Router
+- Server components where possible
+- Client components ONLY for animation/interactivity
+- Performance-first design.
 
-You are responsible for maintaining architectural coherence.
+---
+
+# STABILITY REQUIREMENT (VERY IMPORTANT)
+
+Before finalizing:
+
+1. Ensure NO content disappears after hydration.
+2. Verify hero text remains visible.
+3. Confirm no infinite re-renders.
+4. Verify no React version conflicts.
+5. Confirm smooth scrolling works.
+
+---
+
+# OUTPUT EXPECTATIONS
+
+Modify existing codebase.
+
+DO NOT create an entirely new unrelated project.
+
+Refactor structure safely.
+
+After completion:
+
+- summarize structural changes
+- list new components added
+- confirm build compatibility with Next.js 15.
+

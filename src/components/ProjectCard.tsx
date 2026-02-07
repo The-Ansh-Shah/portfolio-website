@@ -1,13 +1,12 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, ExternalLink, Github } from 'lucide-react';
-import { ProjectMeta } from '@/lib/projects';
+import { ExternalLink, Github } from 'lucide-react';
+import { Project } from '@/lib/content';
+import { cardHover } from '@/lib/animations';
 
 interface ProjectCardProps {
-  project: ProjectMeta;
+  project: Project;
   index?: number;
 }
 
@@ -18,71 +17,83 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative overflow-hidden rounded-2xl border border-secondary-lighter/50 bg-white transition-all hover:shadow-xl"
+      {...cardHover}
+      className="group relative overflow-hidden rounded-2xl border border-accent/30 bg-accent/10 backdrop-blur-sm transition-all"
     >
-      <Link href={`/projects/${project.slug}`} className="block">
-        {project.image && (
-          <div className="relative aspect-video w-full overflow-hidden bg-secondary-lighter/30">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
-        )}
+      <div className="p-6">
+        <h3 className="mb-2 text-xl font-semibold text-white transition-colors group-hover:text-muted">
+          {project.title}
+        </h3>
+        <p className="mb-4 text-sm text-muted">
+          {project.description}
+        </p>
 
-        <div className="p-6">
-          <h3 className="mb-2 text-xl font-semibold text-primary-dark transition-colors group-hover:text-secondary">
-            {project.title}
-          </h3>
-          <p className="mb-4 text-sm text-secondary line-clamp-2">
-            {project.description}
-          </p>
-
-          <div className="mb-4 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-secondary-lighter px-3 py-1 text-xs font-medium text-secondary"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-4">
-            {project.links?.github && (
-              <a
-                href={project.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 text-sm text-secondary transition-colors hover:text-primary-dark"
-              >
-                <Github className="h-4 w-4" />
-                Code
-              </a>
-            )}
-            {project.links?.demo && (
-              <a
-                href={project.links.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 text-sm text-secondary transition-colors hover:text-primary-dark"
-              >
-                <ExternalLink className="h-4 w-4" />
-                Demo
-              </a>
-            )}
-            <span className="ml-auto inline-flex items-center gap-1 text-sm font-medium text-primary-dark">
-              Learn more
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </span>
-          </div>
+        <div className="mb-4 flex flex-wrap gap-2">
+          {project.technologies.map((tech, i) => (
+            <motion.span
+              key={tech}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 + i * 0.05 }}
+              className="rounded-full bg-secondary/30 px-3 py-1 text-xs font-medium text-muted"
+            >
+              {tech}
+            </motion.span>
+          ))}
         </div>
-      </Link>
+
+        <ul className="mb-4 space-y-2">
+          {project.achievements.slice(0, 3).map((achievement, i) => (
+            <li key={i} className="flex items-start gap-2 text-sm text-muted">
+              <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-muted"></span>
+              <span>{achievement}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex items-center gap-4">
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-white"
+            >
+              <Github className="h-4 w-4" />
+              Code
+            </a>
+          )}
+          {project.demo && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-white"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Demo
+            </a>
+          )}
+          {project.website && (
+            <a
+              href={project.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-white"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Site
+            </a>
+          )}
+          <span className="ml-auto text-xs text-secondary">{project.date}</span>
+        </div>
+      </div>
+
+      {/* Hover glow effect */}
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100">
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent"></div>
+      </div>
     </motion.div>
   );
 }

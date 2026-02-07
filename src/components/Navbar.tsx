@@ -1,53 +1,120 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'About', href: '#about' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState('hero');
+  const [scrolled, setScrolled] = useState(false);
+
+  // Track scroll position for styling
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Intersection Observer to track active section
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
+    // Observe all sections
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      const offsetTop = element.offsetTop - 80; // Account for navbar height
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="sticky top-0 z-50 w-full border-b border-secondary-lighter/50 bg-white/80 backdrop-blur-md"
+      className={cn(
+        'sticky top-0 z-50 w-full border-b transition-all duration-300',
+        scrolled
+          ? 'border-accent/30 bg-primary-dark/95 backdrop-blur-lg shadow-lg'
+          : 'border-accent/10 bg-primary-dark/80 backdrop-blur-md'
+      )}
     >
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <Link href="/" className="text-xl font-bold text-primary-dark">
-          Portfolio
-        </Link>
+        <a
+          href="#hero"
+          onClick={(e) => handleClick(e, '#hero')}
+          className="text-xl font-bold text-white transition-colors hover:text-muted"
+        >
+          Ansh.dev
+        </a>
 
         <ul className="flex items-center gap-8">
           {navItems.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = activeSection === item.href.replace('#', '');
             return (
               <li key={item.href}>
-                <Link
+                <a
                   href={item.href}
+                  onClick={(e) => handleClick(e, item.href)}
                   className={cn(
-                    'relative text-sm font-medium transition-colors hover:text-primary-dark',
-                    isActive ? 'text-primary-dark' : 'text-secondary'
+                    'relative text-sm font-medium transition-colors',
+                    isActive
+                      ? 'text-white'
+                      : 'text-muted hover:text-white'
                   )}
                 >
                   {item.name}
                   {isActive && (
                     <motion.span
                       layoutId="navbar-indicator"
-                      className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-primary-dark"
+                      className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-muted"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                </Link>
+                </a>
               </li>
             );
           })}

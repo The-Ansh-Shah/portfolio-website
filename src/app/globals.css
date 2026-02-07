@@ -4,17 +4,22 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --background: 7 35% 10%;
+    --foreground: 0 0% 100%;
   }
 
   body {
-    @apply bg-white text-primary-dark;
+    @apply bg-primary-dark text-white;
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Selection styling */
+  ::selection {
+    @apply bg-accent text-white;
   }
 }
 

@@ -1,45 +1,45 @@
-import Link from 'next/link';
 import { Github, Linkedin, Mail } from 'lucide-react';
+import { personalInfo } from '@/lib/content';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-secondary-lighter/50 bg-secondary-lighter/20 py-12">
+    <footer className="border-t border-accent/20 bg-accent/10 py-12">
       <div className="container mx-auto max-w-6xl px-6">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="text-center md:text-left">
-            <p className="text-sm text-secondary">
-              &copy; {currentYear} Portfolio. All rights reserved.
+            <p className="text-sm text-muted">
+              &copy; {currentYear} {personalInfo.name}. Built with Next.js & Framer Motion.
             </p>
           </div>
 
           <div className="flex items-center gap-6">
-            <Link
-              href="https://github.com"
+            <a
+              href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-secondary transition-colors hover:text-primary-dark"
+              className="text-muted transition-colors hover:text-white"
               aria-label="GitHub"
             >
               <Github className="h-5 w-5" />
-            </Link>
-            <Link
-              href="https://linkedin.com"
+            </a>
+            <a
+              href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-secondary transition-colors hover:text-primary-dark"
+              className="text-muted transition-colors hover:text-white"
               aria-label="LinkedIn"
             >
               <Linkedin className="h-5 w-5" />
-            </Link>
-            <Link
-              href="mailto:hello@example.com"
-              className="text-secondary transition-colors hover:text-primary-dark"
+            </a>
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="text-muted transition-colors hover:text-white"
               aria-label="Email"
             >
               <Mail className="h-5 w-5" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
