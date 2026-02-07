@@ -23,9 +23,9 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-accent/20 to-primary-dark"
+      className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-gradient-to-b from-accent/20 to-primary-dark"
     >
-      <div className="container mx-auto max-w-6xl px-6 py-20">
+      <div className="container mx-auto max-w-6xl px-6 py-12">
         <div className="flex flex-col items-center text-center">
           {/* Main heading - ALWAYS VISIBLE */}
           <motion.div
@@ -36,7 +36,7 @@ export default function HeroSection() {
           >
             <h1 className="text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
               Hi, I'm{' '}
-              <span className="bg-gradient-to-r from-muted to-white bg-clip-text text-transparent">
+              <span className="animate-gradient bg-gradient-to-r from-secondary via-muted to-white bg-[length:200%_auto] bg-clip-text text-transparent will-change-[background-position]">
                 Ansh Shah
               </span>
             </h1>
