@@ -9,18 +9,6 @@ export default function ExperienceSection() {
   return (
     <section id="experience" className="relative bg-primary-dark py-20 md:py-32">
       <div className="container mx-auto max-w-6xl px-6">
-        {/* Module Label */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={viewportOnce}
-          className="mb-8"
-        >
-          <p className="font-mono text-xs uppercase tracking-wider text-muted/60">
-            MODULE: EXPERIENCE
-          </p>
-        </motion.div>
-
         <motion.div
           initial="hidden"
           whileInView="visible"

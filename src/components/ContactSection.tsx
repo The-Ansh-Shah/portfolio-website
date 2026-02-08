@@ -39,18 +39,6 @@ export default function ContactSection() {
   return (
     <section id="contact" className="relative bg-accent/5 py-20 md:py-32">
       <div className="container mx-auto max-w-4xl px-6">
-        {/* Module Label */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={viewportOnce}
-          className="mb-8"
-        >
-          <p className="font-mono text-xs uppercase tracking-wider text-muted/60">
-            MODULE: CONTACT
-          </p>
-        </motion.div>
-
         <motion.div
           initial="hidden"
           whileInView="visible"

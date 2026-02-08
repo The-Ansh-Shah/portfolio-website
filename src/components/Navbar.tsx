@@ -96,7 +96,7 @@ export default function Navbar() {
           onClick={(e) => handleClick(e, '#hero')}
           className="text-xl font-bold text-white transition-colors hover:text-muted"
         >
-          System
+          Ansh.dev
         </a>
 
         {/* Desktop Navigation */}

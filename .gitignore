@@ -34,5 +34,11 @@ next-env.d.ts
 
 # local documentation (not for version control)
 INSTRUCTIONS.md
+instructions.md
 PROJECT_STATUS.md
+status.md
+IMAGE_WORKFLOW.md
 *.local.md
+
+# Local assets (images not committed to repo)
+/local-assets/
