@@ -14,6 +14,9 @@
     font-feature-settings: 'rlig' 1, 'calt' 1;
     /* Prevent unwanted color transitions */
     transition: none !important;
+    /* Prevent horizontal scrolling on mobile */
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   html {
@@ -56,9 +59,39 @@
     background-size: 50px 50px;
   }
 
+  /* Blueprint-style grid with finer lines */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(146, 144, 195, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(146, 144, 195, 0.02) 1px, transparent 1px),
+      linear-gradient(rgba(146, 144, 195, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(146, 144, 195, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+  }
+
   .circuit-dots {
     background-image: radial-gradient(circle, rgba(146, 144, 195, 0.1) 1px, transparent 1px);
     background-size: 20px 20px;
+  }
+
+  /* Animated blueprint scan effect */
+  @keyframes blueprint-scan {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+
+  .blueprint-scan {
+    animation: blueprint-scan 8s ease-in-out infinite;
   }
 
   /* Subtle signal line animation */

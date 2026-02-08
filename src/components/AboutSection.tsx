@@ -8,6 +8,18 @@ export default function AboutSection() {
   return (
     <section id="about" className="relative bg-primary-dark py-20 md:py-32">
       <div className="container mx-auto max-w-6xl px-6">
+        {/* Module Label */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={viewportOnce}
+          className="mb-8"
+        >
+          <p className="font-mono text-xs uppercase tracking-wider text-muted/60">
+            MODULE: ABOUT
+          </p>
+        </motion.div>
+
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -73,7 +85,7 @@ export default function AboutSection() {
             </div>
           </motion.div>
 
-          {/* Bio Text */}
+          {/* Bio Text and Skills */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -85,17 +97,53 @@ export default function AboutSection() {
                 },
               },
             }}
-            className="space-y-6"
+            className="space-y-8"
           >
-            {bio.map((paragraph, index) => (
-              <motion.p
-                key={index}
-                variants={sectionReveal}
-                className="text-lg leading-relaxed text-muted"
-              >
-                {paragraph}
-              </motion.p>
-            ))}
+            {/* Bio Paragraphs */}
+            <div className="space-y-6">
+              {bio.map((paragraph, index) => (
+                <motion.p
+                  key={index}
+                  variants={sectionReveal}
+                  className="text-lg leading-relaxed text-muted"
+                >
+                  {paragraph}
+                </motion.p>
+              ))}
+            </div>
+
+            {/* Key Skills Highlight */}
+            <motion.div variants={sectionReveal} className="pt-4">
+              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-secondary">
+                Core Competencies
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "RISC-V",
+                  "CPU Design",
+                  "Verilog",
+                  "ASIC Implementation",
+                  "C/C++",
+                  "Rust",
+                  "Embedded Security",
+                  "Computer Architecture",
+                  "Linux/UNIX",
+                  "Digital Circuits",
+                ].map((skill, index) => (
+                  <motion.span
+                    key={skill}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(146, 144, 195, 0.2)' }}
+                    className="rounded-full border border-muted/30 bg-accent/10 px-4 py-2 text-sm font-medium text-muted transition-colors cursor-default"
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

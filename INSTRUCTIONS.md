@@ -1,308 +1,260 @@
-# Portfolio Redesign Instructions (Claude Implementation Guide)
+# SYSTEM DESIGN DIRECTIVE — ADVANCED PORTFOLIO REFACTOR
 
-## Overview
+You are acting as a senior frontend systems engineer improving an existing Next.js 15 portfolio project.
 
-This document defines the design and structural upgrades required for the portfolio website.
+This is NOT a rewrite. Refactor and upgrade the existing implementation.
 
-Primary goals:
+Stack:
 
-- Achieve S-tier engineering portfolio design
-- Emphasize hardware/systems aesthetic
-- Improve project discoverability and visual hierarchy
-- Maintain performance and simplicity
-- Ensure full responsiveness (mobile-first design)
-- Focus ONLY on layout, structure, and UI improvements for now
-- DO NOT rewrite project content yet
+* Next.js 15 (App Router)
+* React 18
+* TypeScript
+* TailwindCSS
+* Framer Motion
 
-Tech stack:
-
-- Next.js 15
-- React 18
-- Tailwind CSS
-- react-markdown (already implemented)
+There is NO raw HTML. All work must respect React component architecture and server/client boundaries.
 
 ---
 
-# Core Design Philosophy
+# PRIMARY OBJECTIVE
 
-This is NOT a generic software portfolio.
+Transform this portfolio into a visually stunning, architecture-themed engineering site with:
 
-Design should communicate:
+* Strong visual hierarchy
+* Clean system-inspired UI
+* Excellent mobile responsiveness
+* Advanced yet subtle animations
+* High performance.
 
-- systems engineering
-- computer architecture
-- hardware/software interface
-- precision and technical depth
+Design language inspiration:
 
-Visual tone:
-
-- clean
-- modern
-- minimal but technical
-- subtle "engineering aesthetic"
+* hardware architecture diagrams
+* blueprint schematics
+* Apple-level minimalism.
 
 Avoid:
 
-- flashy startup landing page style
-- excessive gradients
-- overly playful UI patterns
+* cyberpunk styling
+* hacker terminal aesthetics
+* excessive glow/neon.
 
 ---
 
-# HERO SECTION (HIGH PRIORITY)
+# GLOBAL FIXES (CRITICAL)
 
-Update the hero section to immediately establish credibility.
+## Prevent horizontal scrolling (MOBILE BUG)
 
-Required layout:
+Currently:
 
-- Name (large)
-- Short positioning tagline
-- Current role or credibility anchor
+* navbar overflows
+* page allows sideways scroll
+* mobile zoom possible.
 
-Example structure:
+Fix across layout:
 
-Hi, I'm Ansh Shah  
-Silicon Product Engineering Intern @ Intel | EECS @ Berkeley  
+* replace any `w-screen` with `w-full` where appropriate.
+* remove transforms or absolute positioning causing overflow.
+* ensure containers use:
 
-Building efficient systems at the hardware-software interface.
+  max-w-[...] mx-auto px-4
 
-Add:
+Add global rule:
 
-- subtle animated background or technical motif allowed
-- keep minimal and professional
+```
+html, body {
+  overflow-x: hidden;
+}
+```
 
----
-
-# PROJECTS SECTION (MAJOR REDESIGN)
-
-## Project Cards
-
-Each project card must include:
-
-- Project image/thumbnail
-- Title
-- Short summary
-- Tech tags (optional)
-- Date bubble (top-right overlay)
-
-Date bubble format examples:
-
-- Fall 2025
-- Spring 2025
-- Summer 2024
-
-Implementation:
-
-- Small rounded badge
-- Positioned absolutely in top-right corner of image container
+Ensure layout.tsx contains proper viewport meta tag.
 
 ---
 
-## Featured Project
-
-Add ability to mark a project as:
-
-⭐ Featured
+## Navbar Refactor
 
 Requirements:
 
-- small star icon overlay
-- RV32I CPU project should be featured
-- visual emphasis without breaking layout
+* Responsive hamburger menu below lg breakpoint.
+* No overflow.
+* Center alignment.
+* Rename "Portfolio" home button to something more architectural/system-oriented (e.g. "System", "Overview", "Architecture").
 
 ---
 
-## Expanded Project View (Deep Dive Overlay)
+# HERO SECTION UPGRADE
 
-This replaces separate project pages.
+Must include:
 
-Behavior:
+* Large name headline: "Hi, I'm Ansh Shah"
+* Name MUST NEVER disappear due to animation or layout reflow.
+* Under name, rotating short descriptors cycling smoothly:
 
-- Clicking project opens overlay modal
-- Background blurs
-- Page scroll disabled
-- Overlay slides in from side or center
+Example concept:
 
-Overlay must include:
+"Computer Architect"
+"Systems Builder"
+"Silicon Enthusiast"
+"EECS @ Berkeley"
 
-- close (X) button
-- smooth animation
-- scrollable content area
+Use subtle fade/slide transitions.
 
-Structure:
-
-- title
-- description
-- image carousel
-- space for future deep technical details
-
-IMPORTANT:
-
-Do NOT implement full deep content yet.
-Just build expandable framework.
+Add faint animated blueprint/circuit background.
 
 ---
 
-## Image Carousel (Inside Expanded View)
+# ABOUT SECTION REFACTOR
 
-Requirements:
+Problem:
 
-- swipe support (mobile)
-- arrows for desktop
-- responsive sizing
-- lightweight library preferred
+Too much unused whitespace.
 
----
+Refactor into responsive grid:
 
-# UX CUES
+Desktop:
 
-Add discoverability:
+[ profile highlights column ] [ bio text ]
 
-- "Click to see more" hint on project cards
-OR
-- hover interaction indicating expandability
+Mobile:
 
----
+stack vertically.
 
-# ARCHITECTURE-THEMED UI AESTHETIC
+Include:
 
-Introduce subtle systems-inspired design elements:
-
-Examples:
-
-- thin grid lines
-- faint signal/path lines
-- pipeline-like separators
-- structured spacing resembling block diagrams
-
-Guidelines:
-
-- subtle and elegant
-- never distracting
-- avoid heavy skeuomorphic designs
-
-Optional ideas:
-
-- animated line traces
-- structured layout rhythm
+* short bio summary (from resume/linkedin when available)
+* skills grouped into chips.
 
 ---
 
-# STRUCTURAL IMPROVEMENTS
+# PROJECTS SECTION — ADVANCED UX
 
-## Skills Section
+## Project Card Enhancements
 
-Reorganize visually into conceptual groupings:
+Add overlay metadata:
 
-Example:
+Top-right bubble:
 
-Architecture  
-Hardware Design  
-Low-Level Systems  
-Verification
+* term (Fall 2025 / Spring 2025 etc.)
+* optional star icon for featured project (RV32I CPU).
 
-Focus on clarity rather than large keyword blocks.
+Use:
 
----
-
-# RESPONSIVENESS (MANDATORY)
-
-Mobile-first design.
-
-Requirements:
-
-- all cards stack cleanly on mobile
-- overlay modal usable with thumb navigation
-- carousel swipe enabled
-- no horizontal scroll
-
-Test breakpoints:
-
-- small phone
-- large phone
-- tablet
-- desktop
+absolute positioning + backdrop blur.
 
 ---
 
-# FUTURE FEATURES (DO NOT IMPLEMENT YET)
+## Deep Dive Overlay (IMPORTANT FEATURE)
 
-These should be planned but NOT built now:
+Clicking a project SHOULD NOT navigate to new page.
 
-- Interactive architecture diagrams
-- Technical blog page
-- Experience timeline view
+Instead:
 
-Leave extensibility hooks where reasonable.
+* blur background
+* slide panel from right side.
+* overlay modal behavior.
+
+Content:
+
+* project details
+* image carousel
+* close button.
+
+Implement with Framer Motion.
+
+---
+
+# ARCHITECTURE-THEMED VISUAL DESIGN
+
+Enhancements:
+
+* faint blueprint grid background.
+* thin connector lines between sections.
+* technical labels:
+
+MODULE: ABOUT
+MODULE: PROJECTS
+
+Use mono font for labels.
+
+---
+
+# CONTACT SECTION REFACTOR (SECURITY AWARE)
+
+Goal:
+
+Avoid exposing phone number directly in static markup.
+
+Implement OPTION A:
+
+Client-side phone reconstruction.
+
+Example approach:
+
+```
+const phoneParts = ["123","456","7890"]
+const phone = phoneParts.join("-")
+```
+
+Render phone only after component mounts or when user clicks:
+
+"Reveal Direct Contact".
+
+Primary contact area should include:
+
+* Email button
+* LinkedIn button
+* Resume download.
+
+---
+
+# MOBILE EXPERIENCE (STRICT REQUIREMENTS)
+
+* No sideways scrolling.
+* All CTAs centered.
+* Touch-friendly spacing.
+* No accidental zoom.
+* Layout stacks vertically below md breakpoint.
 
 ---
 
 # ANIMATION GUIDELINES
 
-Allowed:
+Use Framer Motion.
 
-- smooth fades
-- subtle motion
-- sliding panels
+Preferred:
+
+* fade
+* slide
+* subtle scale.
 
 Avoid:
 
-- excessive motion
-- flashy effects
-- long animation durations
-
-Target:
-
-- fast and responsive feel.
+* large bounces
+* exaggerated motion.
 
 ---
 
-# PERFORMANCE
+# REPOSITORY CLEANUP
 
-- Avoid heavy libraries
-- Prefer lightweight components
-- Maintain fast load times
+Prevent unnecessary local documentation files from being committed.
 
----
+Update .gitignore to exclude:
 
-# REPOSITORY RULES
+* instructions.md
+* status.md
+* development logs.
 
-Certain markdown files should exist locally but NOT be committed to GitHub.
-
-Examples:
-
-- Instructions.md
-- status.md
-- internal planning files
-
-Add/update `.gitignore`:
-
-Instructions.md
-project_status.md
-*.local.md
-
-
-Ensure these files remain local-only.
+They may exist locally but must not be tracked by git.
 
 ---
 
-# IMPLEMENTATION PRIORITY ORDER
+# FINAL GOAL
 
-1. Hero section redesign
-2. Project card redesign (date badges + featured star)
-3. Expandable overlay modal
-4. Image carousel inside overlay
-5. Architecture-themed aesthetic adjustments
-6. Skills section layout improvement
-7. Mobile responsiveness refinements
+The portfolio should feel like:
 
----
+A hardware/software systems engineer designed it with intention and precision.
 
-# END GOAL
+Elegant.
+Technical.
+Memorable.
 
-The result should feel like:
-
-- a professional architecture engineer portfolio
-- clean, structured, technical
-- visually memorable without being flashy
-- significantly stronger than typical student portfolios
+Refactor iteratively while preserving existing working structure.

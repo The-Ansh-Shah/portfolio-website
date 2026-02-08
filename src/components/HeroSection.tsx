@@ -67,7 +67,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-gradient-to-b from-accent/20 to-primary-dark circuit-grid"
+      className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-gradient-to-b from-accent/20 to-primary-dark blueprint-grid"
     >
       <div className="container mx-auto max-w-6xl px-6 py-12">
         <div className="flex flex-col items-center text-center">
@@ -133,10 +133,15 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Decorative gradient blobs */}
+      {/* Blueprint scan effect */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="blueprint-scan absolute inset-0 bg-gradient-to-b from-transparent via-muted/10 to-transparent"></div>
+      </div>
+
+      {/* Decorative gradient blobs - contained within section */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute -right-20 top-20 h-96 w-96 rounded-full bg-accent/30 blur-3xl"
+          className="absolute right-0 top-20 h-64 w-64 md:h-96 md:w-96 rounded-full bg-accent/30 blur-3xl"
           animate={{
             y: [0, 30, 0],
             scale: [1, 1.1, 1],
@@ -148,7 +153,7 @@ export default function HeroSection() {
           }}
         />
         <motion.div
-          className="absolute -left-20 bottom-20 h-96 w-96 rounded-full bg-secondary/20 blur-3xl"
+          className="absolute left-0 bottom-20 h-64 w-64 md:h-96 md:w-96 rounded-full bg-secondary/20 blur-3xl"
           animate={{
             y: [0, -30, 0],
             scale: [1, 1.15, 1],
@@ -160,16 +165,16 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Circuit-like decorative lines */}
-        <div className="absolute left-0 top-1/4 h-px w-32 bg-gradient-to-r from-transparent via-muted/20 to-transparent"></div>
-        <div className="absolute right-0 top-1/3 h-px w-40 bg-gradient-to-l from-transparent via-muted/20 to-transparent"></div>
-        <div className="absolute left-1/4 bottom-1/4 h-px w-24 bg-gradient-to-r from-transparent via-muted/20 to-transparent"></div>
+        {/* Circuit-like decorative lines - hidden on mobile */}
+        <div className="hidden md:block absolute left-4 top-1/4 h-px w-32 bg-gradient-to-r from-transparent via-muted/20 to-transparent"></div>
+        <div className="hidden md:block absolute right-4 top-1/3 h-px w-40 bg-gradient-to-l from-transparent via-muted/20 to-transparent"></div>
+        <div className="hidden md:block absolute left-1/4 bottom-1/4 h-px w-24 bg-gradient-to-r from-transparent via-muted/20 to-transparent"></div>
 
-        {/* Animated signal lines */}
-        <div className="absolute left-10 top-1/2 h-px w-20 overflow-hidden">
+        {/* Animated signal lines - hidden on mobile */}
+        <div className="hidden md:block absolute left-10 top-1/2 h-px w-20 overflow-hidden">
           <div className="signal-line h-full w-full bg-gradient-to-r from-transparent via-muted/40 to-transparent"></div>
         </div>
-        <div className="absolute right-20 top-2/3 h-px w-16 overflow-hidden">
+        <div className="hidden md:block absolute right-20 top-2/3 h-px w-16 overflow-hidden">
           <div className="signal-line h-full w-full bg-gradient-to-r from-transparent via-muted/40 to-transparent" style={{ animationDelay: '2s' }}></div>
         </div>
       </div>

@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { name: 'About', href: '#about' },
@@ -15,6 +16,7 @@ const navItems = [
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('hero');
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Track scroll position for styling
   useEffect(() => {
@@ -58,6 +60,7 @@ export default function Navbar() {
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    setMobileMenuOpen(false); // Close mobile menu on navigation
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
 
@@ -87,16 +90,17 @@ export default function Navbar() {
           : 'linear-gradient(to bottom, rgba(146, 144, 195, 0.08), rgba(83, 92, 145, 0.04))',
       }}
     >
-      <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-6">
         <a
           href="#hero"
           onClick={(e) => handleClick(e, '#hero')}
           className="text-xl font-bold text-white transition-colors hover:text-muted"
         >
-          Ansh.dev
+          System
         </a>
 
-        <ul className="flex items-center gap-8">
+        {/* Desktop Navigation */}
+        <ul className="hidden lg:flex items-center gap-8">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.replace('#', '');
             return (
@@ -124,7 +128,51 @@ export default function Navbar() {
             );
           })}
         </ul>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="lg:hidden p-2 text-white hover:text-muted transition-colors"
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden border-t border-white/10 bg-accent/10 backdrop-blur-xl overflow-hidden"
+          >
+            <ul className="container mx-auto max-w-6xl px-4 py-4 space-y-2">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href.replace('#', '');
+                return (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleClick(e, item.href)}
+                      className={cn(
+                        'block px-4 py-3 rounded-lg text-sm font-medium transition-all',
+                        isActive
+                          ? 'bg-muted/20 text-white'
+                          : 'text-muted hover:bg-white/5 hover:text-white'
+                      )}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }

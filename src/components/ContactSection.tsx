@@ -1,22 +1,20 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { personalInfo } from '@/lib/content';
 import { sectionReveal, viewportOnce } from '@/lib/animations';
-import { Mail, MapPin, Github, Linkedin, Phone } from 'lucide-react';
+import { Mail, MapPin, Github, Linkedin, Phone, FileDown, Eye } from 'lucide-react';
 
-const contactMethods = [
+// Phone number split into parts for security (reconstructed client-side)
+const phoneParts = ['408', '207', '8992'];
+
+const primaryContactMethods = [
   {
     icon: Mail,
     label: 'Email',
     value: personalInfo.email,
     href: `mailto:${personalInfo.email}`,
-  },
-  {
-    icon: Phone,
-    label: 'Phone',
-    value: personalInfo.phone,
-    href: `tel:${personalInfo.phone}`,
   },
   {
     icon: Github,
@@ -33,9 +31,26 @@ const contactMethods = [
 ];
 
 export default function ContactSection() {
+  const [phoneRevealed, setPhoneRevealed] = useState(false);
+
+  // Reconstruct phone number client-side
+  const reconstructedPhone = `(${phoneParts[0]}) ${phoneParts[1]}-${phoneParts[2]}`;
+
   return (
     <section id="contact" className="relative bg-accent/5 py-20 md:py-32">
       <div className="container mx-auto max-w-4xl px-6">
+        {/* Module Label */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={viewportOnce}
+          className="mb-8"
+        >
+          <p className="font-mono text-xs uppercase tracking-wider text-muted/60">
+            MODULE: CONTACT
+          </p>
+        </motion.div>
+
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -53,7 +68,8 @@ export default function ContactSection() {
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {contactMethods.map((method, index) => (
+          {/* Primary Contact Methods */}
+          {primaryContactMethods.map((method, index) => (
             <motion.a
               key={method.label}
               href={method.href}
@@ -79,6 +95,40 @@ export default function ContactSection() {
               </div>
             </motion.a>
           ))}
+
+          {/* Phone Number - Reveal on Click */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
+            transition={{ delay: 0.3 }}
+            className="group flex items-center gap-4 rounded-2xl border border-accent/30 bg-accent/10 p-6 backdrop-blur-sm transition-all"
+          >
+            <div className="rounded-lg bg-muted/20 p-3 transition-colors group-hover:bg-muted/30">
+              <Phone className="h-6 w-6 text-muted" />
+            </div>
+            <div className="flex-1">
+              <p className="mb-1 text-sm font-medium text-secondary">
+                Phone
+              </p>
+              {phoneRevealed ? (
+                <a
+                  href={`tel:${phoneParts.join('')}`}
+                  className="font-semibold text-white hover:text-muted transition-colors"
+                >
+                  {reconstructedPhone}
+                </a>
+              ) : (
+                <button
+                  onClick={() => setPhoneRevealed(true)}
+                  className="flex items-center gap-2 text-sm font-medium text-muted hover:text-white transition-colors"
+                >
+                  <Eye className="h-4 w-4" />
+                  Reveal Contact
+                </button>
+              )}
+            </div>
+          </motion.div>
         </div>
 
         <motion.div
