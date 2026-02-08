@@ -36,7 +36,7 @@ export default function HeroSection() {
           >
             <h1 className="text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
               Hi, I'm{' '}
-              <span className="animate-gradient bg-gradient-to-r from-secondary via-muted to-white bg-[length:200%_auto] bg-clip-text text-transparent will-change-[background-position]">
+              <span className="animate-gradient bg-gradient-to-r from-white via-muted to-secondary bg-[length:200%_auto] bg-clip-text text-transparent will-change-[background-position]">
                 Ansh Shah
               </span>
             </h1>

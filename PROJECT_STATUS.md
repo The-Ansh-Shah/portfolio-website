@@ -4,59 +4,151 @@
 
 **Deployment Platform**: Vercel
 **Repository**: github.com/The-Ansh-Shah/portfolio-website
-**Last Deploy**: Successful (Commit: b89e9aa)
-**Status**: Production-ready
+**Last Update**: 2026-02-07
+**Status**: Production-ready, Single-Page Application
 
 ---
 
 ## Project Overview
 
-A modern, high-performance portfolio website built with:
+A modern, visually striking single-page portfolio website designed to impress recruiters, built with:
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS (Custom color palette)
-- **Animations**: Framer Motion
-- **Content**: Markdown-based projects system
+- **Styling**: Tailwind CSS (Custom dark technical theme)
+- **Animations**: Framer Motion (scroll-triggered, staggered reveals)
+- **Typewriter**: react-type-animation
 - **Icons**: Lucide React
+- **Content**: Structured TypeScript data (actual resume content)
 
-### Color Palette
-- Primary Dark: `#19183b`
-- Secondary: `#708993`
-- Secondary Light: `#a1c2bd`
-- Secondary Lighter: `#e7f2ef`
+### Color Palette (Dark Technical Theme)
+- **Primary Dark**: `#070f2b` (Deep navy, almost black)
+- **Deep Accent**: `#1b1a55` (Rich purple-navy)
+- **Secondary**: `#535c91` (Muted blue-gray)
+- **Muted Light**: `#9290c3` (Soft lavender-gray)
 
 ---
 
 ## Architecture
 
-### Pages Structure
+### Single-Page Structure
 ```
-/                    → Home (Hero + Featured Projects)
-/projects            → All Projects Listing
-/projects/[slug]     → Individual Project Detail
-/about               → About Page (Skills, Values)
-/contact             → Contact Page (Social Links)
+/                    → Single scrollable page with sections:
+                       • Hero (typewriter animation)
+                       • About (bio + profile photo + stats)
+                       • Experience (SLICE Lab + CS 61C)
+                       • Projects (4 major projects)
+                       • Skills (4 categories)
+                       • Contact
 ```
+
+### Navigation
+- **Smooth scrolling** to anchor sections (#hero, #about, #experience, etc.)
+- **Intersection Observer** for active section tracking
+- **Liquid-glass navbar** with backdrop blur and gradient overlay
+- No page transitions, just seamless scrolling
 
 ### Component Architecture
-- **Server Components**: Pages with data fetching (projects)
-- **Client Components**: Interactive/animated elements (Navbar, animations)
-- **Separation**: Clean server/client boundary for optimal performance
+- **Server Component**: Main page (`src/app/page.tsx`) for initial render
+- **Client Components**: All sections (animations, scroll detection, typewriter)
+- **Clean separation**: Optimal performance with minimal client-side JS
 
 ### Key Components
-1. `Navbar` - Sticky navigation with active state
-2. `Footer` - Social links
-3. `HeroSection` - Animated landing section
-4. `ProjectCard` - Individual project display with hover effects
-5. `ProjectGrid` - Responsive grid layout
-6. `SectionContainer` - Consistent page sections
-7. `AnimatedSection` - Reusable animation wrapper
+1. `Navbar` - Liquid-glass sticky nav with active section tracking
+2. `Footer` - Social links and copyright
+3. `HeroSection` - Streaming gradient name animation + typewriter
+4. `AboutSection` - Bio + profile photo + stats cards (GPA, Age, Graduation, Hobby)
+5. `ExperienceSection` - Work experience cards with animations
+6. `ProjectsSection` - Project grid with image placeholders
+7. `ProjectCard` - Enhanced cards with images and hover effects
+8. `SkillsSection` - Technical skills categorized by type
+9. `ContactSection` - Contact methods with icons
+10. `ExperienceCard` - Individual experience display
 
 ### Data System
-- **Location**: `content/projects/*.mdx`
-- **Parser**: `gray-matter` for frontmatter
-- **Renderer**: `react-markdown` with `remark-gfm`
-- **Functions**: `getAllProjects()`, `getProjectBySlug()`, `getFeaturedProjects()`
+- **Location**: `src/lib/content.ts`
+- **Structure**: TypeScript objects with types
+- **Content**: Real resume data (Ansh Shah - UC Berkeley EECS)
+- **No MDX**: Replaced with structured data for single-page design
+
+---
+
+## Recent Major Transformation
+
+### From Multi-Page to Single-Page SPA
+
+**Date**: 2026-02-07
+**Reason**: Create a more impressive, recruiter-stopping portfolio
+
+**Changes Made**:
+1. Consolidated all pages into single scrollable page
+2. Implemented smooth scroll navigation with anchor links
+3. Added streaming gradient animation to hero name
+4. Changed color palette to dark technical theme
+5. Added typewriter animation cycling through roles
+6. Enhanced navbar with liquid-glass effect
+7. Added profile photo section with decorative frame
+8. Added stats cards (GPA: 3.953, Age: 19, Graduation: May 2027, Hobby: Guitaring)
+9. Added image placeholders to project cards
+10. Removed all route folders (projects, about, contact)
+11. Deleted unused components (ProjectGrid, AnimatedSection, SectionContainer)
+12. Replaced MDX system with structured TypeScript data
+
+**Files Deleted**:
+- `src/app/projects/` folder
+- `src/app/about/` folder
+- `src/app/contact/` folder
+- `content/projects/` folder (MDX files)
+- `src/components/ProjectGrid.tsx`
+- `src/components/AnimatedSection.tsx`
+- `src/components/SectionContainer.tsx`
+- `src/lib/projects.ts`
+
+**Files Created**:
+- `src/lib/content.ts` - All resume content
+- `src/lib/animations.ts` - Shared animation variants
+- `src/components/AboutSection.tsx`
+- `src/components/ExperienceSection.tsx`
+- `src/components/ExperienceCard.tsx`
+- `src/components/ProjectsSection.tsx`
+- `src/components/SkillsSection.tsx`
+- `src/components/ContactSection.tsx`
+
+---
+
+## Latest UI Enhancements (Feb 7, 2026)
+
+### 1. **Streaming Gradient Animation**
+- **Continuous 1-directional flow** (flows to the right)
+- Changed from `from-secondary via-muted to-white` to `from-white via-muted to-secondary`
+- Uses `linear` timing for constant stream effect
+- Animation: `0% → 200%` background-position for seamless loop
+- Fixed initial stutter by ensuring gradient is present from start
+
+### 2. **Liquid-Glass Navbar**
+- Enhanced transparency: `bg-white/5` (scrolled) and `bg-white/3` (not scrolled)
+- Stronger backdrop blur: `backdrop-blur-xl`
+- Light gradient overlay using muted/secondary colors
+- Soft shadow with lavender tint for depth
+- Prevents page darkening with `transition: none !important` on body
+
+### 3. **Profile Photo Stats Cards**
+- **GPA**: 3.953
+- **Age**: 19
+- **Graduation**: May 2027
+- **Current Hobby**: 🎸 Guitaring
+- Grid layout: 2x2 with some spanning full width
+- Matching glass-effect styling with accent borders
+
+### 4. **Project Card Images**
+- 200px tall image placeholder at top
+- Gradient background using theme colors
+- Shows first word of project title as temporary content
+- Decorative grid pattern overlay
+
+### 5. **Darkening Bug Fix**
+- Added `transition: none !important` to html/body
+- Prevents unwanted color transitions during hydration
+- Ensures consistent rendering from initial load
 
 ---
 
@@ -64,51 +156,56 @@ A modern, high-performance portfolio website built with:
 
 ### Issue 1: Invalid CSS Class
 **Error**: `The 'border-border' class does not exist`
-**Location**: `src/app/globals.css:12`
-**Cause**: Used undefined Tailwind class `border-border`
-**Fix**: Removed the invalid `@apply border-border;` line
-**Learning**: Always verify Tailwind classes exist in config before using them
+**Fix**: Removed invalid `@apply border-border;` from globals.css
 
 ### Issue 2: Server/Client Component Mismatch
 **Error**: `Module not found: Can't resolve 'fs'`
-**Location**: `src/app/projects/page.tsx`
-**Cause**: Client component (`'use client'`) trying to use Node.js `fs` module
-**Fix**:
-- Removed `'use client'` from projects page
-- Created `AnimatedSection` client component for animations
-- Proper server/client component separation
-**Learning**: Next.js App Router requires careful server/client boundary management. Server components can use Node.js APIs, client components cannot.
+**Fix**: Removed `'use client'` from server components, created client wrappers for animations
 
 ### Issue 3: React Version Mismatch with MDX
 **Error**: `A React Element from an older version of React was rendered`
-**Location**: Project detail pages during static generation
-**Cause**: `next-mdx-remote` v5.0.0 incompatible with Next.js 15
-**Fix**:
-- Replaced `next-mdx-remote` with `react-markdown`
-- Added `remark-gfm` for GitHub Flavored Markdown
-**Learning**: Next.js 15 requires careful package selection. `react-markdown` is more stable and lighter than MDX solutions for simple markdown rendering.
+**Fix**: Replaced `next-mdx-remote` with `react-markdown` + `remark-gfm`
+
+### Issue 4: Module Not Found - SectionContainer
+**Error**: 404 page importing deleted component
+**Fix**: Inlined styles in not-found.tsx
+
+### Issue 5: Hero Name Disappearing
+**Error**: Name vanishing after initial render due to `text-transparent` issues
+**Fix**: Added webkit prefixes (`-webkit-background-clip`, `-webkit-text-fill-color`) to globals.css
+
+### Issue 6: Page Darkening After 2 Seconds
+**Error**: Entire page suddenly darkens ~2 seconds after load
+**Fix**: Added `transition: none !important` to html/body elements to prevent unwanted transitions
 
 ---
 
 ## Technical Decisions & Rationale
 
-### Why react-markdown over next-mdx-remote?
-1. **Stability**: Better compatibility with Next.js 15
-2. **Simplicity**: Just rendering markdown, not executing code
-3. **Performance**: Lighter bundle size
-4. **Reliability**: Well-maintained, no version conflicts
+### Why Single-Page Over Multi-Page?
+1. **Better UX**: Smooth scrolling is more engaging than page transitions
+2. **Stronger Impact**: Cohesive storytelling keeps recruiters engaged
+3. **Modern Standard**: SPA portfolios are industry standard for technical roles
+4. **Performance**: No page load times between sections
+5. **Memorable**: Creates premium, polished impression
 
-### Why Server Components for Projects?
-1. **Performance**: Data fetching on server reduces client-side JS
-2. **SEO**: Full HTML rendered on server
-3. **Security**: File system access stays on server
-4. **Loading**: Faster initial page loads
+### Why Streaming Gradient?
+1. **Visual Interest**: Eye-catching effect that draws attention
+2. **Professional**: Subtle animation that doesn't distract
+3. **Brand**: Matches technical/modern aesthetic
+4. **Continuous**: 1-directional flow feels fluid and natural
 
-### Why Framer Motion?
-1. **Smooth animations**: Better than CSS alone
-2. **React integration**: Works seamlessly with components
-3. **Performance**: Hardware-accelerated animations
-4. **Developer experience**: Simple, declarative API
+### Why Liquid-Glass Navbar?
+1. **Premium Feel**: Frosted glass effect is modern and elegant
+2. **Visibility**: Light enough to see content behind, dark enough to read text
+3. **Context**: User can see page content while navigating
+4. **Trend**: Glass morphism is current design trend
+
+### Why Dark Theme?
+1. **Technical Aesthetic**: Matches computer architecture/systems engineering vibe
+2. **Contrast**: Text pops more on dark backgrounds
+3. **Modern**: Dark mode is preferred by developers
+4. **Professional**: Creates sophisticated, serious tone
 
 ---
 
@@ -117,39 +214,30 @@ A modern, high-performance portfolio website built with:
 ```
 project-website/
 ├── src/
-│   ├── app/                    # Next.js pages (App Router)
-│   │   ├── about/page.tsx      # About page (client)
-│   │   ├── contact/page.tsx    # Contact page (client)
-│   │   ├── projects/
-│   │   │   ├── page.tsx        # Projects listing (server)
-│   │   │   └── [slug]/page.tsx # Project detail (server)
-│   │   ├── layout.tsx          # Root layout
-│   │   ├── page.tsx            # Home page (server)
+│   ├── app/                    # Next.js App Router
+│   │   ├── layout.tsx          # Root layout with Inter font
+│   │   ├── page.tsx            # Single-page home (all sections)
 │   │   ├── not-found.tsx       # 404 page
-│   │   └── globals.css         # Global styles
+│   │   └── globals.css         # Global styles + animations
 │   ├── components/             # React components
-│   │   ├── Navbar.tsx          # Navigation (client)
-│   │   ├── Footer.tsx          # Footer (server)
-│   │   ├── HeroSection.tsx     # Hero (client)
-│   │   ├── ProjectCard.tsx     # Card (client)
-│   │   ├── ProjectGrid.tsx     # Grid (server)
-│   │   ├── SectionContainer.tsx # Container (server)
-│   │   └── AnimatedSection.tsx # Animation wrapper (client)
-│   └── lib/                    # Utilities
+│   │   ├── Navbar.tsx          # Liquid-glass nav (client)
+│   │   ├── Footer.tsx          # Footer with links
+│   │   ├── HeroSection.tsx     # Hero + typewriter (client)
+│   │   ├── AboutSection.tsx    # Bio + photo + stats (client)
+│   │   ├── ExperienceSection.tsx   # Work experience (client)
+│   │   ├── ExperienceCard.tsx  # Experience card component
+│   │   ├── ProjectsSection.tsx # Projects grid (client)
+│   │   ├── ProjectCard.tsx     # Project card with image (client)
+│   │   ├── SkillsSection.tsx   # Skills categories (client)
+│   │   └── ContactSection.tsx  # Contact info (client)
+│   └── lib/                    # Utilities & data
 │       ├── utils.ts            # Tailwind merge helper
-│       └── projects.ts         # Project data functions
-├── content/
-│   └── projects/               # MDX project files
-│       ├── example-project-1.mdx
-│       ├── example-project-2.mdx
-│       └── example-project-3.mdx
-├── public/
-│   └── images/projects/        # Project images
-├── tailwind.config.ts          # Tailwind configuration
+│       ├── content.ts          # All resume content (NEW)
+│       └── animations.ts       # Shared Framer Motion variants (NEW)
+├── tailwind.config.ts          # Dark theme colors
 ├── tsconfig.json               # TypeScript config
 ├── next.config.ts              # Next.js config
-├── package.json                # Dependencies
-└── DEPLOYMENT.md               # Deployment guide
+└── package.json                # Dependencies
 ```
 
 ---
@@ -163,164 +251,152 @@ project-website/
 - `typescript` (^5.7.2) - Type safety
 - `tailwindcss` (^3.4.17) - Styling
 - `framer-motion` (^11.15.0) - Animations
-- `react-markdown` (^9.0.1) - Markdown renderer
-- `remark-gfm` (^4.0.0) - GitHub Flavored Markdown
-- `gray-matter` (^4.0.3) - Frontmatter parser
+- `react-type-animation` (^3.2.0) - Typewriter effect
 - `lucide-react` (^0.468.0) - Icons
-- `clsx` + `tailwind-merge` - Class name utilities
+- `clsx` + `tailwind-merge` - Class utilities
 
-### Development
-- `@tailwindcss/typography` - Prose styling
-- `eslint` - Linting
-- `eslint-config-next` - Next.js ESLint rules
+---
+
+## Content (From Resume)
+
+**Name**: Ansh Shah
+**University**: UC Berkeley (EECS)
+**GPA**: 3.953/4.0
+**Graduation**: May 2027
+**Age**: 19
+**Organizations**: HKN (Top 25% EECS students)
+
+**Experience**:
+1. Undergraduate Researcher - SLICE Lab (Apr 2025 - Present)
+2. Undergraduate Course Staff - CS 61C (Aug 2025 - Dec 2025)
+
+**Projects**:
+1. RV32I CPU and Direct-Mapped L1 Cache (62.4 MHz, 36% cycle reduction)
+2. RP2040 Bootloader Rootkit Analysis (Security research)
+3. RISC-V Neural Network Classifier (Assembly implementation)
+4. Treble Booster Circuit (Analog filter design)
+
+**Skills**:
+- Hardware: Verilog, RISC-V, Chisel, CPU Architecture, CMOS, Synopsys VCS, Cadence Innovus
+- Programming: C, Python, Rust, C++, Java
+- Tools: Oscilloscopes, RP2040, STM32, Git, Linux, GDB, Valgrind
+- Coursework: Digital ICs, Computer Architecture, Embedded Systems, Operating Systems
+
+---
+
+## Animation System
+
+### Shared Variants (`src/lib/animations.ts`)
+- `fadeInUp` - Fade in with upward movement
+- `staggerContainer` - Stagger children animations
+- `cardHover` - Lift and scale on hover
+- `sectionReveal` - Section fade-in reveal
+- `viewportOnce` - Viewport settings (once: true, margin: 0px)
+
+### Key Animations
+1. **Hero Name**: Streaming gradient (3s linear infinite)
+2. **Typewriter**: Cycles through 6 role descriptions (2s pause each)
+3. **Sections**: Fade + slide up on scroll (viewport trigger)
+4. **Cards**: Staggered reveal with index-based delays
+5. **Hover**: Lift, scale, shadow effects
+6. **Navbar**: Active indicator with spring physics
 
 ---
 
 ## Performance Optimizations
 
-1. **Server-Side Rendering**: Most pages use SSR for fast initial loads
-2. **Static Generation**: Project pages pre-rendered at build time
-3. **Image Optimization**: Next.js Image component with lazy loading
-4. **Code Splitting**: Automatic via Next.js App Router
-5. **Minimal Client JS**: Only interactive components use client-side code
-6. **Framer Motion**: Hardware-accelerated animations
-7. **Font Optimization**: Inter font loaded via next/font/google
+1. **Server-Side Rendering**: Initial page render on server
+2. **Minimal Client JS**: Only interactive sections use client components
+3. **Viewport Triggers**: Animations only trigger when scrolled into view
+4. **Once Animations**: Most animations don't re-trigger on re-scroll
+5. **Hardware Acceleration**: `will-change` for gradient animation
+6. **Font Optimization**: Inter loaded via next/font/google
+7. **Image Optimization**: Lazy loading for project images (when added)
 
 ---
 
-## Git History
+## SEO Optimizations
 
-**Commit 1 (0f57482)**: Initial commit
-- Complete project scaffolding
-- All components and pages
-- Example projects
-- Initial deployment attempt (failed)
+**Title**: "Ansh Shah | EECS @ UC Berkeley"
+**Description**: "Computer Architecture Engineer specializing in RISC-V CPU design, ASIC implementation, and embedded systems security. UC Berkeley EECS student passionate about building efficient systems at the hardware-software interface."
 
-**Commit 2 (25c0ab4)**: Fix build errors
-- Fixed invalid CSS class
-- Fixed server/client component separation
-- Added AnimatedSection component
-
-**Commit 3 (b89e9aa)**: Replace MDX library
-- Replaced next-mdx-remote with react-markdown
-- Fixed React version mismatch
-- Successful deployment ✅
+**Metadata** (in layout.tsx):
+- Proper title and description
+- Language set to "en"
+- Font optimization
+- Semantic HTML structure
 
 ---
 
-## Next Steps / Future Improvements
+## Future Improvements
 
 ### Content
-- [ ] Replace example projects with real projects
+- [ ] Add real profile photo
 - [ ] Add real project images
-- [ ] Update personal information (name, bio)
-- [ ] Update contact links and social media
-- [ ] Add resume/CV download option
+- [ ] Add blog section (optional)
+- [ ] Add resume download link
 
 ### Features
-- [ ] Add blog section (optional)
-- [ ] Add project categories/filtering
-- [ ] Add search functionality
-- [ ] Add dark mode toggle
-- [ ] Add analytics (Google Analytics or Vercel Analytics)
-- [ ] Add contact form with backend
-- [ ] Add RSS feed for projects/blog
+- [ ] Mobile hamburger menu for navbar
+- [ ] Dark mode toggle (currently always dark)
+- [ ] Project filtering/categories
+- [ ] Analytics integration
 
 ### Performance
 - [ ] Add OG images for social sharing
-- [ ] Implement ISR (Incremental Static Regeneration) for projects
-- [ ] Add loading states for better UX
-- [ ] Optimize images (convert to WebP)
-- [ ] Add service worker for offline support
-
-### SEO
+- [ ] Convert images to WebP
 - [ ] Add sitemap.xml
 - [ ] Add robots.txt
-- [ ] Improve meta descriptions
-- [ ] Add structured data (JSON-LD)
-- [ ] Add canonical URLs
-
-### Code Quality
-- [ ] Add unit tests (Jest)
-- [ ] Add E2E tests (Playwright)
-- [ ] Add Storybook for component documentation
-- [ ] Set up CI/CD pipeline
-- [ ] Add pre-commit hooks (Husky)
 
 ---
 
 ## Lessons Learned
 
-### 1. Next.js 15 App Router Specifics
-- Server components are default
-- Client components need explicit `'use client'`
-- Can't mix server-only code (fs) in client components
-- Proper separation leads to better performance
+### 1. Single-Page Design
+- Requires careful section ID management
+- Smooth scroll needs browser compatibility handling
+- Intersection Observer is powerful for tracking
+- Active state tracking enhances UX
 
-### 2. Package Compatibility Matters
-- Always check Next.js version compatibility
-- Newer isn't always better (next-mdx-remote issue)
-- Read changelogs and migration guides
-- Simpler solutions often more reliable
+### 2. Gradient Animation on Text
+- Requires webkit prefixes for cross-browser support
+- `text-transparent` can cause visibility issues
+- `will-change` improves performance
+- Linear timing better for streaming effects
 
-### 3. Build Errors Are Learning Opportunities
-- CSS errors caught at build time save production bugs
-- Module resolution errors show architecture issues
-- React errors indicate version/compatibility problems
-- Each error teaches proper patterns
+### 3. Glass Morphism
+- Backdrop blur needs careful transparency balance
+- Gradient overlays add depth
+- Light colors on light backgrounds need shadows
+- Test on different content backgrounds
 
-### 4. Deployment Best Practices
-- Test builds locally before deploying
-- Read error messages carefully
-- Fix issues incrementally
-- Keep deployment logs for debugging
-
-### 5. Developer Experience
-- Clear file structure helps navigation
-- Type safety catches errors early
-- Good documentation prevents confusion
-- Separation of concerns enables scaling
+### 4. Hydration Issues
+- Body transitions can cause flickering
+- `transition: none !important` prevents unwanted animations
+- Ensure server/client render consistency
 
 ---
 
 ## Troubleshooting Guide
 
-### Build fails locally
-1. Delete `node_modules` and `.next`
-2. Run `npm install`
-3. Run `npm run build`
-4. Check error messages
+### Name disappearing in hero
+**Cause**: `text-transparent` without webkit prefixes
+**Fix**: Add `-webkit-background-clip: text` and `-webkit-text-fill-color: transparent`
 
-### Vercel deployment fails
-1. Check build logs in Vercel dashboard
-2. Verify all dependencies in package.json
-3. Ensure no server-only code in client components
-4. Test build locally first
+### Page darkening after load
+**Cause**: CSS transitions on body/html
+**Fix**: Add `transition: none !important` to body/html
 
-### Styling issues
-1. Check Tailwind config
-2. Verify classes exist
-3. Check for typos in class names
-4. Ensure CSS is imported in layout
+### Smooth scroll not working
+**Cause**: CSS or browser compatibility
+**Fix**: Check `scroll-behavior: smooth` in globals.css, add JS fallback
 
-### Animation issues
-1. Verify 'use client' directive
-2. Check Framer Motion version
-3. Test on different browsers
-4. Check for conflicting styles
-
----
-
-## Resources
-
-- [Next.js 15 Docs](https://nextjs.org/docs)
-- [Tailwind CSS Docs](https://tailwindcss.com/docs)
-- [Framer Motion Docs](https://www.framer.com/motion/)
-- [Vercel Deployment Docs](https://vercel.com/docs)
-- [React Markdown Docs](https://github.com/remarkjs/react-markdown)
+### Navbar not tracking active section
+**Cause**: Intersection Observer not set up properly
+**Fix**: Check section IDs match href values, verify observer thresholds
 
 ---
 
 **Last Updated**: 2026-02-07
-**Status**: Production Ready ✅
-**Maintainer**: Ready for customization and launch
+**Status**: Production Ready with Latest UI Enhancements ✅
+**Next Deploy**: Ready to push latest changes

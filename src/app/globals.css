@@ -8,9 +8,12 @@
     --foreground: 0 0% 100%;
   }
 
+  html,
   body {
     @apply bg-primary-dark text-white;
     font-feature-settings: 'rlig' 1, 'calt' 1;
+    /* Prevent unwanted color transitions */
+    transition: none !important;
   }
 
   html {

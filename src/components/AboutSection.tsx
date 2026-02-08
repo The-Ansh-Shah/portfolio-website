@@ -28,7 +28,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={viewportOnce}
             transition={{ duration: 0.6 }}
-            className="flex justify-center md:justify-start"
+            className="flex flex-col gap-6 justify-center md:justify-start"
           >
             <div className="relative">
               {/* Decorative border */}
@@ -50,6 +50,26 @@ export default function AboutSection() {
               {/* Corner accent */}
               <div className="absolute -right-2 -top-2 h-8 w-8 rounded-full bg-muted shadow-lg"></div>
               <div className="absolute -bottom-2 -left-2 h-6 w-6 rounded-full bg-accent shadow-lg"></div>
+            </div>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-2 gap-3 w-72">
+              <div className="rounded-xl border border-accent/30 bg-accent/10 p-4 backdrop-blur-sm">
+                <div className="text-xs font-medium text-secondary mb-1">GPA</div>
+                <div className="text-2xl font-bold text-white">3.953</div>
+              </div>
+              <div className="rounded-xl border border-accent/30 bg-accent/10 p-4 backdrop-blur-sm">
+                <div className="text-xs font-medium text-secondary mb-1">Age</div>
+                <div className="text-2xl font-bold text-white">19</div>
+              </div>
+              <div className="rounded-xl border border-accent/30 bg-accent/10 p-4 backdrop-blur-sm col-span-2">
+                <div className="text-xs font-medium text-secondary mb-1">Graduation</div>
+                <div className="text-lg font-bold text-white">May 2027</div>
+              </div>
+              <div className="rounded-xl border border-accent/30 bg-accent/10 p-4 backdrop-blur-sm col-span-2">
+                <div className="text-xs font-medium text-secondary mb-1">Current Hobby</div>
+                <div className="text-lg font-bold text-muted">🎸 Guitaring</div>
+              </div>
             </div>
           </motion.div>
 
