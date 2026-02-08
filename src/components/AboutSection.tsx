@@ -1,13 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { bio } from '@/lib/content';
 import { sectionReveal, viewportOnce } from '@/lib/animations';
 
 export default function AboutSection() {
   return (
     <section id="about" className="relative bg-primary-dark py-20 md:py-32">
-      <div className="container mx-auto max-w-6xl px-6">
+      <div className="container mx-auto max-w-4xl px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -21,59 +22,36 @@ export default function AboutSection() {
           <div className="mx-auto mb-4 h-1 w-20 rounded-full bg-muted"></div>
         </motion.div>
 
-        <div className="grid gap-12 md:grid-cols-[300px_1fr] lg:gap-16">
-          {/* Profile Photo with Decorative Frame */}
+        <div className="flex flex-col items-center gap-12">
+          {/* Profile Photo */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={viewportOnce}
             transition={{ duration: 0.6 }}
-            className="flex flex-col gap-6 justify-center md:justify-start"
+            className="relative"
           >
-            <div className="relative">
-              {/* Decorative border */}
-              <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-accent via-secondary to-muted opacity-75 blur-xl"></div>
+            {/* Decorative glow */}
+            <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-accent via-secondary to-muted opacity-60 blur-2xl"></div>
 
-              {/* Photo container */}
-              <div className="relative h-80 w-72 overflow-hidden rounded-2xl border-2 border-muted/30 bg-gradient-to-br from-accent/40 via-secondary/30 to-muted/20">
-                {/* Placeholder for photo */}
-                <div className="flex h-full items-center justify-center">
-                  <div className="text-center">
-                    <div className="mb-2 text-6xl font-bold text-white/20">AS</div>
-                    <div className="text-sm text-white/30">Profile Photo</div>
-                  </div>
-                </div>
-                {/* Decorative grid overlay */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
-              </div>
-
-              {/* Corner accent */}
-              <div className="absolute -right-2 -top-2 h-8 w-8 rounded-full bg-muted shadow-lg"></div>
-              <div className="absolute -bottom-2 -left-2 h-6 w-6 rounded-full bg-accent shadow-lg"></div>
+            {/* Photo container */}
+            <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-muted/30 bg-gradient-to-br from-accent/20 to-secondary/20">
+              <Image
+                src="/images/headshot.jpg"
+                alt="Ansh Shah"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 256px, 256px"
+              />
             </div>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-2 gap-3 w-72">
-              <div className="rounded-xl border border-accent/30 bg-accent/10 p-4 backdrop-blur-sm">
-                <div className="text-xs font-medium text-secondary mb-1">GPA</div>
-                <div className="text-2xl font-bold text-white">3.953</div>
-              </div>
-              <div className="rounded-xl border border-accent/30 bg-accent/10 p-4 backdrop-blur-sm">
-                <div className="text-xs font-medium text-secondary mb-1">Age</div>
-                <div className="text-2xl font-bold text-white">19</div>
-              </div>
-              <div className="rounded-xl border border-accent/30 bg-accent/10 p-4 backdrop-blur-sm col-span-2">
-                <div className="text-xs font-medium text-secondary mb-1">Graduation</div>
-                <div className="text-lg font-bold text-white">May 2027</div>
-              </div>
-              <div className="rounded-xl border border-accent/30 bg-accent/10 p-4 backdrop-blur-sm col-span-2">
-                <div className="text-xs font-medium text-secondary mb-1">Current Hobby</div>
-                <div className="text-lg font-bold text-muted">🎸 Guitaring</div>
-              </div>
-            </div>
+            {/* Corner accents */}
+            <div className="absolute -right-2 -top-2 h-6 w-6 rounded-full bg-muted shadow-lg"></div>
+            <div className="absolute -bottom-2 -left-2 h-4 w-4 rounded-full bg-accent shadow-lg"></div>
           </motion.div>
 
-          {/* Bio Text and Skills */}
+          {/* Bio Text */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -85,53 +63,17 @@ export default function AboutSection() {
                 },
               },
             }}
-            className="space-y-8"
+            className="space-y-6 text-center"
           >
-            {/* Bio Paragraphs */}
-            <div className="space-y-6">
-              {bio.map((paragraph, index) => (
-                <motion.p
-                  key={index}
-                  variants={sectionReveal}
-                  className="text-lg leading-relaxed text-muted"
-                >
-                  {paragraph}
-                </motion.p>
-              ))}
-            </div>
-
-            {/* Key Skills Highlight */}
-            <motion.div variants={sectionReveal} className="pt-4">
-              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-secondary">
-                Core Competencies
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "RISC-V",
-                  "CPU Design",
-                  "Verilog",
-                  "ASIC Implementation",
-                  "C/C++",
-                  "Rust",
-                  "Embedded Security",
-                  "Computer Architecture",
-                  "Linux/UNIX",
-                  "Digital Circuits",
-                ].map((skill, index) => (
-                  <motion.span
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(146, 144, 195, 0.2)' }}
-                    className="rounded-full border border-muted/30 bg-accent/10 px-4 py-2 text-sm font-medium text-muted transition-colors cursor-default"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
+            {bio.map((paragraph, index) => (
+              <motion.p
+                key={index}
+                variants={sectionReveal}
+                className="text-lg leading-relaxed text-muted"
+              >
+                {paragraph}
+              </motion.p>
+            ))}
           </motion.div>
         </div>
       </div>
