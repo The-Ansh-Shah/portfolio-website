@@ -47,4 +47,36 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* Architecture-themed patterns */
+  .circuit-grid {
+    background-image:
+      linear-gradient(rgba(146, 144, 195, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(146, 144, 195, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .circuit-dots {
+    background-image: radial-gradient(circle, rgba(146, 144, 195, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Subtle signal line animation */
+  @keyframes signal-flow {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  .signal-line {
+    animation: signal-flow 4s ease-in-out infinite;
+  }
 }

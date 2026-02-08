@@ -67,7 +67,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-gradient-to-b from-accent/20 to-primary-dark"
+      className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-gradient-to-b from-accent/20 to-primary-dark circuit-grid"
     >
       <div className="container mx-auto max-w-6xl px-6 py-12">
         <div className="flex flex-col items-center text-center">
@@ -159,6 +159,19 @@ export default function HeroSection() {
             ease: 'easeInOut',
           }}
         />
+
+        {/* Circuit-like decorative lines */}
+        <div className="absolute left-0 top-1/4 h-px w-32 bg-gradient-to-r from-transparent via-muted/20 to-transparent"></div>
+        <div className="absolute right-0 top-1/3 h-px w-40 bg-gradient-to-l from-transparent via-muted/20 to-transparent"></div>
+        <div className="absolute left-1/4 bottom-1/4 h-px w-24 bg-gradient-to-r from-transparent via-muted/20 to-transparent"></div>
+
+        {/* Animated signal lines */}
+        <div className="absolute left-10 top-1/2 h-px w-20 overflow-hidden">
+          <div className="signal-line h-full w-full bg-gradient-to-r from-transparent via-muted/40 to-transparent"></div>
+        </div>
+        <div className="absolute right-20 top-2/3 h-px w-16 overflow-hidden">
+          <div className="signal-line h-full w-full bg-gradient-to-r from-transparent via-muted/40 to-transparent" style={{ animationDelay: '2s' }}></div>
+        </div>
       </div>
     </section>
   );
