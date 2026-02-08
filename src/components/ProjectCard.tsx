@@ -8,9 +8,10 @@ import { cardHover } from '@/lib/animations';
 interface ProjectCardProps {
   project: Project;
   index?: number;
+  onClick?: () => void;
 }
 
-export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+export default function ProjectCard({ project, index = 0, onClick }: ProjectCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -18,7 +19,8 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       {...cardHover}
-      className="group relative overflow-hidden rounded-2xl border border-accent/30 bg-accent/10 backdrop-blur-sm transition-all"
+      onClick={onClick}
+      className="group relative overflow-hidden rounded-2xl border border-accent/30 bg-accent/10 backdrop-blur-sm transition-all cursor-pointer"
     >
       {/* Project Image Placeholder */}
       <div className="relative h-48 overflow-hidden bg-gradient-to-br from-accent via-secondary to-muted">
