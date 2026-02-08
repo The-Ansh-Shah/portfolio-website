@@ -1,9 +1,58 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { typewriterTexts } from '@/lib/content';
 
 export default function HeroSection() {
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentFullText = typewriterTexts[currentTextIndex];
+    const typingSpeed = isDeleting ? 30 : 50;
+    const pauseTime = isDeleting ? 500 : 2000;
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (displayText.length < currentFullText.length) {
+          setDisplayText(currentFullText.slice(0, displayText.length + 1));
+        } else {
+          // Pause before deleting
+          setTimeout(() => setIsDeleting(true), pauseTime);
+        }
+      } else {
+        // Deleting
+        if (displayText.length > 0) {
+          setDisplayText(currentFullText.slice(0, displayText.length - 1));
+        } else {
+          // Move to next text
+          setIsDeleting(false);
+          setCurrentTextIndex((prev) => (prev + 1) % typewriterTexts.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, currentTextIndex]);
+
+  // Function to render text with blue @ Intel
+  const renderTypedText = (text: string) => {
+    const intelMatch = text.match(/(.*)(@ Intel)(.*)/);
+    if (intelMatch) {
+      return (
+        <>
+          {intelMatch[1]}
+          <span className="text-[#0071c5]">{intelMatch[2]}</span>
+          {intelMatch[3]}
+        </>
+      );
+    }
+    return text;
+  };
   const handleScrollTo = (targetId: string) => {
     const element = document.getElementById(targetId);
     if (element) {
@@ -37,15 +86,18 @@ export default function HeroSection() {
             </h1>
           </motion.div>
 
-          {/* Credibility anchor */}
-          <motion.p
+          {/* Typewriter animation */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-4 text-lg font-medium text-white md:text-xl"
+            className="mb-6 h-12 flex items-center"
           >
-            Silicon Product Engineering Intern @ Intel | EECS @ Berkeley
-          </motion.p>
+            <span className="text-2xl font-semibold text-muted md:text-3xl">
+              {renderTypedText(displayText)}
+              <span className="animate-pulse ml-0.5">|</span>
+            </span>
+          </motion.div>
 
           {/* Subtitle */}
           <motion.p

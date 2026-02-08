@@ -10,6 +10,7 @@ export const personalInfo = {
 };
 
 export const typewriterTexts = [
+  "Incoming Silicon Product Engineering Intern @ Intel",
   "EECS @ UC Berkeley",
   "Computer Architecture Engineer",
   "RISC-V CPU Designer",
