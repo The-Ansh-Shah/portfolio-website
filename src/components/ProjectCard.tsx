@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Star, ChevronRight } from 'lucide-react';
 import { Project } from '@/lib/content';
 import { cardHover } from '@/lib/animations';
 
@@ -30,6 +30,18 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         </div>
         {/* Decorative grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+
+        {/* Date Badge - Top Right */}
+        <div className="absolute right-3 top-3 rounded-full bg-primary-dark/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm border border-muted/30">
+          {project.date}
+        </div>
+
+        {/* Featured Star - Top Left */}
+        {project.featured && (
+          <div className="absolute left-3 top-3 rounded-full bg-muted/20 p-2 backdrop-blur-sm border border-muted/30">
+            <Star className="h-4 w-4 fill-muted text-muted" />
+          </div>
+        )}
       </div>
 
       <div className="p-6">
@@ -71,6 +83,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-white"
+              onClick={(e) => e.stopPropagation()}
             >
               <Github className="h-4 w-4" />
               Code
@@ -82,6 +95,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-white"
+              onClick={(e) => e.stopPropagation()}
             >
               <ExternalLink className="h-4 w-4" />
               Demo
@@ -93,12 +107,18 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-white"
+              onClick={(e) => e.stopPropagation()}
             >
               <ExternalLink className="h-4 w-4" />
               Site
             </a>
           )}
-          <span className="ml-auto text-xs text-secondary">{project.date}</span>
+        </div>
+
+        {/* Click to see more hint */}
+        <div className="mt-4 flex items-center gap-1 text-xs text-muted/60 transition-colors group-hover:text-muted">
+          <span>Click to see more</span>
+          <ChevronRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
         </div>
       </div>
 

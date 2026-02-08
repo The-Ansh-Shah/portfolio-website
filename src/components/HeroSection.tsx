@@ -1,9 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { TypeAnimation } from 'react-type-animation';
 import { ArrowRight } from 'lucide-react';
-import { typewriterTexts } from '@/lib/content';
 
 export default function HeroSection() {
   const handleScrollTo = (targetId: string) => {
@@ -16,9 +14,6 @@ export default function HeroSection() {
       });
     }
   };
-
-  // Create sequence array for TypeAnimation
-  const typewriterSequence = typewriterTexts.flatMap((text) => [text, 2000]);
 
   return (
     <section
@@ -42,29 +37,22 @@ export default function HeroSection() {
             </h1>
           </motion.div>
 
-          {/* Typewriter animation */}
-          <motion.div
+          {/* Credibility anchor */}
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-6 h-12 flex items-center"
+            className="mb-4 text-lg font-medium text-white md:text-xl"
           >
-            <TypeAnimation
-              sequence={typewriterSequence}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-              className="text-2xl font-semibold text-muted md:text-3xl"
-              cursor={true}
-            />
-          </motion.div>
+            Silicon Product Engineering Intern @ Intel | EECS @ Berkeley
+          </motion.p>
 
           {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-12 max-w-2xl text-lg text-muted md:text-xl"
+            className="mb-12 max-w-2xl text-base text-muted/90 md:text-lg"
           >
             Building efficient systems at the hardware-software interface
           </motion.p>

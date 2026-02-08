@@ -1,236 +1,308 @@
-# MASTER INSTRUCTIONS — PORTFOLIO REBUILD
+# Portfolio Redesign Instructions (Claude Implementation Guide)
 
-You are acting as a senior frontend architect and design engineer.
+## Overview
 
-Your goal is NOT incremental edits — you will REFACTOR and UPGRADE the existing Next.js portfolio into a cohesive, visually impressive, single-page experience while preserving performance, accessibility, and stability.
+This document defines the design and structural upgrades required for the portfolio website.
 
-You must follow ALL instructions strictly.
+Primary goals:
+
+- Achieve S-tier engineering portfolio design
+- Emphasize hardware/systems aesthetic
+- Improve project discoverability and visual hierarchy
+- Maintain performance and simplicity
+- Ensure full responsiveness (mobile-first design)
+- Focus ONLY on layout, structure, and UI improvements for now
+- DO NOT rewrite project content yet
+
+Tech stack:
+
+- Next.js 15
+- React 18
+- Tailwind CSS
+- react-markdown (already implemented)
 
 ---
 
-# PRIMARY OBJECTIVE
+# Core Design Philosophy
 
-Transform the existing multi-page portfolio into:
+This is NOT a generic software portfolio.
 
-✅ a SINGLE SCROLLABLE PAGE  
-✅ smooth anchor navigation instead of page routes  
-✅ visually striking but elegant design  
-✅ highly animated but performant interface  
-✅ cohesive modern design language
+Design should communicate:
 
-The site must feel:
+- systems engineering
+- computer architecture
+- hardware/software interface
+- precision and technical depth
 
-- premium
-- fluid
-- technical
+Visual tone:
+
 - clean
-- impressive without being overdesigned.
-
----
-
-# CONTENT SOURCES (AUTHORITATIVE)
-
-Use these sources as truth:
-
-1. Resume (primary source of projects, skills, experience)
-2. LinkedIn: https://linkedin.com/in/ansh-shah-eecs
-
-Extract:
-
-- real project descriptions
-- technical expertise
-- roles and responsibilities
-- short professional bio
-
-DO NOT invent information.
-
-Rewrite content to sound:
-
-- concise
-- technical
-- confident.
-
----
-
-# HERO SECTION REQUIREMENTS
-
-Top hero text:
-
-Hi, I'm Ansh Shah
-
-CRITICAL:
-
-This text MUST NEVER disappear or conditionally render.
-
-Add typing animation cycling through short descriptors:
-
-Examples (derive from resume):
-
-- "EECS @ UC Berkeley"
-- "Computer Architecture Engineer"
-- "RISC-V + ASIC Design"
-- "Systems Builder"
-- "Hardware + Software"
-
-Requirements:
-
-- smooth typewriter animation
-- loop infinitely
-- no layout shift
-- performance optimized.
-
----
-
-# SITE STRUCTURE (ONE PAGE)
-
-Convert site into sections:
-
-1. Hero
-2. About / Bio
-3. Skills
-4. Experience
-5. Projects (primary focus)
-6. Contact
-
-Navbar links must:
-
-- smooth-scroll to sections
-- NOT navigate routes.
-
-Remove multi-page navigation structure.
-
----
-
-# NAVBAR
-
-Change home label from:
-
-"Portfolio"
-
-to something more distinctive such as:
-
-"Ansh.dev" or similar professional branding.
-
-Navbar must:
-
-- sticky
-- subtle animation on scroll
-- active section highlight.
-
----
-
-# DESIGN THEME
-
-Replace palette with:
-
-https://colorhunt.co/palette/070f2b1b1a55535c919290c3
-
-Colors:
-
-Primary Dark: #070f2b  
-Deep Accent: #1b1a55  
-Secondary: #535c91  
-Muted Light: #9290c3
-
-Design direction:
-
-- modern technical aesthetic
-- dark, elegant
-- slightly futuristic
-- soft gradients allowed.
-
----
-
-# ANIMATION REQUIREMENTS
-
-Upgrade animation sophistication using Framer Motion.
-
-Use:
-
-- staggered reveal on scroll
-- parallax-like subtle motion
-- smooth fade + translate transitions
-- hover elevation effects
-- animated background accents (subtle, not distracting).
+- modern
+- minimal but technical
+- subtle "engineering aesthetic"
 
 Avoid:
 
-- excessive bouncing
-- gimmicky motion.
-
-Animations must feel intentional and premium.
+- flashy startup landing page style
+- excessive gradients
+- overly playful UI patterns
 
 ---
 
-# PROJECTS SECTION
+# HERO SECTION (HIGH PRIORITY)
 
-Populate using resume content.
+Update the hero section to immediately establish credibility.
 
-Each project must include:
+Required layout:
+
+- Name (large)
+- Short positioning tagline
+- Current role or credibility anchor
+
+Example structure:
+
+Hi, I'm Ansh Shah  
+Silicon Product Engineering Intern @ Intel | EECS @ Berkeley  
+
+Building efficient systems at the hardware-software interface.
+
+Add:
+
+- subtle animated background or technical motif allowed
+- keep minimal and professional
+
+---
+
+# PROJECTS SECTION (MAJOR REDESIGN)
+
+## Project Cards
+
+Each project card must include:
+
+- Project image/thumbnail
+- Title
+- Short summary
+- Tech tags (optional)
+- Date bubble (top-right overlay)
+
+Date bubble format examples:
+
+- Fall 2025
+- Spring 2025
+- Summer 2024
+
+Implementation:
+
+- Small rounded badge
+- Positioned absolutely in top-right corner of image container
+
+---
+
+## Featured Project
+
+Add ability to mark a project as:
+
+⭐ Featured
+
+Requirements:
+
+- small star icon overlay
+- RV32I CPU project should be featured
+- visual emphasis without breaking layout
+
+---
+
+## Expanded Project View (Deep Dive Overlay)
+
+This replaces separate project pages.
+
+Behavior:
+
+- Clicking project opens overlay modal
+- Background blurs
+- Page scroll disabled
+- Overlay slides in from side or center
+
+Overlay must include:
+
+- close (X) button
+- smooth animation
+- scrollable content area
+
+Structure:
 
 - title
-- short technical description
-- key technologies
-- key achievement metric (if present in resume)
-- GitHub/demo links when available.
+- description
+- image carousel
+- space for future deep technical details
 
-Cards should:
+IMPORTANT:
 
-- animate into view
-- have hover depth effect
-- maintain accessibility.
+Do NOT implement full deep content yet.
+Just build expandable framework.
 
 ---
 
-# BIO SECTION
+## Image Carousel (Inside Expanded View)
 
-Create short professional bio synthesized from:
+Requirements:
 
-- resume
-- LinkedIn.
-
-Tone:
-
-- professional
-- concise
-- technically confident.
+- swipe support (mobile)
+- arrows for desktop
+- responsive sizing
+- lightweight library preferred
 
 ---
 
-# TECHNICAL CONSTRAINTS
+# UX CUES
 
-Maintain:
+Add discoverability:
 
-- Next.js App Router
-- Server components where possible
-- Client components ONLY for animation/interactivity
-- Performance-first design.
-
----
-
-# STABILITY REQUIREMENT (VERY IMPORTANT)
-
-Before finalizing:
-
-1. Ensure NO content disappears after hydration.
-2. Verify hero text remains visible.
-3. Confirm no infinite re-renders.
-4. Verify no React version conflicts.
-5. Confirm smooth scrolling works.
+- "Click to see more" hint on project cards
+OR
+- hover interaction indicating expandability
 
 ---
 
-# OUTPUT EXPECTATIONS
+# ARCHITECTURE-THEMED UI AESTHETIC
 
-Modify existing codebase.
+Introduce subtle systems-inspired design elements:
 
-DO NOT create an entirely new unrelated project.
+Examples:
 
-Refactor structure safely.
+- thin grid lines
+- faint signal/path lines
+- pipeline-like separators
+- structured spacing resembling block diagrams
 
-After completion:
+Guidelines:
 
-- summarize structural changes
-- list new components added
-- confirm build compatibility with Next.js 15.
+- subtle and elegant
+- never distracting
+- avoid heavy skeuomorphic designs
 
+Optional ideas:
+
+- animated line traces
+- structured layout rhythm
+
+---
+
+# STRUCTURAL IMPROVEMENTS
+
+## Skills Section
+
+Reorganize visually into conceptual groupings:
+
+Example:
+
+Architecture  
+Hardware Design  
+Low-Level Systems  
+Verification
+
+Focus on clarity rather than large keyword blocks.
+
+---
+
+# RESPONSIVENESS (MANDATORY)
+
+Mobile-first design.
+
+Requirements:
+
+- all cards stack cleanly on mobile
+- overlay modal usable with thumb navigation
+- carousel swipe enabled
+- no horizontal scroll
+
+Test breakpoints:
+
+- small phone
+- large phone
+- tablet
+- desktop
+
+---
+
+# FUTURE FEATURES (DO NOT IMPLEMENT YET)
+
+These should be planned but NOT built now:
+
+- Interactive architecture diagrams
+- Technical blog page
+- Experience timeline view
+
+Leave extensibility hooks where reasonable.
+
+---
+
+# ANIMATION GUIDELINES
+
+Allowed:
+
+- smooth fades
+- subtle motion
+- sliding panels
+
+Avoid:
+
+- excessive motion
+- flashy effects
+- long animation durations
+
+Target:
+
+- fast and responsive feel.
+
+---
+
+# PERFORMANCE
+
+- Avoid heavy libraries
+- Prefer lightweight components
+- Maintain fast load times
+
+---
+
+# REPOSITORY RULES
+
+Certain markdown files should exist locally but NOT be committed to GitHub.
+
+Examples:
+
+- Instructions.md
+- status.md
+- internal planning files
+
+Add/update `.gitignore`:
+
+Instructions.md
+project_status.md
+*.local.md
+
+
+Ensure these files remain local-only.
+
+---
+
+# IMPLEMENTATION PRIORITY ORDER
+
+1. Hero section redesign
+2. Project card redesign (date badges + featured star)
+3. Expandable overlay modal
+4. Image carousel inside overlay
+5. Architecture-themed aesthetic adjustments
+6. Skills section layout improvement
+7. Mobile responsiveness refinements
+
+---
+
+# END GOAL
+
+The result should feel like:
+
+- a professional architecture engineer portfolio
+- clean, structured, technical
+- visually memorable without being flashy
+- significantly stronger than typical student portfolios
