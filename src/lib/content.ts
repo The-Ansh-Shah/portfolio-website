@@ -140,46 +140,38 @@ export interface SkillCategory {
 }
 
 export const skills: SkillCategory = {
-  hardware: [
-    "Verilog",
-    "RISC-V",
-    "Chisel",
+  architecture: [
+    "RISC-V ISA",
     "CPU Microarchitecture",
+    "Pipelining & Caching",
     "GPU Architecture",
+    "Memory Hierarchies",
+    "Digital Design",
+  ],
+  hardware_design: [
+    "Verilog",
+    "Chisel",
     "CMOS Design",
+    "ASIC Flow",
     "Synopsys VCS",
     "Cadence Innovus",
     "LTSpice",
   ],
-  programming: [
-    "C",
-    "Python",
+  low_level_systems: [
+    "C/C++",
     "Rust",
-    "C++",
-    "Java",
-    "Matplotlib",
-    "Numpy",
-    "Jupyter",
+    "ARM Thumb",
+    "Embedded Systems",
+    "RP2040/STM32/ESP32",
+    "Linux/UNIX",
+    "Operating Systems",
   ],
-  tools: [
+  verification: [
+    "SystemVerilog",
+    "Formal Methods (CBMC)",
+    "GDB/Valgrind",
     "Oscilloscopes",
     "Network Analyzers",
-    "RP2040",
-    "STM32",
-    "ESP32",
-    "Git",
-    "Linux/UNIX",
-    "VS Code",
-    "Vim",
-    "Valgrind",
-    "GDB",
-  ],
-  coursework: [
-    "Digital Integrated Circuits",
-    "Computer Architecture",
-    "Embedded Systems",
-    "Operating Systems",
-    "Formal Methods",
-    "Signals and Systems",
+    "Python/Numpy",
   ],
 };

@@ -3,20 +3,20 @@
 import { motion } from 'framer-motion';
 import { skills } from '@/lib/content';
 import { sectionReveal, viewportOnce } from '@/lib/animations';
-import { Code2, Cpu, Wrench, BookOpen } from 'lucide-react';
+import { Cpu, Layers, Terminal, CheckCircle } from 'lucide-react';
 
 const categoryIcons = {
-  hardware: Cpu,
-  programming: Code2,
-  tools: Wrench,
-  coursework: BookOpen,
+  architecture: Cpu,
+  hardware_design: Layers,
+  low_level_systems: Terminal,
+  verification: CheckCircle,
 };
 
 const categoryTitles = {
-  hardware: 'HDLs & Hardware',
-  programming: 'Programming',
-  tools: 'Tools & Platforms',
-  coursework: 'Relevant Coursework',
+  architecture: 'Architecture',
+  hardware_design: 'Hardware Design',
+  low_level_systems: 'Low-Level Systems',
+  verification: 'Verification',
 };
 
 export default function SkillsSection() {
