@@ -1,7 +1,7 @@
 # Portfolio Website - Project Status
 
-**Last Updated:** February 7, 2026
-**Status:** ✅ Production Ready with Profile Photo
+**Last Updated:** February 9, 2026
+**Status:** ✅ Production Ready with Resume Page
 **Live URL:** https://portfolio-website-ansh-shahs-projects.vercel.app
 
 ---
@@ -74,6 +74,22 @@
    - [x] Spring physics underline animation
    - [x] **Responsive hamburger menu** for mobile
    - [x] Branding: "Ansh.dev"
+   - [x] **Route-aware navigation** (Home ↔ Resume)
+   - [x] "Resume" link on home page, "Home" + "Download PDF" on resume page
+
+8. **Interactive Resume Page** (`/resume`) ✨ NEW
+   - [x] Dedicated `/resume` route with SEO metadata
+   - [x] Scroll progress bar (gradient, fixed top)
+   - [x] Floating download button (bottom-right, responsive)
+   - [x] Resume hero with name, tagline, contact row, download CTA
+   - [x] Education section with coursework chips and honors
+   - [x] Experience section with vertical timeline
+   - [x] Projects section with timeline entries + GitHub links
+   - [x] Technical Skills with category rows and skill chips
+   - [x] Distinct visual treatment (dot-matrix background, no blobs)
+   - [x] `resumeData.ts` structured data source
+   - [x] "View Resume" CTA added to home page hero
+   - [x] PDF download directory ready (`/public/resume/`)
 
 #### Design & Aesthetics
 - [x] Dark color palette (#070f2b, #1b1a55, #535c91, #9290c3)
@@ -142,14 +158,26 @@ portfolio-website/
 │   │   ├── SkillsSection.tsx
 │   │   ├── ContactSection.tsx  # Security-aware phone reveal
 │   │   ├── PipelineSeparator.tsx # Architecture-themed separators
-│   │   └── Footer.tsx
+│   │   ├── Footer.tsx
+│   │   └── resume/             # Resume page components
+│   │       ├── ResumePageClient.tsx
+│   │       ├── ResumeHero.tsx
+│   │       ├── ResumeEducation.tsx
+│   │       ├── ResumeExperience.tsx
+│   │       ├── ResumeProjects.tsx
+│   │       ├── ResumeSkills.tsx
+│   │       ├── ScrollProgress.tsx
+│   │       ├── FloatingDownloadButton.tsx
+│   │       └── TimelineItem.tsx
 │   └── lib/
 │       ├── content.ts          # All structured content
+│       ├── resumeData.ts       # Resume-specific data
 │       ├── animations.ts       # Framer Motion variants
 │       └── utils.ts            # Utility functions
 ├── public/
-│   └── images/
-│       └── headshot.jpg        # Profile photo (4.5MB - needs optimization)
+│   ├── images/
+│   │   └── headshot.jpg        # Profile photo (4.5MB - needs optimization)
+│   └── resume/                 # Downloadable PDF directory
 ├── local-assets/              # Local only, gitignored
 │   ├── profile/
 │   │   └── headshot.jpg       # Original photo
@@ -181,6 +209,17 @@ portfolio-website/
 12. ✅ Restored full About layout (stats cards + skills chips)
 13. ✅ Implemented rectangular photo frame with decorative effects
 14. ✅ All changes committed and deployed
+
+### Session 4: Resume Page & Project Images (Feb 9, 2026)
+15. ✅ Added Vercel Analytics and Speed Insights
+16. ✅ Integrated real project images (thumbnails + carousel)
+17. ✅ Updated 3 project GitHub links to actual repositories
+18. ✅ Built interactive `/resume` page with 9 new components
+19. ✅ Vertical timeline layout for experience and projects
+20. ✅ Scroll progress bar and floating download button
+21. ✅ Route-aware Navbar (Home ↔ Resume navigation)
+22. ✅ "View Resume" CTA added to hero section
+23. ✅ `resumeData.ts` structured data source created
 
 ---
 
@@ -258,10 +297,11 @@ portfolio-website/
 - **Target:** 85% quality, 800x800px dimensions
 
 ### Future Enhancements (Optional)
-- [ ] Add real project images to carousel (replace gradient placeholders)
-- [ ] Consider adding project GitHub links
-- [ ] Optimize profile photo size
-- [ ] Add resume download link
+- [x] ~~Add real project images to carousel~~ ✅ Done
+- [x] ~~Add project GitHub links~~ ✅ Done
+- [x] ~~Add resume download link~~ ✅ Done (resume page + floating button)
+- [ ] Optimize profile photo size (4.5MB → <200KB)
+- [ ] Add resume PDF file to `/public/resume/Ansh_Shah_resume.pdf`
 - [ ] Consider adding blog section (if needed)
 
 ---
@@ -331,8 +371,9 @@ npm start      # Run production locally
 
 ## 📊 Statistics
 
-- **Total Components:** 14
-- **Sections:** 6 (Hero, About, Experience, Projects, Skills, Contact)
+- **Total Components:** 24
+- **Pages:** 2 (Home, Resume)
+- **Sections:** 6 home + 5 resume
 - **Projects Featured:** 4
 - **Skills Listed:** 40+ across 4 categories
 - **Animations:** 15+ unique animation variants
@@ -346,7 +387,8 @@ npm start      # Run production locally
 - **v2.0.0** (Feb 6, 2026) - Transformed to single-page SPA
 - **v2.1.0** (Feb 7, 2026) - Added typewriter, project modals, carousel
 - **v2.2.0** (Feb 7, 2026) - Mobile fixes, hamburger menu, security features
-- **v2.3.0** (Feb 7, 2026) - Profile photo, full About section restoration ✨
+- **v2.3.0** (Feb 7, 2026) - Profile photo, full About section restoration
+- **v3.0.0** (Feb 9, 2026) - Interactive resume page, project images, GitHub links ✨
 
 ---
 

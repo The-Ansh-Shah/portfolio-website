@@ -1,22 +1,35 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-const navItems = [
+const homeNavItems = [
   { name: 'About', href: '#about' },
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Skills', href: '#skills' },
   { name: 'Contact', href: '#contact' },
+  { name: 'Resume', href: '/resume' },
+];
+
+const resumeNavItems = [
+  { name: 'Home', href: '/' },
+  { name: 'Download PDF', href: '/resume/Ansh_Shah_resume.pdf' },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
+
   const [activeSection, setActiveSection] = useState('hero');
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navItems = isHomePage ? homeNavItems : resumeNavItems;
 
   // Track scroll position for styling
   useEffect(() => {
@@ -28,8 +41,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Intersection Observer to track active section
+  // Intersection Observer to track active section (home page only)
   useEffect(() => {
+    if (!isHomePage) return;
+
     const observerOptions = {
       root: null,
       rootMargin: '-50% 0px -50% 0px',
@@ -49,28 +64,32 @@ export default function Navbar() {
       observerOptions
     );
 
-    // Observe all sections
     const sections = document.querySelectorAll('section[id]');
     sections.forEach((section) => observer.observe(section));
 
     return () => {
       sections.forEach((section) => observer.unobserve(section));
     };
-  }, []);
+  }, [isHomePage]);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setMobileMenuOpen(false); // Close mobile menu on navigation
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
+    setMobileMenuOpen(false);
 
-    if (element) {
-      const offsetTop = element.offsetTop - 80; // Account for navbar height
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth',
-      });
+    // Only intercept hash links for smooth scrolling
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.replace('#', '');
+      const element = document.getElementById(targetId);
+
+      if (element) {
+        const offsetTop = element.offsetTop - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth',
+        });
+      }
     }
+    // Non-hash links (/, /resume, PDF) use default browser/Next.js navigation
   };
 
   return (
@@ -91,39 +110,58 @@ export default function Navbar() {
       }}
     >
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-6">
-        <a
-          href="#hero"
-          onClick={(e) => handleClick(e, '#hero')}
+        <Link
+          href="/"
           className="text-xl font-bold text-white transition-colors hover:text-muted"
         >
           Ansh.dev
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <ul className="hidden lg:flex items-center gap-8">
           {navItems.map((item) => {
-            const isActive = activeSection === item.href.replace('#', '');
+            const isHashLink = item.href.startsWith('#');
+            const isActive = isHomePage && isHashLink && activeSection === item.href.replace('#', '');
+            const isPdfLink = item.href.endsWith('.pdf');
+
             return (
               <li key={item.href}>
-                <a
-                  href={item.href}
-                  onClick={(e) => handleClick(e, item.href)}
-                  className={cn(
-                    'relative text-sm font-medium transition-colors',
-                    isActive
-                      ? 'text-white'
-                      : 'text-muted hover:text-white'
-                  )}
-                >
-                  {item.name}
-                  {isActive && (
-                    <motion.span
-                      layoutId="navbar-indicator"
-                      className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-muted"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </a>
+                {isHashLink ? (
+                  <a
+                    href={item.href}
+                    onClick={(e) => handleClick(e, item.href)}
+                    className={cn(
+                      'relative text-sm font-medium transition-colors',
+                      isActive
+                        ? 'text-white'
+                        : 'text-muted hover:text-white'
+                    )}
+                  >
+                    {item.name}
+                    {isActive && (
+                      <motion.span
+                        layoutId="navbar-indicator"
+                        className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-muted"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                ) : isPdfLink ? (
+                  <a
+                    href={item.href}
+                    download
+                    className="text-sm font-medium text-muted transition-colors hover:text-white"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="text-sm font-medium text-muted transition-colors hover:text-white"
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </li>
             );
           })}
@@ -151,21 +189,43 @@ export default function Navbar() {
           >
             <ul className="container mx-auto max-w-6xl px-4 py-4 space-y-2">
               {navItems.map((item) => {
-                const isActive = activeSection === item.href.replace('#', '');
+                const isHashLink = item.href.startsWith('#');
+                const isActive = isHomePage && isHashLink && activeSection === item.href.replace('#', '');
+                const isPdfLink = item.href.endsWith('.pdf');
+
                 return (
                   <li key={item.href}>
-                    <a
-                      href={item.href}
-                      onClick={(e) => handleClick(e, item.href)}
-                      className={cn(
-                        'block px-4 py-3 rounded-lg text-sm font-medium transition-all',
-                        isActive
-                          ? 'bg-muted/20 text-white'
-                          : 'text-muted hover:bg-white/5 hover:text-white'
-                      )}
-                    >
-                      {item.name}
-                    </a>
+                    {isHashLink ? (
+                      <a
+                        href={item.href}
+                        onClick={(e) => handleClick(e, item.href)}
+                        className={cn(
+                          'block px-4 py-3 rounded-lg text-sm font-medium transition-all',
+                          isActive
+                            ? 'bg-muted/20 text-white'
+                            : 'text-muted hover:bg-white/5 hover:text-white'
+                        )}
+                      >
+                        {item.name}
+                      </a>
+                    ) : isPdfLink ? (
+                      <a
+                        href={item.href}
+                        download
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block px-4 py-3 rounded-lg text-sm font-medium text-muted hover:bg-white/5 hover:text-white transition-all"
+                      >
+                        {item.name}
+                      </a>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block px-4 py-3 rounded-lg text-sm font-medium text-muted hover:bg-white/5 hover:text-white transition-all"
+                      >
+                        {item.name}
+                      </Link>
+                    )}
                   </li>
                 );
               })}

@@ -1,161 +1,157 @@
-# TARGETED DESIGN UPDATE — CLAUDE IMPLEMENTATION INSTRUCTIONS
+# FEATURE EXPANSION — PROJECT LINKS + INTERACTIVE RESUME PAGE
 
 You are modifying an existing Next.js 15 portfolio project.
-DO NOT redesign or restructure the project architecture.
-Only implement the specific changes listed below.
+
+DO NOT redesign the entire site.
+ONLY implement the additions described below while preserving existing structure, styling, and animation patterns.
 
 ---
 
-# 1. RESTORE BRANDING (REQUIRED)
+# 1. ADD GITHUB LINKS TO EXISTING PROJECTS
 
-* Restore navbar/home label to:
+Integrate repository links into the existing project system.
 
-  **Ansh.dev**
+Add the following GitHub URLs:
 
-* Remove any replacement labels such as “System”.
+* RV32I CPU Project
+  [https://github.com/The-Ansh-Shah/rv32i-cpu-and-cache](https://github.com/The-Ansh-Shah/rv32i-cpu-and-cache)
 
-* Remove any UI text that labels sections as “MODULE” or similar engineering terminology.
+* RP2040 Project
+  [https://github.com/The-Ansh-Shah/DAWGkit-RP2040](https://github.com/The-Ansh-Shah/DAWGkit-RP2040)
 
-The computer architecture theme must remain subtle and visual only — never literal through labels or naming.
+* RISC-V Neural Network Classifier
+  [https://github.com/The-Ansh-Shah/riscv-neural-network-classifier](https://github.com/The-Ansh-Shah/riscv-neural-network-classifier)
 
----
+## Implementation Requirements
 
-# 2. SUBTLE ARCHITECTURE VISUAL STYLE
+* Each project card must display a small GitHub icon button.
 
-Implement light architecture-inspired aesthetics WITHOUT making the UI look like a circuit board.
+* Button should appear:
 
-## Blueprint-style grid (very subtle)
+  * either on hover (desktop)
+  * always visible but subtle on mobile.
 
-Add a faint engineering grid background:
+* Use Lucide React GitHub icon.
 
-* extremely low opacity
-* thin lines
-* barely visible
-* should feel like precision alignment, not decoration.
+* Open link in new tab.
 
-Example approach:
+* Add subtle hover animation (scale or glow).
 
-* CSS background gradients or pseudo-elements.
-
-## Flow indicators between sections
-
-Add minimal connecting lines between major page sections to imply flow.
-
-Constraints:
-
-* thin lines
-* low opacity
-* no literal wires or circuit diagrams
-* must remain elegant and minimal.
+If project metadata system exists (e.g., frontmatter or data object), add a `github` field rather than hardcoding.
 
 ---
 
-# 3. HERO SECTION
+# 2. CREATE INTERACTIVE RESUME PAGE
 
-Keep headline:
-
-**Hi, I'm Ansh Shah**
-
-Add rotating short descriptors below the name:
-
-* fade or slide animation
-* smooth transitions
-* professional tone.
-
-Ensure the name never disappears or becomes hidden due to animation or layout behavior.
-
----
-
-# 4. PROJECT CARD DESIGN ADDITIONS
-
-Add overlay UI elements:
-
-* Small top-right bubble showing project timeframe (e.g., “Spring 2025”).
-* Optional star icon for featured projects.
-
-Implementation:
-
-* absolute positioning
-* subtle backdrop blur
-* clean and minimal styling.
-
----
-
-# 5. PROJECT EXPANSION INTERACTION
-
-When a project is clicked:
-
-* DO NOT navigate to a new page.
-* Open a centered overlay panel.
-* Background should blur.
-* Panel slides in smoothly (Framer Motion).
-* Include visible close (X) button.
-
-Overlay may later support additional images.
-
----
-
-# 6. MOBILE FIXES (IMPORTANT)
-
-Fix the following mobile issues:
-
-* Remove all horizontal scrolling.
-* Prevent page from being scrollable left/right.
-* Navbar must fit viewport width.
-* Collapse navbar into hamburger menu if necessary.
-* Ensure viewport meta tag is correct.
-* Center the “Get in Touch” button on mobile.
-* Prevent zoom-out behavior caused by layout overflow.
-
----
-
-# 7. CONTACT SECTION — PHONE NUMBER PROTECTION
-
-Keep phone number visible to users but reduce scraping risk.
-
-Implement client-side reconstruction:
-
-* phone number should NOT appear as a full string in static markup.
-* assemble from parts in client-side code after render or on interaction.
-
-Primary contact emphasis should remain email/LinkedIn.
-
----
-
-# 8. LOCAL IMAGE WORKFLOW FILE (LOCAL ONLY)
-
-Create a file:
+Add a dedicated page:
 
 ```
-IMAGE_WORKFLOW.md
+/resume
 ```
 
-Contents should explain:
+This page must feel premium, interactive, and visually impressive.
 
-* where images should be stored locally
-* directory structure
-* naming conventions
-* recommended image sizes
-* how to reference images in project components.
+Goal:
 
-Create local directory:
+* downloadable resume
+* interactive scroll-based highlight experience.
+
+---
+
+## 2A — DOWNLOADABLE LATEX RESUME
+
+Create structure allowing placement of resume PDF.
+
+Add folder:
 
 ```
-/local-assets/
+/public/resume/
+```
+
+Expect file:
+
+```
+/public/resume/Ansh_Shah_resume.pdf
+```
+
+Add prominent button:
+
+* “Download Resume”
+* downloads PDF directly.
+* include subtle animation on hover.
+
+---
+
+## 2B — INTERACTIVE RESUME EXPERIENCE
+
+The resume page must NOT just embed a PDF.
+
+Instead:
+
+Create an interactive highlight reel based on resume sections:
+
+Sections:
+
+* Education
+* Experience
+* Projects
+* Technical Skills
+
+Layout suggestion:
+
+* Vertical scroll narrative.
+* Each section animates into view (Framer Motion).
+* Timeline or structured blocks preferred.
+
+Interaction ideas:
+
+* Scroll-triggered animations.
+* Section highlights as user scrolls.
+* Clean typography.
+* Subtle motion — professional tone only.
+
+---
+
+## 2C — RESUME DATA SOURCE
+
+Prepare system so resume content can be customized later.
+
+Implementation guidance:
+
+* Create structured data object (e.g., resumeData.ts).
+* Populate initial placeholder content based on provided resume.
+* Avoid hardcoding large text directly inside JSX.
+
+---
+
+# 3. OPTIONAL ENHANCEMENT — FEATURED HERO CTA
+
+Add small CTA somewhere in hero or navbar:
+
+“View Resume”
+
+Links to:
+
+```
+/resume
 ```
 
 ---
 
-# 9. GITIGNORE UPDATES
+# 4. DESIGN CONSTRAINTS
 
-Update `.gitignore` to exclude:
+Resume experience must feel:
 
-* instructions.md
-* status.md
-* IMAGE_WORKFLOW.md
-* /local-assets/
+* high-end
+* technical
+* elegant
+* minimal.
 
-These files must remain local-only and not pushed to GitHub.
+DO NOT:
+
+* embed raw PDF viewer as primary UI.
+* use flashy or excessive animation.
+* create overly dense text blocks.
 
 ---
 

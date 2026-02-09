@@ -112,4 +112,10 @@
   .signal-line {
     animation: signal-flow 4s ease-in-out infinite;
   }
+
+  /* Resume page dot-matrix pattern */
+  .dot-matrix {
+    background-image: radial-gradient(circle, rgba(146, 144, 195, 0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
 }

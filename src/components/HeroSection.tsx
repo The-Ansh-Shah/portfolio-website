@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, FileText } from 'lucide-react';
 import { typewriterTexts } from '@/lib/content';
 
 export default function HeroSection() {
@@ -123,6 +124,13 @@ export default function HeroSection() {
               View Projects
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </button>
+            <Link
+              href="/resume"
+              className="inline-flex items-center gap-2 rounded-lg border border-muted/40 px-8 py-3 text-sm font-medium text-white transition-all hover:border-muted hover:bg-accent/20"
+            >
+              <FileText className="h-4 w-4" />
+              View Resume
+            </Link>
             <button
               onClick={() => handleScrollTo('contact')}
               className="inline-flex items-center gap-2 rounded-lg border border-muted/40 px-8 py-3 text-sm font-medium text-white transition-all hover:border-muted hover:bg-accent/20"
