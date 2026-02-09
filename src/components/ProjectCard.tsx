@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Star, ChevronRight } from 'lucide-react';
 import { Project } from '@/lib/content';
@@ -22,16 +23,26 @@ export default function ProjectCard({ project, index = 0, onClick }: ProjectCard
       onClick={onClick}
       className="group relative overflow-hidden rounded-2xl border border-accent/30 bg-accent/10 backdrop-blur-sm transition-all cursor-pointer"
     >
-      {/* Project Image Placeholder */}
+      {/* Project Thumbnail */}
       <div className="relative h-48 overflow-hidden bg-gradient-to-br from-accent via-secondary to-muted">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <div className="mb-2 text-4xl font-bold text-white/30">{project.title.split(' ')[0]}</div>
-            <div className="text-sm text-white/20">Project Image</div>
+        {project.thumbnail ? (
+          <Image
+            src={project.thumbnail}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center">
+              <div className="mb-2 text-4xl font-bold text-white/30">{project.title.split(' ')[0]}</div>
+              <div className="text-sm text-white/20">Project Image</div>
+            </div>
           </div>
-        </div>
+        )}
         {/* Decorative grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear_gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
 
         {/* Date Badge - Top Right */}
         <div className="absolute right-3 top-3 rounded-full bg-primary-dark/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm border border-muted/30">

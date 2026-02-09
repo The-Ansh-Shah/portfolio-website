@@ -74,6 +74,8 @@ export interface Project {
   demo?: string;
   website?: string;
   featured: boolean;
+  thumbnail?: string;
+  images?: string[];
 }
 
 export const projects: Project[] = [
@@ -91,6 +93,8 @@ export const projects: Project[] = [
     date: "Fall 2025",
     github: "https://github.com/The-Ansh-Shah",
     featured: true,
+    thumbnail: "/images/projects/cpu_par_tb.png",
+    images: ["/images/projects/cpu_par_tb.png", "/images/projects/cpu_datapath.jpg", "/images/projects/cache_fsm.jpg"],
   },
   {
     id: 2,
@@ -106,6 +110,8 @@ export const projects: Project[] = [
     date: "Fall 2025",
     github: "https://github.com/The-Ansh-Shah",
     featured: true,
+    thumbnail: "/images/projects/rp2040_poster_tb.jpg",
+    images: ["/images/projects/rp2040_poster_tb.jpg"],
   },
   {
     id: 3,
@@ -120,6 +126,8 @@ export const projects: Project[] = [
     date: "Spring 2025",
     github: "https://github.com/The-Ansh-Shah",
     featured: true,
+    thumbnail: "/images/projects/classifier_tb.png",
+    images: ["/images/projects/classifier_tb.png"],
   },
   {
     id: 4,

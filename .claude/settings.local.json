@@ -4,7 +4,11 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nFix build errors for deployment\n\n- Remove invalid border-border CSS class from globals.css\n- Convert projects page to server component to fix fs module error\n- Create AnimatedSection component for client-side animations\n- Maintain performance with proper server/client component split\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git push:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git rev-list:*)",
+      "Bash(git cat-file:*)",
+      "Bash(sort:*)",
+      "Bash(npx next build:*)"
     ]
   }
 }

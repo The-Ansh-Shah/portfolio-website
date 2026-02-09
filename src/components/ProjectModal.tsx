@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Github, ExternalLink, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '@/lib/content';
@@ -13,29 +14,15 @@ interface ProjectModalProps {
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Placeholder images for the carousel (3 per project)
-  const carouselImages = [
-    {
-      title: `${project?.title} - Overview`,
-      gradient: 'from-accent via-secondary to-muted',
-    },
-    {
-      title: `${project?.title} - Architecture`,
-      gradient: 'from-secondary via-muted to-accent',
-    },
-    {
-      title: `${project?.title} - Implementation`,
-      gradient: 'from-muted via-accent to-secondary',
-    },
-  ];
+  const images = project?.images ?? [];
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prev) =>
-      prev === 0 ? carouselImages.length - 1 : prev - 1
+      prev === 0 ? images.length - 1 : prev - 1
     );
   };
 
@@ -142,10 +129,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </div>
 
               {/* Image Carousel */}
+              {images.length > 0 && (
               <div className="mb-8">
                 <div className="relative group">
                   {/* Carousel Container */}
-                  <div className="relative aspect-video overflow-hidden rounded-xl">
+                  <div className="relative aspect-video overflow-hidden rounded-xl bg-primary-dark">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={currentImageIndex}
@@ -153,60 +141,57 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -100 }}
                         transition={{ duration: 0.3 }}
-                        className={`absolute inset-0 bg-gradient-to-br ${carouselImages[currentImageIndex].gradient}`}
+                        className="absolute inset-0"
                       >
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="mb-3 text-5xl font-bold text-white/20">
-                              {currentImageIndex + 1} / {carouselImages.length}
-                            </div>
-                            <div className="text-sm text-white/40 font-mono">
-                              {carouselImages[currentImageIndex].title}
-                            </div>
-                            <div className="mt-4 text-xs text-white/30">
-                              [Project images coming soon]
-                            </div>
-                          </div>
-                        </div>
-                        {/* Grid pattern */}
-                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+                        <Image
+                          src={images[currentImageIndex]}
+                          alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                          fill
+                          className="object-contain"
+                          sizes="(max-width: 768px) 100vw, 800px"
+                        />
                       </motion.div>
                     </AnimatePresence>
                   </div>
 
-                  {/* Navigation Arrows */}
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-primary-dark/70 p-2 text-white/80 opacity-0 backdrop-blur-sm transition-all hover:bg-primary-dark/90 hover:text-white group-hover:opacity-100"
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft className="h-6 w-6" />
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-primary-dark/70 p-2 text-white/80 opacity-0 backdrop-blur-sm transition-all hover:bg-primary-dark/90 hover:text-white group-hover:opacity-100"
-                    aria-label="Next image"
-                  >
-                    <ChevronRight className="h-6 w-6" />
-                  </button>
-
-                  {/* Dot Indicators */}
-                  <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
-                    {carouselImages.map((_, index) => (
+                  {/* Navigation Arrows (only if multiple images) */}
+                  {images.length > 1 && (
+                    <>
                       <button
-                        key={index}
-                        onClick={() => setCurrentImageIndex(index)}
-                        className={`h-2 rounded-full transition-all ${
-                          index === currentImageIndex
-                            ? 'w-8 bg-white'
-                            : 'w-2 bg-white/40 hover:bg-white/60'
-                        }`}
-                        aria-label={`Go to image ${index + 1}`}
-                      />
-                    ))}
-                  </div>
+                        onClick={prevImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-primary-dark/70 p-2 text-white/80 opacity-0 backdrop-blur-sm transition-all hover:bg-primary-dark/90 hover:text-white group-hover:opacity-100"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft className="h-6 w-6" />
+                      </button>
+                      <button
+                        onClick={nextImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-primary-dark/70 p-2 text-white/80 opacity-0 backdrop-blur-sm transition-all hover:bg-primary-dark/90 hover:text-white group-hover:opacity-100"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight className="h-6 w-6" />
+                      </button>
+
+                      {/* Dot Indicators */}
+                      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+                        {images.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setCurrentImageIndex(index)}
+                            className={`h-2 rounded-full transition-all ${
+                              index === currentImageIndex
+                                ? 'w-8 bg-white'
+                                : 'w-2 bg-white/40 hover:bg-white/60'
+                            }`}
+                            aria-label={`Go to image ${index + 1}`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
+              )}
 
               {/* Key Achievements */}
               <div className="mb-8">
