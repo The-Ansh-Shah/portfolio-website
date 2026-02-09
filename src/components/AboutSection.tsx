@@ -61,8 +61,8 @@ export default function AboutSection() {
                 <div className="text-2xl font-bold text-white">3.953</div>
               </div>
               <div className="rounded-xl border border-accent/30 bg-accent/10 p-4 backdrop-blur-sm">
-                <div className="text-xs font-medium text-secondary mb-1">Age</div>
-                <div className="text-2xl font-bold text-white">19</div>
+                <div className="text-xs font-medium text-secondary mb-1">Standing</div>
+                <div className="text-2xl font-bold text-white">Senior</div>
               </div>
               <div className="rounded-xl border border-accent/30 bg-accent/10 p-4 backdrop-blur-sm col-span-2">
                 <div className="text-xs font-medium text-secondary mb-1">Graduation</div>
