@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import HeroSection from './HeroSection';
 import AboutSection from './AboutSection';
 import ExperienceSection from './ExperienceSection';
@@ -8,6 +9,12 @@ import ProjectsSection from './ProjectsSection';
 import SkillsSection from './SkillsSection';
 import ContactSection from './ContactSection';
 import PipelineSeparator from './PipelineSeparator';
+
+// Lazy-load the starry background
+const StarryBackground = dynamic(() => import('./StarryBackground'), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function HomePageClient() {
   useEffect(() => {
@@ -30,18 +37,26 @@ export default function HomePageClient() {
   }, []);
 
   return (
-    <>
-      <HeroSection />
-      <PipelineSeparator />
-      <AboutSection />
-      <PipelineSeparator />
-      <ExperienceSection />
-      <PipelineSeparator />
-      <ProjectsSection />
-      <PipelineSeparator />
-      <SkillsSection />
-      <PipelineSeparator />
-      <ContactSection />
-    </>
+    <div className="relative">
+      {/* Starry background with shooting stars */}
+      <Suspense fallback={null}>
+        <StarryBackground />
+      </Suspense>
+
+      {/* Main content */}
+      <div className="relative z-10">
+        <HeroSection />
+        <PipelineSeparator />
+        <AboutSection />
+        <PipelineSeparator />
+        <ExperienceSection />
+        <PipelineSeparator />
+        <ProjectsSection />
+        <PipelineSeparator />
+        <SkillsSection />
+        <PipelineSeparator />
+        <ContactSection />
+      </div>
+    </div>
   );
 }

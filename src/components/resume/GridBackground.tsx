@@ -41,7 +41,7 @@ function FloatingGrid() {
         />
       </bufferGeometry>
       <pointsMaterial
-        color="#9290c3"
+        color="#FED8B1"
         size={0.04}
         transparent
         opacity={0.35}
@@ -89,7 +89,7 @@ function ConnectionLines() {
 
   return (
     <lineSegments ref={linesRef} geometry={geometry}>
-      <lineBasicMaterial color="#535c91" transparent opacity={0.08} />
+      <lineBasicMaterial color="#A67B5B" transparent opacity={0.08} />
     </lineSegments>
   );
 }
