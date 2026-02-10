@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Download } from 'lucide-react';
 
 interface DownloadButtonProps {
@@ -10,7 +10,7 @@ interface DownloadButtonProps {
 export default function DownloadButton({ variant = 'fixed' }: DownloadButtonProps) {
   if (variant === 'fixed') {
     return (
-      <motion.a
+      <m.a
         href="/resume/Ansh_Shah_resume.pdf"
         download="Ansh_Shah_Resume.pdf"
         initial={{ opacity: 0, y: -10 }}
@@ -22,12 +22,12 @@ export default function DownloadButton({ variant = 'fixed' }: DownloadButtonProp
       >
         <Download className="h-4 w-4" />
         <span className="hidden sm:inline">Download PDF</span>
-      </motion.a>
+      </m.a>
     );
   }
 
   return (
-    <motion.a
+    <m.a
       href="/resume/Ansh_Shah_resume.pdf"
       download="Ansh_Shah_Resume.pdf"
       whileHover={{ scale: 1.02 }}
@@ -36,6 +36,6 @@ export default function DownloadButton({ variant = 'fixed' }: DownloadButtonProp
     >
       <Download className="h-4 w-4" />
       Download PDF
-    </motion.a>
+    </m.a>
   );
 }

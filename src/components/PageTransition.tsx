@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { useRef, useEffect } from 'react';
 
@@ -33,7 +33,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
   };
 
   return (
-    <motion.div
+    <m.div
       key={pathname}
       initial={{
         x: getInitialX(),
@@ -55,6 +55,6 @@ export default function PageTransition({ children }: PageTransitionProps) {
       className="w-full"
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

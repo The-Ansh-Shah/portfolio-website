@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowRight, FileText, Mail } from 'lucide-react';
 import { typewriterTexts } from '@/lib/content';
 
@@ -73,7 +73,7 @@ export default function HeroSection() {
       <div className="container mx-auto max-w-6xl px-6 py-12">
         <div className="flex flex-col items-center text-center">
           {/* Main heading - ALWAYS VISIBLE */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -85,10 +85,10 @@ export default function HeroSection() {
                 Ansh Shah
               </span>
             </h1>
-          </motion.div>
+          </m.div>
 
           {/* Typewriter animation */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -98,20 +98,20 @@ export default function HeroSection() {
               {renderTypedText(displayText)}
               <span className="animate-pulse ml-0.5">|</span>
             </span>
-          </motion.div>
+          </m.div>
 
           {/* Subtitle */}
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-12 max-w-2xl text-base text-muted/90 md:text-lg"
           >
             Building efficient systems at the hardware-software interface
-          </motion.p>
+          </m.p>
 
           {/* CTA Buttons */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -138,13 +138,13 @@ export default function HeroSection() {
               <Mail className="h-4 w-4" />
               Get in Touch
             </button>
-          </motion.div>
+          </m.div>
         </div>
       </div>
 
       {/* Decorative gradient blobs - subtle and transparent */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-30">
-        <motion.div
+        <m.div
           className="absolute right-0 top-20 h-96 w-96 rounded-full bg-muted/20 blur-3xl"
           animate={{
             y: [0, 40, 0],
@@ -156,7 +156,7 @@ export default function HeroSection() {
             ease: 'easeInOut',
           }}
         />
-        <motion.div
+        <m.div
           className="absolute left-0 bottom-20 h-96 w-96 rounded-full bg-secondary/15 blur-3xl"
           animate={{
             y: [0, -40, 0],

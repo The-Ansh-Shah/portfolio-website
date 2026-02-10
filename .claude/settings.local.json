@@ -11,7 +11,12 @@
       "Bash(npx next build:*)",
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(grep:*)",
+      "Bash(while read file)",
+      "Bash(do grep -l \"motion\\\\.\" \"$file\")",
+      "Bash(echo:*)",
+      "Bash(done)"
     ]
   }
 }

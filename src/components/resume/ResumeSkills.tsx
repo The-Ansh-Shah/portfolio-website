@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Cpu, Layers, Terminal, CheckCircle, Zap, type LucideIcon } from 'lucide-react';
 import { resumeData } from '@/lib/resumeData';
 import { sectionReveal, viewportOnce } from '@/lib/animations';
@@ -17,7 +17,7 @@ export default function ResumeSkills() {
     <section className="relative py-20 md:py-24">
       <div className="container relative mx-auto max-w-4xl px-6">
         {/* Section header */}
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
@@ -31,10 +31,10 @@ export default function ResumeSkills() {
             <h2 className="text-2xl font-bold text-white md:text-3xl tracking-tight">Technical Skills</h2>
           </div>
           <div className="h-px w-20 shimmer-line rounded-full" />
-        </motion.div>
+        </m.div>
 
         {/* Skills panel — glass card */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
@@ -66,7 +66,7 @@ export default function ResumeSkills() {
                     {/* Skill chips */}
                     <div className="flex flex-wrap gap-2">
                       {group.skills.map((skill, i) => (
-                        <motion.span
+                        <m.span
                           key={skill}
                           initial={{ opacity: 0, scale: 0.85 }}
                           whileInView={{ opacity: 1, scale: 1 }}
@@ -75,7 +75,7 @@ export default function ResumeSkills() {
                           className="rounded-full border border-muted/10 bg-muted/5 px-3 py-1 text-xs font-medium text-muted/70 transition-all hover:border-muted/25 hover:text-white hover:bg-muted/10 hover:shadow-[0_0_12px_rgba(146,144,195,0.08)] cursor-default"
                         >
                           {skill}
-                        </motion.span>
+                        </m.span>
                       ))}
                     </div>
                   </div>
@@ -83,7 +83,7 @@ export default function ResumeSkills() {
               );
             })}
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

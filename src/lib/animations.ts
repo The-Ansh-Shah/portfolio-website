@@ -100,8 +100,8 @@ export const alternatingSlide = (index: number): Variants => ({
 // Viewport configuration for scroll-triggered animations
 export const viewportOnce = {
   once: true,
-  margin: '0px 0px -80px 0px',
-  amount: 0.2,
+  margin: '0px 0px -100px 0px',
+  amount: 0,
 };
 
 // Spring animation config

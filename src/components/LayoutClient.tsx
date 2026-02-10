@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import PageTransition from './PageTransition';
 
@@ -12,10 +12,12 @@ export default function LayoutClient({ children }: LayoutClientProps) {
   const pathname = usePathname();
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <PageTransition key={pathname}>
-        {children}
-      </PageTransition>
-    </AnimatePresence>
+    <LazyMotion features={domAnimation} strict>
+      <AnimatePresence mode="wait">
+        <PageTransition key={pathname}>
+          {children}
+        </PageTransition>
+      </AnimatePresence>
+    </LazyMotion>
   );
 }

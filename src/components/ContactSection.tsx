@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { m, useInView } from 'framer-motion';
 import { personalInfo } from '@/lib/content';
-import { sectionReveal, viewportOnce } from '@/lib/animations';
+import { sectionReveal } from '@/lib/animations';
+import AnimatedSection from './AnimatedSection';
 import { Mail, MapPin, Github, Linkedin, Phone, FileDown, Eye } from 'lucide-react';
 
 // Phone number split into parts for security (reconstructed client-side)
@@ -32,6 +33,11 @@ const primaryContactMethods = [
 
 export default function ContactSection() {
   const [phoneRevealed, setPhoneRevealed] = useState(false);
+  const cardsRef = useRef(null);
+  const locationRef = useRef(null);
+
+  const cardsInView = useInView(cardsRef, { once: true, margin: '0px 0px -100px 0px', amount: 0 });
+  const locationInView = useInView(locationRef, { once: true, margin: '0px 0px -100px 0px', amount: 0 });
 
   // Reconstruct phone number client-side
   const reconstructedPhone = `(${phoneParts[0]}) ${phoneParts[1]}-${phoneParts[2]}`;
@@ -39,13 +45,7 @@ export default function ContactSection() {
   return (
     <section id="contact" className="relative py-20 md:py-32">
       <div className="container mx-auto max-w-4xl px-6">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          variants={sectionReveal}
-          className="mb-16 text-center"
-        >
+        <AnimatedSection variants={sectionReveal} className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
             Get in Touch
           </h2>
@@ -53,20 +53,23 @@ export default function ContactSection() {
           <p className="text-muted">
             Let's connect and build something great
           </p>
-        </motion.div>
+        </AnimatedSection>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div ref={cardsRef} className="grid gap-6 md:grid-cols-2">
           {/* Primary Contact Methods */}
           {primaryContactMethods.map((method, index) => (
-            <motion.a
+            <m.a
               key={method.label}
               href={method.href}
               target={method.href.startsWith('http') ? '_blank' : undefined}
               rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewportOnce}
-              transition={{ delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={cardsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+              transition={{
+                delay: index * 0.15,
+                duration: 0.8,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
               whileHover={{ y: -4, scale: 1.02 }}
               className="group flex items-center gap-4 rounded-2xl border border-accent/30 bg-accent/10 p-6 backdrop-blur-sm transition-all"
             >
@@ -81,15 +84,18 @@ export default function ContactSection() {
                   {method.value}
                 </p>
               </div>
-            </motion.a>
+            </m.a>
           ))}
 
           {/* Phone Number - Reveal on Click */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportOnce}
-            transition={{ delay: 0.3 }}
+          <m.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={cardsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{
+              delay: 0.45,
+              duration: 0.8,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
             className="group flex items-center gap-4 rounded-2xl border border-accent/30 bg-accent/10 p-6 backdrop-blur-sm transition-all"
           >
             <div className="rounded-lg bg-muted/20 p-3 transition-colors group-hover:bg-muted/30">
@@ -116,14 +122,18 @@ export default function ContactSection() {
                 </button>
               )}
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={viewportOnce}
-          transition={{ delay: 0.4 }}
+        <m.div
+          ref={locationRef}
+          initial={{ opacity: 0, y: 50 }}
+          animate={locationInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{
+            delay: 0.6,
+            duration: 0.8,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
           className="mt-12 rounded-2xl bg-gradient-to-br from-accent to-secondary p-8 text-center md:p-12"
         >
           <MapPin className="mx-auto mb-4 h-8 w-8 text-white" />
@@ -138,7 +148,7 @@ export default function ContactSection() {
             <Mail className="h-4 w-4" />
             Send me an email
           </a>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Background decoration */}

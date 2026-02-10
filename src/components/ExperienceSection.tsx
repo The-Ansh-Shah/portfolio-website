@@ -1,21 +1,15 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { experience } from '@/lib/content';
 import ExperienceCard from './ExperienceCard';
-import { sectionReveal, viewportOnce } from '@/lib/animations';
+import AnimatedSection from './AnimatedSection';
+import { sectionReveal } from '@/lib/animations';
 
 export default function ExperienceSection() {
   return (
     <section id="experience" className="relative py-20 md:py-32">
       <div className="container mx-auto max-w-6xl px-6">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          variants={sectionReveal}
-          className="mb-16 text-center"
-        >
+        <AnimatedSection variants={sectionReveal} className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
             Experience
           </h2>
@@ -23,7 +17,7 @@ export default function ExperienceSection() {
           <p className="text-muted">
             Research, teaching, and building systems
           </p>
-        </motion.div>
+        </AnimatedSection>
 
         <div className="grid gap-6 md:grid-cols-2">
           {experience.map((exp, index) => (

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { GraduationCap, Award, BookOpen } from 'lucide-react';
 import { resumeData } from '@/lib/resumeData';
 import { sectionReveal, viewportOnce } from '@/lib/animations';
@@ -15,7 +15,7 @@ export default function ResumeEducation() {
 
       <div className="container relative mx-auto max-w-4xl px-6">
         {/* Section header */}
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
@@ -29,10 +29,10 @@ export default function ResumeEducation() {
             <h2 className="text-2xl font-bold text-white md:text-3xl tracking-tight">Education</h2>
           </div>
           <div className="h-px w-20 shimmer-line rounded-full" />
-        </motion.div>
+        </m.div>
 
         {/* Education card — glass morphism */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
@@ -70,7 +70,7 @@ export default function ResumeEducation() {
             </div>
             <ul className="space-y-2.5">
               {edu.honors.map((honor, i) => (
-                <motion.li
+                <m.li
                   key={i}
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -80,7 +80,7 @@ export default function ResumeEducation() {
                 >
                   <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted/40" />
                   {honor}
-                </motion.li>
+                </m.li>
               ))}
             </ul>
           </div>
@@ -98,7 +98,7 @@ export default function ResumeEducation() {
             </div>
             <div className="flex flex-wrap gap-2">
               {edu.relevantCoursework.map((course, i) => (
-                <motion.span
+                <m.span
                   key={course}
                   initial={{ opacity: 0, scale: 0.85 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -107,11 +107,11 @@ export default function ResumeEducation() {
                   className="rounded-full border border-muted/12 bg-muted/5 px-3.5 py-1.5 text-xs font-medium text-muted/75 transition-all hover:border-muted/25 hover:text-white hover:bg-muted/10 cursor-default"
                 >
                   {course}
-                </motion.span>
+                </m.span>
               ))}
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

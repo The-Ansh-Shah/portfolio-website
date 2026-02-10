@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { FolderGit2, Github, ExternalLink } from 'lucide-react';
 import { resumeData } from '@/lib/resumeData';
 import { sectionReveal, viewportOnce } from '@/lib/animations';
@@ -14,7 +14,7 @@ export default function ResumeProjects() {
 
       <div className="container relative mx-auto max-w-4xl px-6">
         {/* Section header */}
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
@@ -28,7 +28,7 @@ export default function ResumeProjects() {
             <h2 className="text-2xl font-bold text-white md:text-3xl tracking-tight">Projects</h2>
           </div>
           <div className="h-px w-20 shimmer-line rounded-full" />
-        </motion.div>
+        </m.div>
 
         {/* Timeline */}
         <div>
@@ -43,7 +43,7 @@ export default function ResumeProjects() {
               {/* Bullets */}
               <ul className="space-y-2.5">
                 {project.bullets.map((bullet, i) => (
-                  <motion.li
+                  <m.li
                     key={i}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -53,7 +53,7 @@ export default function ResumeProjects() {
                   >
                     <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted/40" />
                     {bullet}
-                  </motion.li>
+                  </m.li>
                 ))}
               </ul>
 

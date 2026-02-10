@@ -1,11 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Download } from 'lucide-react';
 
 export default function FloatingDownloadButton() {
   return (
-    <motion.a
+    <m.a
       href="/resume/Ansh_Shah_resume.pdf"
       download
       initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -17,6 +17,6 @@ export default function FloatingDownloadButton() {
     >
       <Download className="h-4 w-4" />
       <span className="hidden md:inline">Download PDF</span>
-    </motion.a>
+    </m.a>
   );
 }

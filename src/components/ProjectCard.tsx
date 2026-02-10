@@ -1,7 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
+import { useRef } from 'react';
 import { ExternalLink, Github, Star, ChevronRight } from 'lucide-react';
 import { Project } from '@/lib/content';
 import { cardHover } from '@/lib/animations';
@@ -13,12 +14,26 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, index = 0, onClick }: ProjectCardProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '0px 0px -100px 0px', amount: 0 });
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+    <m.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.8,
+            delay: index * 0.15,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          },
+        },
+      }}
       {...cardHover}
       onClick={onClick}
       className="group relative overflow-hidden rounded-2xl border border-accent/30 bg-accent/10 backdrop-blur-sm transition-all cursor-pointer"
@@ -67,16 +82,19 @@ export default function ProjectCard({ project, index = 0, onClick }: ProjectCard
 
         <div className="mb-4 flex flex-wrap gap-2">
           {project.technologies.map((tech, i) => (
-            <motion.span
+            <m.span
               key={tech}
               initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 + i * 0.05 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{
+                delay: index * 0.15 + i * 0.05,
+                duration: 0.4,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
               className="rounded-full bg-secondary/30 px-3 py-1 text-xs font-medium text-muted"
             >
               {tech}
-            </motion.span>
+            </m.span>
           ))}
         </div>
 
@@ -139,6 +157,6 @@ export default function ProjectCard({ project, index = 0, onClick }: ProjectCard
       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent"></div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }

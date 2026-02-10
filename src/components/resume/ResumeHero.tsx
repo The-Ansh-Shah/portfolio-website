@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Mail, MapPin, Linkedin, Github, Download, ChevronDown } from 'lucide-react';
 import { resumeData } from '@/lib/resumeData';
 
@@ -24,7 +24,7 @@ export default function ResumeHero() {
       <div className="container relative mx-auto max-w-4xl px-6 py-24 md:py-32">
         <div className="text-center">
           {/* Overline label */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -33,10 +33,10 @@ export default function ResumeHero() {
             <span className="inline-block rounded-full border border-muted/20 bg-muted/5 px-4 py-1.5 text-xs font-medium tracking-widest uppercase text-muted/60">
               Resume
             </span>
-          </motion.div>
+          </m.div>
 
           {/* Name — animated gradient */}
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -45,20 +45,20 @@ export default function ResumeHero() {
             <span className="animate-gradient bg-gradient-to-r from-white via-muted to-secondary bg-[length:200%_auto] bg-clip-text text-transparent will-change-[background-position]">
               {resumeData.name}
             </span>
-          </motion.h1>
+          </m.h1>
 
           {/* Tagline */}
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-10 text-lg text-muted/80 md:text-xl"
           >
             {resumeData.tagline}
-          </motion.p>
+          </m.p>
 
           {/* Contact row — pill badges */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -86,23 +86,23 @@ export default function ResumeHero() {
                 <span key={i}>{inner}</span>
               );
             })}
-          </motion.div>
+          </m.div>
 
 
           {/* Scroll hint */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.8 }}
             className="flex justify-center"
           >
-            <motion.div
+            <m.div
               animate={{ y: [0, 6, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             >
               <ChevronDown className="h-5 w-5 text-muted/30" />
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </div>
 

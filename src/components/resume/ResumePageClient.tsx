@@ -3,7 +3,7 @@
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import ScrollProgress from './ScrollProgress';
 import DownloadButton from './DownloadButton';
@@ -56,7 +56,7 @@ export default function ResumePageClient() {
         {/* Back to portfolio */}
         <div className="container mx-auto max-w-4xl px-6 py-20 text-center">
           <div className="mb-8 h-px bg-gradient-to-r from-transparent via-muted/12 to-transparent" />
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -71,7 +71,7 @@ export default function ResumePageClient() {
               Back to Portfolio
             </Link>
             <DownloadButton variant="inline" />
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { viewportOnce } from '@/lib/animations';
 
 interface TimelineItemProps {
@@ -32,7 +32,7 @@ export default function TimelineItem({
       )}
 
       {/* Timeline dot — glowing node */}
-      <motion.div
+      <m.div
         initial={{ scale: 0, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={viewportOnce}
@@ -40,10 +40,10 @@ export default function TimelineItem({
         className="absolute left-0 top-1.5 h-[22px] w-[22px] rounded-full border-2 border-muted/40 bg-accent/30 backdrop-blur-sm glow-pulse"
       >
         <div className="absolute inset-1.5 rounded-full bg-muted/60" />
-      </motion.div>
+      </m.div>
 
       {/* Content card */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={viewportOnce}
@@ -51,7 +51,7 @@ export default function TimelineItem({
         className="pb-10"
       >
         {/* Date badge */}
-        <motion.span
+        <m.span
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={viewportOnce}
@@ -59,7 +59,7 @@ export default function TimelineItem({
           className="mb-1.5 inline-block rounded-full bg-accent/15 px-3.5 py-1 text-xs font-medium text-muted/70 border border-muted/15 backdrop-blur-sm"
         >
           {date}
-        </motion.span>
+        </m.span>
 
         <h3 className="mt-2 text-lg font-semibold text-white md:text-xl tracking-tight">
           {title}
@@ -71,7 +71,7 @@ export default function TimelineItem({
           <p className="mt-0.5 text-xs text-muted/50 tracking-wide">{location}</p>
         )}
         <div className="mt-4">{children}</div>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

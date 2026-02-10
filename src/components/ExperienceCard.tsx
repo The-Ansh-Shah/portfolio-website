@@ -1,8 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
+import { useRef } from 'react';
 import { Experience } from '@/lib/content';
 import { Briefcase } from 'lucide-react';
+import { alternatingSlide } from '@/lib/animations';
 
 interface ExperienceCardProps {
   experience: Experience;
@@ -10,12 +12,15 @@ interface ExperienceCardProps {
 }
 
 export default function ExperienceCard({ experience, index }: ExperienceCardProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '0px 0px -100px 0px', amount: 0 });
+
   return (
-    <motion.div
-      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.5 }}
+    <m.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={alternatingSlide(index)}
       whileHover={{ y: -4, scale: 1.01 }}
       className="group relative overflow-hidden rounded-2xl border border-accent/30 bg-accent/10 p-6 backdrop-blur-sm transition-all"
     >
@@ -43,17 +48,20 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
 
       <ul className="space-y-2">
         {experience.bullets.map((bullet, i) => (
-          <motion.li
+          <m.li
             key={i}
             initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+            transition={{
+              delay: i * 0.1,
+              duration: 0.4,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
             className="flex items-start gap-2 text-sm text-muted"
           >
             <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-muted"></span>
             <span>{bullet}</span>
-          </motion.li>
+          </m.li>
         ))}
       </ul>
 
@@ -61,6 +69,6 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent"></div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }

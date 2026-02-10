@@ -1,18 +1,27 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 import Image from 'next/image';
+import { useRef } from 'react';
 import { bio } from '@/lib/content';
-import { sectionReveal, viewportOnce } from '@/lib/animations';
+import { sectionReveal } from '@/lib/animations';
 
 export default function AboutSection() {
+  const headerRef = useRef(null);
+  const photoRef = useRef(null);
+  const bioRef = useRef(null);
+
+  const headerInView = useInView(headerRef, { once: true, margin: '0px 0px -100px 0px', amount: 0 });
+  const photoInView = useInView(photoRef, { once: true, margin: '0px 0px -100px 0px', amount: 0 });
+  const bioInView = useInView(bioRef, { once: true, margin: '0px 0px -100px 0px', amount: 0 });
+
   return (
     <section id="about" className="relative py-20 md:py-32">
       <div className="container mx-auto max-w-6xl px-6">
-        <motion.div
+        <m.div
+          ref={headerRef}
           initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
+          animate={headerInView ? "visible" : "hidden"}
           variants={sectionReveal}
           className="mb-16 text-center"
         >
@@ -20,15 +29,25 @@ export default function AboutSection() {
             About Me
           </h2>
           <div className="mx-auto mb-4 h-1 w-20 rounded-full bg-muted"></div>
-        </motion.div>
+        </m.div>
 
         <div className="grid gap-12 md:grid-cols-[300px_1fr] lg:gap-16">
           {/* Profile Photo with Decorative Frame */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={viewportOnce}
-            transition={{ duration: 0.6 }}
+          <m.div
+            ref={photoRef}
+            initial="hidden"
+            animate={photoInView ? "visible" : "hidden"}
+            variants={{
+              hidden: { opacity: 0, x: -50 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: {
+                  duration: 0.8,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                },
+              },
+            }}
             className="flex flex-col gap-6 justify-center md:justify-start"
           >
             <div className="relative">
@@ -73,13 +92,13 @@ export default function AboutSection() {
                 <div className="text-lg font-bold text-muted">🎸 Guitaring</div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Bio Text and Skills */}
-          <motion.div
+          <m.div
+            ref={bioRef}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
+            animate={bioInView ? "visible" : "hidden"}
             variants={{
               visible: {
                 transition: {
@@ -92,18 +111,18 @@ export default function AboutSection() {
             {/* Bio Paragraphs */}
             <div className="space-y-6">
               {bio.map((paragraph, index) => (
-                <motion.p
+                <m.p
                   key={index}
                   variants={sectionReveal}
                   className="text-lg leading-relaxed text-muted"
                 >
                   {paragraph}
-                </motion.p>
+                </m.p>
               ))}
             </div>
 
             {/* Key Skills Highlight */}
-            <motion.div variants={sectionReveal} className="pt-4">
+            <m.div variants={sectionReveal} className="pt-4">
               <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-secondary">
                 Core Competencies
               </h3>
@@ -120,21 +139,24 @@ export default function AboutSection() {
                   "Linux/UNIX",
                   "Digital Circuits",
                 ].map((skill, index) => (
-                  <motion.span
+                  <m.span
                     key={skill}
                     initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
+                    animate={bioInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                    transition={{
+                      delay: index * 0.05,
+                      duration: 0.4,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
                     whileHover={{ scale: 1.05, backgroundColor: 'rgba(146, 144, 195, 0.2)' }}
                     className="rounded-full border border-muted/30 bg-accent/10 px-4 py-2 text-sm font-medium text-muted transition-colors cursor-default"
                   >
                     {skill}
-                  </motion.span>
+                  </m.span>
                 ))}
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </div>
 
