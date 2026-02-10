@@ -41,7 +41,7 @@ export default function ResumePageClient() {
       {/* Content layer */}
       <div className="relative z-10">
         <ScrollProgress />
-        <FloatingDownloadButton />
+        {/* <FloatingDownloadButton /> */}
 
         <ResumeHero />
         <SectionDivider />

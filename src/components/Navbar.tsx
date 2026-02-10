@@ -18,7 +18,7 @@ const homeNavItems = [
 
 const resumeNavItems = [
   { name: 'Home', href: '/' },
-  { name: 'Download PDF', href: '/resume/Ansh_Shah_resume.pdf' },
+  // { name: 'Download PDF', href: '/resume/Ansh_Shah_resume.pdf' },
 ];
 
 export default function Navbar() {

@@ -31,7 +31,7 @@ export default function ResumeHero() {
             className="mb-6"
           >
             <span className="inline-block rounded-full border border-muted/20 bg-muted/5 px-4 py-1.5 text-xs font-medium tracking-widest uppercase text-muted/60">
-              Interactive Resume
+              Resume
             </span>
           </motion.div>
 
@@ -88,22 +88,6 @@ export default function ResumeHero() {
             })}
           </motion.div>
 
-          {/* Download CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mb-16"
-          >
-            <a
-              href="/resume/Ansh_Shah_resume.pdf"
-              download
-              className="group inline-flex items-center gap-2 rounded-lg bg-muted px-8 py-3 text-sm font-medium text-primary-dark transition-all hover:bg-white hover:shadow-lg hover:shadow-muted/20"
-            >
-              <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
-              Download Resume
-            </a>
-          </motion.div>
 
           {/* Scroll hint */}
           <motion.div
