@@ -1,11 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Cpu, Layers, Terminal, CheckCircle } from 'lucide-react';
+import { Cpu, Layers, Terminal, CheckCircle, Zap, type LucideIcon } from 'lucide-react';
 import { resumeData } from '@/lib/resumeData';
 import { sectionReveal, viewportOnce } from '@/lib/animations';
 
-const iconMap: Record<string, React.ElementType> = {
+const iconMap: Record<string, LucideIcon> = {
   Cpu,
   Layers,
   Terminal,
@@ -14,56 +14,70 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function ResumeSkills() {
   return (
-    <section className="py-16 md:py-20">
-      <div className="container mx-auto max-w-4xl px-6">
+    <section className="relative py-20 md:py-24">
+      <div className="container relative mx-auto max-w-4xl px-6">
         {/* Section header */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
           variants={sectionReveal}
-          className="mb-10"
+          className="mb-12"
         >
-          <h2 className="mb-2 text-2xl font-bold text-white md:text-3xl">Technical Skills</h2>
-          <div className="h-0.5 w-16 rounded-full bg-muted/40" />
+          <div className="flex items-center gap-3 mb-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted/10 border border-muted/15">
+              <Zap className="h-4 w-4 text-muted/70" />
+            </div>
+            <h2 className="text-2xl font-bold text-white md:text-3xl tracking-tight">Technical Skills</h2>
+          </div>
+          <div className="h-px w-20 shimmer-line rounded-full" />
         </motion.div>
 
-        {/* Skills panel */}
+        {/* Skills panel — glass card */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
-          transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-accent/30 bg-accent/10 p-6 backdrop-blur-sm md:p-8"
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="glass-card rounded-2xl p-6 md:p-8"
         >
-          <div className="divide-y divide-accent/20">
+          <div className="space-y-0">
             {resumeData.skills.map((group, groupIndex) => {
               const Icon = iconMap[group.icon] || Cpu;
               return (
                 <div
                   key={group.category}
-                  className={`flex flex-col gap-3 py-5 sm:flex-row sm:items-start sm:gap-6 ${groupIndex === 0 ? 'pt-0' : ''} ${groupIndex === resumeData.skills.length - 1 ? 'pb-0' : ''}`}
+                  className="group/skill-row"
                 >
-                  {/* Category label */}
-                  <div className="flex items-center gap-2 sm:w-44 sm:flex-shrink-0">
-                    <Icon className="h-4 w-4 text-muted/60" />
-                    <span className="text-sm font-semibold text-secondary">{group.category}</span>
-                  </div>
+                  {/* Gradient divider between rows */}
+                  {groupIndex > 0 && (
+                    <div className="my-5 h-px bg-gradient-to-r from-transparent via-muted/12 to-transparent" />
+                  )}
 
-                  {/* Skill chips */}
-                  <div className="flex flex-wrap gap-2">
-                    {group.skills.map((skill, i) => (
-                      <motion.span
-                        key={skill}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={viewportOnce}
-                        transition={{ duration: 0.3, delay: groupIndex * 0.05 + i * 0.03 }}
-                        className="rounded-full bg-accent/20 px-3 py-1 text-xs font-medium text-muted/80 border border-accent/20 transition-colors hover:text-white hover:border-muted/30"
-                      >
-                        {skill}
-                      </motion.span>
-                    ))}
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6">
+                    {/* Category label */}
+                    <div className="flex items-center gap-2.5 sm:w-44 sm:flex-shrink-0">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-md bg-muted/8 border border-muted/10">
+                        <Icon className="h-3.5 w-3.5 text-muted/55" />
+                      </div>
+                      <span className="text-sm font-semibold text-secondary/85 tracking-tight">{group.category}</span>
+                    </div>
+
+                    {/* Skill chips */}
+                    <div className="flex flex-wrap gap-2">
+                      {group.skills.map((skill, i) => (
+                        <motion.span
+                          key={skill}
+                          initial={{ opacity: 0, scale: 0.85 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={viewportOnce}
+                          transition={{ duration: 0.3, delay: groupIndex * 0.04 + i * 0.025 }}
+                          className="rounded-full border border-muted/10 bg-muted/5 px-3 py-1 text-xs font-medium text-muted/70 transition-all hover:border-muted/25 hover:text-white hover:bg-muted/10 hover:shadow-[0_0_12px_rgba(146,144,195,0.08)] cursor-default"
+                        >
+                          {skill}
+                        </motion.span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               );

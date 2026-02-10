@@ -11,9 +11,17 @@ export default function ScrollProgress() {
   });
 
   return (
-    <motion.div
-      className="fixed top-16 left-0 right-0 z-40 h-0.5 origin-left bg-gradient-to-r from-secondary via-muted to-white"
-      style={{ scaleX }}
-    />
+    <>
+      {/* Main progress bar */}
+      <motion.div
+        className="fixed top-16 left-0 right-0 z-40 h-[2px] origin-left bg-gradient-to-r from-secondary via-muted to-white/80"
+        style={{ scaleX }}
+      />
+      {/* Glow beneath bar */}
+      <motion.div
+        className="fixed top-16 left-0 right-0 z-[39] h-[6px] origin-left bg-gradient-to-r from-secondary/30 via-muted/20 to-white/10 blur-sm"
+        style={{ scaleX }}
+      />
+    </>
   );
 }

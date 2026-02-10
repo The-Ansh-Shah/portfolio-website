@@ -118,4 +118,54 @@
     background-image: radial-gradient(circle, rgba(146, 144, 195, 0.08) 1px, transparent 1px);
     background-size: 32px 32px;
   }
+
+  /* Resume — glowing pulse for timeline dots */
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 4px rgba(146, 144, 195, 0.3), 0 0 8px rgba(146, 144, 195, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 8px rgba(146, 144, 195, 0.6), 0 0 20px rgba(146, 144, 195, 0.2);
+    }
+  }
+
+  .glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  /* Resume — shimmer gradient for accent lines */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .shimmer-line {
+    background: linear-gradient(
+      90deg,
+      rgba(146, 144, 195, 0.15) 0%,
+      rgba(146, 144, 195, 0.5) 50%,
+      rgba(146, 144, 195, 0.15) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+
+  /* Resume — ambient glow bg for sections */
+  .ambient-glow {
+    background: radial-gradient(ellipse at 50% 0%, rgba(83, 92, 145, 0.08) 0%, transparent 70%);
+  }
+
+  /* Resume — glass card */
+  .glass-card {
+    background: linear-gradient(135deg, rgba(27, 26, 85, 0.4) 0%, rgba(27, 26, 85, 0.15) 100%);
+    border: 1px solid rgba(146, 144, 195, 0.12);
+    backdrop-filter: blur(12px);
+    transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+  }
+
+  .glass-card:hover {
+    border-color: rgba(146, 144, 195, 0.25);
+    background: linear-gradient(135deg, rgba(27, 26, 85, 0.5) 0%, rgba(27, 26, 85, 0.2) 100%);
+    box-shadow: 0 0 30px rgba(146, 144, 195, 0.06);
+  }
 }
