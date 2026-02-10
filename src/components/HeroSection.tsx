@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, FileText } from 'lucide-react';
+import { ArrowRight, FileText, Mail } from 'lucide-react';
 import { typewriterTexts } from '@/lib/content';
 
 export default function HeroSection() {
@@ -135,6 +135,7 @@ export default function HeroSection() {
               onClick={() => handleScrollTo('contact')}
               className="inline-flex items-center gap-2 rounded-lg border border-muted/40 px-8 py-3 text-sm font-medium text-white transition-all hover:border-muted hover:bg-accent/20"
             >
+              <Mail className="h-4 w-4" />
               Get in Touch
             </button>
           </motion.div>
