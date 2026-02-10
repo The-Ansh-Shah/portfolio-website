@@ -7,18 +7,13 @@ import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-const homeNavItems = [
+const navItems = [
   { name: 'About', href: '#about' },
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Skills', href: '#skills' },
   { name: 'Contact', href: '#contact' },
   { name: 'Resume', href: '/resume' },
-];
-
-const resumeNavItems = [
-  { name: 'Home', href: '/' },
-  // { name: 'Download PDF', href: '/resume/Ansh_Shah_resume.pdf' },
 ];
 
 export default function Navbar() {
@@ -28,8 +23,6 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('hero');
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const navItems = isHomePage ? homeNavItems : resumeNavItems;
 
   // Track scroll position for styling
   useEffect(() => {
@@ -75,8 +68,14 @@ export default function Navbar() {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMobileMenuOpen(false);
 
-    // Only intercept hash links for smooth scrolling
+    // Only intercept hash links for smooth scrolling on home page
     if (href.startsWith('#')) {
+      // If we're on resume page, navigate to home first, then scroll
+      if (!isHomePage) {
+        // Let Next.js handle navigation with transition
+        return;
+      }
+
       e.preventDefault();
       const targetId = href.replace('#', '');
       const element = document.getElementById(targetId);
@@ -89,7 +88,7 @@ export default function Navbar() {
         });
       }
     }
-    // Non-hash links (/, /resume, PDF) use default browser/Next.js navigation
+    // Non-hash links (/, /resume) use default Next.js navigation with transition
   };
 
   return (
@@ -123,29 +122,40 @@ export default function Navbar() {
             const isHashLink = item.href.startsWith('#');
             const isActive = isHomePage && isHashLink && activeSection === item.href.replace('#', '');
             const isPdfLink = item.href.endsWith('.pdf');
+            // Convert hash links to full paths when on resume page
+            const actualHref = isHashLink && !isHomePage ? `/${item.href}` : item.href;
 
             return (
               <li key={item.href}>
                 {isHashLink ? (
-                  <a
-                    href={item.href}
-                    onClick={(e) => handleClick(e, item.href)}
-                    className={cn(
-                      'relative text-sm font-medium transition-colors',
-                      isActive
-                        ? 'text-white'
-                        : 'text-muted hover:text-white'
-                    )}
-                  >
-                    {item.name}
-                    {isActive && (
-                      <motion.span
-                        layoutId="navbar-indicator"
-                        className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-muted"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                  </a>
+                  isHomePage ? (
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleClick(e, item.href)}
+                      className={cn(
+                        'relative text-sm font-medium transition-colors',
+                        isActive
+                          ? 'text-white'
+                          : 'text-muted hover:text-white'
+                      )}
+                    >
+                      {item.name}
+                      {isActive && (
+                        <motion.span
+                          layoutId="navbar-indicator"
+                          className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-muted"
+                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </a>
+                  ) : (
+                    <Link
+                      href={actualHref}
+                      className="text-sm font-medium text-muted transition-colors hover:text-white"
+                    >
+                      {item.name}
+                    </Link>
+                  )
                 ) : isPdfLink ? (
                   <a
                     href={item.href}
@@ -157,7 +167,12 @@ export default function Navbar() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-sm font-medium text-muted transition-colors hover:text-white"
+                    className={cn(
+                      'text-sm font-medium transition-colors',
+                      item.href === '/resume' && !isHomePage
+                        ? 'text-white'
+                        : 'text-muted hover:text-white'
+                    )}
                   >
                     {item.name}
                   </Link>
@@ -192,22 +207,33 @@ export default function Navbar() {
                 const isHashLink = item.href.startsWith('#');
                 const isActive = isHomePage && isHashLink && activeSection === item.href.replace('#', '');
                 const isPdfLink = item.href.endsWith('.pdf');
+                const actualHref = isHashLink && !isHomePage ? `/${item.href}` : item.href;
 
                 return (
                   <li key={item.href}>
                     {isHashLink ? (
-                      <a
-                        href={item.href}
-                        onClick={(e) => handleClick(e, item.href)}
-                        className={cn(
-                          'block px-4 py-3 rounded-lg text-sm font-medium transition-all',
-                          isActive
-                            ? 'bg-muted/20 text-white'
-                            : 'text-muted hover:bg-white/5 hover:text-white'
-                        )}
-                      >
-                        {item.name}
-                      </a>
+                      isHomePage ? (
+                        <a
+                          href={item.href}
+                          onClick={(e) => handleClick(e, item.href)}
+                          className={cn(
+                            'block px-4 py-3 rounded-lg text-sm font-medium transition-all',
+                            isActive
+                              ? 'bg-muted/20 text-white'
+                              : 'text-muted hover:bg-white/5 hover:text-white'
+                          )}
+                        >
+                          {item.name}
+                        </a>
+                      ) : (
+                        <Link
+                          href={actualHref}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block px-4 py-3 rounded-lg text-sm font-medium text-muted hover:bg-white/5 hover:text-white transition-all"
+                        >
+                          {item.name}
+                        </Link>
+                      )
                     ) : isPdfLink ? (
                       <a
                         href={item.href}
@@ -221,7 +247,12 @@ export default function Navbar() {
                       <Link
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-4 py-3 rounded-lg text-sm font-medium text-muted hover:bg-white/5 hover:text-white transition-all"
+                        className={cn(
+                          'block px-4 py-3 rounded-lg text-sm font-medium transition-all',
+                          item.href === '/resume' && !isHomePage
+                            ? 'bg-muted/20 text-white'
+                            : 'text-muted hover:bg-white/5 hover:text-white'
+                        )}
                       >
                         {item.name}
                       </Link>

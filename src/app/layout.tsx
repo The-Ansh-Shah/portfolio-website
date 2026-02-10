@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import LayoutClient from '@/components/LayoutClient';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -26,9 +27,11 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col overflow-x-hidden">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <LayoutClient>{children}</LayoutClient>
+        </main>
         <Footer />
         <Analytics />
         <SpeedInsights />
