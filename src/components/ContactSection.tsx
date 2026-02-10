@@ -37,7 +37,7 @@ export default function ContactSection() {
   const reconstructedPhone = `(${phoneParts[0]}) ${phoneParts[1]}-${phoneParts[2]}`;
 
   return (
-    <section id="contact" className="relative bg-accent/5 py-20 md:py-32">
+    <section id="contact" className="relative py-20 md:py-32">
       <div className="container mx-auto max-w-4xl px-6">
         <motion.div
           initial="hidden"

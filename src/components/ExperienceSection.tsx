@@ -7,7 +7,7 @@ import { sectionReveal, viewportOnce } from '@/lib/animations';
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="relative bg-primary-dark py-20 md:py-32">
+    <section id="experience" className="relative py-20 md:py-32">
       <div className="container mx-auto max-w-6xl px-6">
         <motion.div
           initial="hidden"

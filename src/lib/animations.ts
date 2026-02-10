@@ -43,14 +43,14 @@ export const cardHover = {
 export const sectionReveal: Variants = {
   hidden: {
     opacity: 0,
-    y: 30,
+    y: 50,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
-      ease: 'easeOut',
+      duration: 0.8,
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 };
@@ -74,9 +74,9 @@ export const tagAnimation = (index: number): Variants => ({
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.3,
+      duration: 0.4,
       delay: index * 0.05,
-      ease: 'easeOut',
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 });
@@ -85,14 +85,14 @@ export const tagAnimation = (index: number): Variants => ({
 export const alternatingSlide = (index: number): Variants => ({
   hidden: {
     opacity: 0,
-    x: index % 2 === 0 ? -30 : 30,
+    x: index % 2 === 0 ? -50 : 50,
   },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.5,
-      ease: 'easeOut',
+      duration: 0.7,
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 });
@@ -100,8 +100,8 @@ export const alternatingSlide = (index: number): Variants => ({
 // Viewport configuration for scroll-triggered animations
 export const viewportOnce = {
   once: true,
-  margin: '-100px',
-  amount: 0.3,
+  margin: '0px 0px -80px 0px',
+  amount: 0.2,
 };
 
 // Spring animation config

@@ -12,7 +12,7 @@ export default function ProjectsSection() {
 
   return (
     <>
-      <section id="projects" className="relative bg-accent/5 py-20 md:py-32 circuit-dots">
+      <section id="projects" className="relative py-20 md:py-32">
         <div className="container mx-auto max-w-6xl px-6">
           <motion.div
             initial="hidden"

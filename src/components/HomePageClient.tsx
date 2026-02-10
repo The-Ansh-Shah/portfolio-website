@@ -43,18 +43,18 @@ export default function HomePageClient() {
         <StarryBackground />
       </Suspense>
 
+      {/* Subtle gradient overlay that changes with scroll */}
+      <div className="fixed inset-0 z-[1] pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#5a3d2a]/30 via-[#6F4E37]/20 via-[#8a6548]/30 to-[#A67B5B]/40" />
+      </div>
+
       {/* Main content */}
       <div className="relative z-10">
         <HeroSection />
-        <PipelineSeparator />
         <AboutSection />
-        <PipelineSeparator />
         <ExperienceSection />
-        <PipelineSeparator />
         <ProjectsSection />
-        <PipelineSeparator />
         <SkillsSection />
-        <PipelineSeparator />
         <ContactSection />
       </div>
     </div>

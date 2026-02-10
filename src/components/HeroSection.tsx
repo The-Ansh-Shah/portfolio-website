@@ -68,7 +68,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-gradient-to-b from-accent/20 to-primary-dark blueprint-grid"
+      className="relative flex min-h-[85vh] items-center justify-center overflow-hidden"
     >
       <div className="container mx-auto max-w-6xl px-6 py-12">
         <div className="flex flex-col items-center text-center">
@@ -142,30 +142,25 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Blueprint scan effect */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="blueprint-scan absolute inset-0 bg-gradient-to-b from-transparent via-muted/10 to-transparent"></div>
-      </div>
-
-      {/* Decorative gradient blobs - contained within section */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* Decorative gradient blobs - subtle and transparent */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-30">
         <motion.div
-          className="absolute right-0 top-20 h-64 w-64 md:h-96 md:w-96 rounded-full bg-accent/30 blur-3xl"
+          className="absolute right-0 top-20 h-96 w-96 rounded-full bg-muted/20 blur-3xl"
           animate={{
-            y: [0, 30, 0],
-            scale: [1, 1.1, 1],
+            y: [0, 40, 0],
+            scale: [1, 1.15, 1],
           }}
           transition={{
-            duration: 8,
+            duration: 10,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
         />
         <motion.div
-          className="absolute left-0 bottom-20 h-64 w-64 md:h-96 md:w-96 rounded-full bg-secondary/20 blur-3xl"
+          className="absolute left-0 bottom-20 h-96 w-96 rounded-full bg-secondary/15 blur-3xl"
           animate={{
-            y: [0, -30, 0],
-            scale: [1, 1.15, 1],
+            y: [0, -40, 0],
+            scale: [1, 1.2, 1],
           }}
           transition={{
             duration: 10,

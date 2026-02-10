@@ -9,7 +9,7 @@ function Stars() {
   const meshRef = useRef<THREE.Points>(null);
 
   const { positions, sizes } = useMemo(() => {
-    const count = 1500;
+    const count = 2000;
     const pos = new Float32Array(count * 3);
     const sz = new Float32Array(count);
     const spread = 50;
@@ -49,9 +49,9 @@ function Stars() {
       </bufferGeometry>
       <pointsMaterial
         color="#FED8B1"
-        size={0.05}
+        size={0.08}
         transparent
-        opacity={0.5}
+        opacity={0.9}
         sizeAttenuation
         depthWrite={false}
       />
@@ -72,7 +72,8 @@ function ShootingStar({ delay }: { delay: number }) {
     const material = new THREE.LineBasicMaterial({
       color: "#FED8B1",
       transparent: true,
-      opacity: 1
+      opacity: 1,
+      linewidth: 3
     });
     return new THREE.Line(geometry, material);
   }, []);
@@ -82,8 +83,8 @@ function ShootingStar({ delay }: { delay: number }) {
 
     const now = Date.now();
     const elapsed = (now - startTimeRef.current) / 1000;
-    const duration = 1.5; // Shooting star duration
-    const interval = 8; // Time between shooting stars
+    const duration = 2; // Shooting star duration (longer for more visibility)
+    const interval = 12; // Time between shooting stars
 
     // Reset after interval
     if (elapsed > interval) {
@@ -116,9 +117,9 @@ function ShootingStar({ delay }: { delay: number }) {
 
     line.geometry.attributes.position.needsUpdate = true;
 
-    // Fade out at the end
+    // Fade out at the end, but keep brighter
     const material = line.material as THREE.LineBasicMaterial;
-    material.opacity = 1 - progress;
+    material.opacity = Math.max(0.3, 1 - progress);
   });
 
   return (
@@ -183,8 +184,11 @@ export default function StarryBackground() {
         <Stars />
         <ConnectionLines />
         <ShootingStar delay={0} />
-        <ShootingStar delay={3} />
+        <ShootingStar delay={2} />
+        <ShootingStar delay={4} />
         <ShootingStar delay={6} />
+        <ShootingStar delay={8} />
+        <ShootingStar delay={10} />
       </Canvas>
     </div>
   );
