@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import ScrollProgress from './ScrollProgress';
-import FloatingDownloadButton from './FloatingDownloadButton';
+import DownloadButton from './DownloadButton';
 import ResumeHero from './ResumeHero';
 import ResumeEducation from './ResumeEducation';
 import ResumeExperience from './ResumeExperience';
@@ -41,7 +41,7 @@ export default function ResumePageClient() {
       {/* Content layer */}
       <div className="relative z-10">
         <ScrollProgress />
-        {/* <FloatingDownloadButton /> */}
+        <DownloadButton variant="fixed" />
 
         <ResumeHero />
         <SectionDivider />
@@ -61,6 +61,7 @@ export default function ResumePageClient() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Link
               href="/"
@@ -69,6 +70,7 @@ export default function ResumePageClient() {
               <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
               Back to Portfolio
             </Link>
+            <DownloadButton variant="inline" />
           </motion.div>
         </div>
       </div>
