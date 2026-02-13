@@ -6,7 +6,7 @@ A modern, performant portfolio website built with Next.js, TypeScript, and Tailw
 
 - **Modern Tech Stack**: Built with Next.js 15 (App Router), React, TypeScript, and Tailwind CSS
 - **Beautiful Animations**: Smooth transitions and scroll animations using Framer Motion
-- **MDX-Powered Projects**: Content-driven project system using MDX files
+- **Markdown-Powered Projects**: Content-driven project system using Markdown files
 - **Responsive Design**: Fully responsive and optimized for all devices
 - **Performance Optimized**: Server-side rendering, image optimization, and lazy loading
 - **SEO Friendly**: Optimized meta tags and semantic HTML
@@ -178,8 +178,8 @@ This website is optimized for performance:
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Content**: MDX with next-mdx-remote
+- **Animations**: Framer Motion (with LazyMotion tree-shaking)
+- **Content**: Markdown with react-markdown + remark-gfm
 - **Icons**: Lucide React
 
 ## License
