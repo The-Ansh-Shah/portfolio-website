@@ -2,13 +2,54 @@
 
 import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 const spotifyTracks = [
-  { num: 1, title: 'Neon', artist: 'John Mayer', duration: '4:41', playing: true },
-  { num: 2, title: 'Nights', artist: 'Frank Ocean', duration: '5:07', playing: false },
-  { num: 3, title: 'Motion Sickness', artist: 'Phoebe Bridgers', duration: '3:51', playing: false },
-  { num: 4, title: 'Pink + White', artist: 'Frank Ocean', duration: '3:04', playing: false },
-  { num: 5, title: 'Line of Sight', artist: 'ODESZA', duration: '4:32', playing: false },
+  {
+    num: 1,
+    title: 'Selfless',
+    artist: 'The Strokes',
+    duration: '3:42',
+    playing: true,
+    spotifyUrl: 'https://open.spotify.com/track/2MKNOF6HBkWNhVGEMhiGkP',
+    art: '/images/icons/the-new-abnormal.png',
+  },
+  {
+    num: 2,
+    title: 'Ode to the Mets',
+    artist: 'The Strokes',
+    duration: '5:51',
+    playing: false,
+    spotifyUrl: 'https://open.spotify.com/track/49eOiEHOoU3VnYmOIoMbiA',
+    art: '/images/icons/the-new-abnormal.png',
+  },
+  {
+    num: 3,
+    title: 'The Adults Are Talking',
+    artist: 'The Strokes',
+    duration: '5:09',
+    playing: false,
+    spotifyUrl: 'https://open.spotify.com/track/2EBLAN1UREyHFj1EOtwJBx',
+    art: '/images/icons/the-new-abnormal.png',
+  },
+  {
+    num: 4,
+    title: 'Bulleya',
+    artist: 'Amit Mishra, Shilpa Rao',
+    duration: '5:52',
+    playing: false,
+    spotifyUrl: 'https://open.spotify.com/track/5SBbTMBiVYQEbFGMWMf3sP',
+    art: '/images/icons/ae-dil-hai-mushkil.jpg',
+  },
+  {
+    num: 5,
+    title: 'Moonlight on the River',
+    artist: 'Mac DeMarco',
+    duration: '8:42',
+    playing: false,
+    spotifyUrl: 'https://open.spotify.com/track/1gxYbBko8RBHgRmRabMN5F',
+    art: '/images/icons/this-old-dog.jpg',
+  },
 ];
 
 function Equalizer() {
@@ -45,7 +86,7 @@ export default function BeyondTheLab() {
           </h2>
         </m.div>
 
-        {/* HKN Card — full width, generous padding */}
+        {/* HKN Card */}
         <m.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -95,18 +136,42 @@ export default function BeyondTheLab() {
                   i < spotifyTracks.length - 1 ? 'border-b border-[#2A2A2A]' : ''
                 }`}
               >
+                {/* Track number */}
                 <span className="w-4 text-right text-[13px] text-[#5A5A5E] flex-shrink-0">
                   {track.num}
                 </span>
-                <div className="h-11 w-11 rounded-[8px] bg-[#2A2A2A] flex-shrink-0 flex items-center justify-center">
-                  {track.playing ? <Equalizer /> : null}
+
+                {/* Album art or equalizer */}
+                <div className="h-11 w-11 rounded-[8px] bg-[#2A2A2A] flex-shrink-0 flex items-center justify-center overflow-hidden relative">
+                  {track.playing ? (
+                    <Equalizer />
+                  ) : (
+                    <Image
+                      src={track.art}
+                      alt={track.title}
+                      fill
+                      className="object-cover"
+                      sizes="44px"
+                    />
+                  )}
                 </div>
+
+                {/* Song info — title links to Spotify */}
                 <div className="flex-1 min-w-0">
-                  <p className={`text-[15px] font-medium truncate ${track.playing ? 'text-[#1DB954]' : 'text-[#E5E5E7]'}`}>
+                  <a
+                    href={track.spotifyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-[15px] font-medium truncate block hover:underline ${
+                      track.playing ? 'text-[#1DB954]' : 'text-[#E5E5E7]'
+                    }`}
+                  >
                     {track.title}
-                  </p>
+                  </a>
                   <p className="text-[13px] text-[#6E6E73] truncate">{track.artist}</p>
                 </div>
+
+                {/* Duration */}
                 <span className="text-[13px] text-[#5A5A5E] flex-shrink-0">{track.duration}</span>
               </div>
             ))}
