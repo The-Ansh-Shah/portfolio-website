@@ -2,13 +2,10 @@
 
 import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import {
-  personalInfo,
-  verilogSnippet,
-  hobbies,
-} from '@/lib/content';
+import { personalInfo, hobbies, verilogSnippet } from '@/lib/content';
 import CodeBlock from './CodeBlock';
-import SectionLabel from './SectionLabel';
+
+const ease = [0.25, 0.1, 0.25, 1] as const;
 
 export default function AboutSection() {
   const ref = useRef(null);
@@ -16,82 +13,93 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="py-16 md:py-20">
-      <div className="mx-auto max-w-content px-6" ref={ref}>
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-6"
-        >
-          <SectionLabel>About</SectionLabel>
-          <h2 className="text-section text-text-primary mt-2">Who I Am</h2>
-        </m.div>
+      <div className="mx-auto max-w-content px-14" ref={ref}>
+        {/* 12-col bento grid, gap 16px */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
 
-        {/* Row 1: About (4) + Location (3) + Hobbies (5) */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
-          {/* About card */}
+          {/* Card A — About | span 5 | LEFT-ALIGNED */}
           <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:col-span-5 rounded-card bg-bg-card border border-border p-5 hover:shadow-card-hover transition-shadow duration-300 flex items-center justify-center"
+            transition={{ duration: 0.5, ease }}
+            className="md:col-span-5 rounded-[20px] bg-[#F5F5F7] border border-[#E8E8ED] hover:border-[#D2D2D7] hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300"
+            style={{ padding: '36px 32px' }}
           >
-            <p className="text-[24px] font-medium text-text-primary leading-snug text-center">
+            <span className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#86868B]">
+              About
+            </span>
+            <p className="mt-3 text-[26px] font-medium text-[#1D1D1F] leading-[1.3] text-left">
               Hardware engineer with a passion for digital IC design.
             </p>
           </m.div>
 
-          {/* Location card */}
+          {/* Card B — Location | span 3 | CENTER-ALIGNED */}
           <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.08, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:col-span-3 rounded-card bg-bg-card border border-border p-5 hover:shadow-card-hover transition-shadow duration-300 text-center"
+            transition={{ duration: 0.5, delay: 0.08, ease }}
+            className="md:col-span-3 rounded-[20px] bg-[#F5F5F7] border border-[#E8E8ED] hover:border-[#D2D2D7] hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 flex flex-col justify-center items-center"
+            style={{ padding: '32px 24px' }}
           >
-            <SectionLabel>Based in</SectionLabel>
-            <p className="mt-2 text-[18px] font-semibold text-text-primary">{personalInfo.location}</p>
+            <span className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#86868B]">
+              Based in
+            </span>
+            <p className="mt-2 text-[22px] font-semibold text-[#1D1D1F] text-center">
+              {personalInfo.location}
+            </p>
           </m.div>
 
-          {/* Hobbies card — CSS-only cycling */}
+          {/* Card C — Hobbies | span 4 | CENTER-ALIGNED */}
           <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.16, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:col-span-4 rounded-card bg-bg-card border border-border p-5 hover:shadow-card-hover transition-shadow duration-300 overflow-hidden text-center"
+            transition={{ duration: 0.5, delay: 0.16, ease }}
+            className="md:col-span-4 rounded-[20px] bg-[#F5F5F7] border border-[#E8E8ED] hover:border-[#D2D2D7] hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 overflow-hidden text-center"
+            style={{ padding: '32px 24px' }}
           >
-            <SectionLabel>I also like...</SectionLabel>
+            <span className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#86868B]">
+              I also like...
+            </span>
             <div className="mt-2 h-[36px] overflow-hidden">
               <div className="animate-hobby-scroll">
                 {hobbies.map((hobby) => (
                   <div key={hobby.label} className="h-[36px] flex items-center justify-center">
-                    <span className="text-[26px] font-semibold text-text-primary">
+                    <span className="text-[24px] font-semibold text-[#1D1D1F]">
                       {hobby.emoji} {hobby.label}
                     </span>
                   </div>
                 ))}
+                {/* Duplicate first item for seamless loop */}
+                <div className="h-[36px] flex items-center justify-center">
+                  <span className="text-[24px] font-semibold text-[#1D1D1F]">
+                    {hobbies[0].emoji} {hobbies[0].label}
+                  </span>
+                </div>
               </div>
             </div>
           </m.div>
 
-          {/* Row 2: Focus (7) + Code block (5) */}
-          {/* Focus card */}
+          {/* Card D — Focus | span 7 | CENTER-ALIGNED */}
           <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.24, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:col-span-7 rounded-card bg-bg-card border border-border p-5 hover:shadow-card-hover transition-shadow duration-300 text-center flex flex-col justify-center"
+            transition={{ duration: 0.5, delay: 0.24, ease }}
+            className="md:col-span-7 rounded-[20px] bg-[#F5F5F7] border border-[#E8E8ED] hover:border-[#D2D2D7] hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 flex flex-col justify-center items-center text-center"
+            style={{ padding: '32px' }}
           >
-            <SectionLabel>Focus</SectionLabel>
-            <p className="mt-2 text-[17px] font-medium text-text-muted">
+            <span className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#86868B]">
+              Focus
+            </span>
+            <p className="mt-2 text-[20px] font-medium text-[#86868B]">
               CPU design · Embedded security · Processor tracing
             </p>
           </m.div>
 
-          {/* Code block card */}
+          {/* Card E — Code block | span 5 | LEFT-ALIGNED */}
           <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.32, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.5, delay: 0.32, ease }}
             className="md:col-span-5"
           >
             <CodeBlock code={verilogSnippet} />

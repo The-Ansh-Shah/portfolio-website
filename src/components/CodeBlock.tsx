@@ -50,28 +50,28 @@ function highlightVerilog(code: string): React.ReactNode[] {
 
 export default function CodeBlock({ code }: CodeBlockProps) {
   return (
-    <div className="rounded-code bg-bg-code border border-bg-code-border overflow-hidden">
+    <div className="rounded-[16px] bg-[#2C2C2A] border border-[#3A3A38] overflow-hidden">
       {/* macOS traffic lights + filename */}
-      <div className="flex items-center px-4 pt-3 pb-2">
+      <div className="flex items-center px-4 pt-3 pb-1.5">
         <div className="flex gap-[7px]">
           <div className="h-3 w-3 rounded-full bg-[#FF5F57]" />
           <div className="h-3 w-3 rounded-full bg-[#FEBC2E]" />
           <div className="h-3 w-3 rounded-full bg-[#28C840]" />
         </div>
-        <span className="flex-1 text-center text-[10px] font-mono text-text-code-cm">ansh_shah.v</span>
-        <div className="w-[52px]" /> {/* spacer to center filename */}
+        <span className="flex-1 text-center text-[10px] font-mono text-[#6E6E73]">ansh_shah.v</span>
+        <div className="w-10" />
       </div>
 
       {/* Code with bottom fade */}
       <div
         className="overflow-hidden"
         style={{
-          maxHeight: '155px',
+          maxHeight: '150px',
           maskImage: 'linear-gradient(to bottom, black 45%, transparent 95%)',
           WebkitMaskImage: 'linear-gradient(to bottom, black 45%, transparent 95%)',
         }}
       >
-        <pre className="font-mono text-[10.5px] px-4 pb-4 text-text-code">
+        <pre className="font-mono text-[11px]" style={{ padding: '2px 18px 0 18px' }}>
           <code>{highlightVerilog(code)}</code>
         </pre>
       </div>

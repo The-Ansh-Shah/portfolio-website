@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import HeroSection from './HeroSection';
 import AboutSection from './AboutSection';
-import MarqueeStrip from './MarqueeStrip';
 import ProjectsSection from './ProjectsSection';
 import SkillsSection from './SkillsSection';
 import ExperienceSection from './ExperienceSection';
@@ -23,10 +22,9 @@ export default function HomePageClient() {
   }, []);
 
   return (
-    <div className="bg-bg-primary">
+    <div className="bg-white">
       <HeroSection />
       <AboutSection />
-      <MarqueeStrip />
       <ProjectsSection />
       <SkillsSection />
       <ExperienceSection />

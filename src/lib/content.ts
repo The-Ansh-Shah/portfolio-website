@@ -26,8 +26,7 @@ export const hobbies = [
   { emoji: "🎸", label: "Playing guitar" },
 ];
 
-export const verilogSnippet = `// ansh_shah.v
-module engineer (
+export const verilogSnippet = `module engineer (
   input  clk, rst_n,
   output reg [2:0] state
 );
@@ -167,15 +166,10 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
-    title: "RV32I CPU and Direct-Mapped L1 Cache",
-    description: "3-stage pipelined RISC-V CPU with optimized cache system",
+    title: "RV32I CPU & direct-mapped L1 cache",
+    description: "Designed a 3-stage pipelined RV32I datapath achieving 62.4 MHz with an integrated 4KiB L1 cache. Used SystemVerilog assertions and formal verification throughout.",
     technologies: ["Verilog", "Sky130 PDK", "Cadence Innovus", "Synopsys VCS"],
-    achievements: [
-      "Designed 3-stage pipelined RV32I datapath achieving 62.4 MHz",
-      "Integrated 4KiB L1-Cache using 1KiB SRAMs, reducing area",
-      "Developed Cache FSM with Dirty Flag, reducing cycles by 36%",
-      "Used SystemVerilog Assertions for verification",
-    ],
+    achievements: [],
     date: "Fall 2025",
     github: "https://github.com/The-Ansh-Shah/rv32i-cpu-and-cache",
     featured: true,
@@ -188,15 +182,10 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    title: "RP2040 Bootloader Rootkit Analysis",
-    description: "Embedded security research on boot sequence exploitation",
+    title: "RP2040 bootloader rootkit analysis",
+    description: "Reverse-engineered the RP2040 boot sequence to demonstrate early-boot execution redirection. Modeled the boot-flow with CBMC formal verification and proposed mitigations.",
     technologies: ["C", "ARM Thumb", "Embedded Security", "CBMC"],
-    achievements: [
-      "Contributed to PoC early-boot execution redirection via watchdog",
-      "Achieved code persistence by modifying second-stage bootloader",
-      "Modeled boot-flow using CBMC formal verification",
-      "Designed mitigation strategy for secure-boot robustness",
-    ],
+    achievements: [],
     date: "Fall 2025",
     github: "https://github.com/The-Ansh-Shah/DAWGkit-RP2040",
     featured: false,
@@ -205,14 +194,10 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    title: "RISC-V Neural Network Classifier",
-    description: "Low-level ML implementation in RISC-V assembly",
+    title: "RISC-V neural network classifier",
+    description: "Built math kernels in RISC-V assembly — ReLU, argmax, matmul — and integrated them into a digit-classification pipeline with file I/O and heap allocation.",
     technologies: ["RISC-V", "Venus Simulator", "Linear Algebra"],
-    achievements: [
-      "Implemented math kernels in RISC-V assembly (ReLU, argmax, matmul)",
-      "Integrated kernels into digit-classification pipeline",
-      "Developed file I/O with heap allocation and error handling",
-    ],
+    achievements: [],
     date: "Spring 2025",
     github:
       "https://github.com/The-Ansh-Shah/riscv-neural-network-classifier",
@@ -222,14 +207,10 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    title: "Treble Booster Circuit",
-    description: "Analog filter design for guitar amplification",
-    technologies: ["LTSpice", "Oscilloscope", "Network Analyzer"],
-    achievements: [
-      "Designed band-pass filter as treble-frequency booster",
-      "Analytically determined component specs for corner frequencies",
-      "Simulated and verified amplification using test equipment",
-    ],
+    title: "Treble booster circuit",
+    description: "Designed a band-pass filter for treble-frequency boosting with analytically determined component specs. Simulated and verified amplification in LTSpice.",
+    technologies: ["LTSpice", "Oscilloscope"],
+    achievements: [],
     date: "Spring 2025",
     featured: false,
   },

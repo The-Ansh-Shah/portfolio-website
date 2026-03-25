@@ -7,21 +7,69 @@ import { Home, User, Mail } from 'lucide-react';
 
 const navItems = [
   { icon: Home, href: '/', label: 'Home' },
-  { icon: User, href: '/resume', label: 'Resume' },
-  { icon: Mail, href: 'mailto:ansh_shah@berkeley.edu', label: 'Email' },
+  { icon: User, href: '/#about', label: 'About' },
 ];
+
+const mailItem = { icon: Mail, href: 'mailto:ansh_shah@berkeley.edu', label: 'Email' };
 
 export default function Navbar() {
   const pathname = usePathname();
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('#')) {
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#')) {
       e.preventDefault();
-      const el = document.getElementById(href.replace('#', ''));
+      const id = href.replace('/#', '');
+      if (pathname !== '/') {
+        window.location.href = href;
+        return;
+      }
+      const el = document.getElementById(id);
       if (el) {
         window.scrollTo({ top: el.offsetTop - 20, behavior: 'smooth' });
       }
     }
+  };
+
+  const renderIcon = (item: typeof navItems[0]) => {
+    const Icon = item.icon;
+    const isActive = item.href === '/' ? pathname === '/' : false;
+
+    const className = `flex h-[34px] w-[34px] items-center justify-center rounded-full transition-all duration-200 ${
+      isActive
+        ? 'bg-[#1D1D1F] text-white'
+        : 'text-[#86868B] hover:bg-[#EDEDF0] hover:text-[#1D1D1F]'
+    }`;
+
+    if (item.href.startsWith('/#')) {
+      return (
+        <a
+          key={item.label}
+          href={item.href}
+          onClick={(e) => handleScrollTo(e, item.href)}
+          className={className}
+          aria-label={item.label}
+        >
+          <Icon className="h-[14px] w-[14px]" />
+        </a>
+      );
+    }
+
+    return (
+      <Link key={item.label} href={item.href} className={className} aria-label={item.label}>
+        <Icon className="h-[14px] w-[14px]" />
+      </Link>
+    );
+  };
+
+  const renderMailIcon = () => {
+    const Icon = mailItem.icon;
+    const className = `flex h-[34px] w-[34px] items-center justify-center rounded-full transition-all duration-200 text-[#86868B] hover:bg-[#EDEDF0] hover:text-[#1D1D1F]`;
+
+    return (
+      <a key={mailItem.label} href={mailItem.href} className={className} aria-label={mailItem.label}>
+        <Icon className="h-[14px] w-[14px]" />
+      </a>
+    );
   };
 
   return (
@@ -31,91 +79,36 @@ export default function Navbar() {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.3, ease: 'easeOut' }}
-        className="fixed left-4 lg:left-5 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-2.5 glass-pill border border-border rounded-[28px] p-2.5"
+        className="fixed left-4 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-2 rounded-[28px] p-3 px-[10px]"
+        style={{
+          background: 'rgba(245,245,247,0.88)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid #D2D2D7',
+        }}
       >
-        {navItems.map((item, i) => {
-          const Icon = item.icon;
-          const isActive = item.href === '/' && pathname === '/';
-          const isExternal = item.href.startsWith('mailto:');
-
-          const className = `flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 ${
-            isActive
-              ? 'bg-text-primary text-white'
-              : 'text-text-muted hover:bg-bg-card-hover hover:text-text-primary'
-          }`;
-
-          const divider = i === 1 ? (
-            <div key="divider" className="w-[1px] h-[20px] bg-border-hover mx-auto" />
-          ) : null;
-
-          const element = isExternal ? (
-            <a key={item.label} href={item.href} className={className} aria-label={item.label}>
-              <Icon className="h-4 w-4" />
-            </a>
-          ) : item.href.startsWith('#') ? (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={(e) => handleClick(e, item.href)}
-              className={className}
-              aria-label={item.label}
-            >
-              <Icon className="h-4 w-4" />
-            </a>
-          ) : (
-            <Link key={item.label} href={item.href} className={className} aria-label={item.label}>
-              <Icon className="h-4 w-4" />
-            </Link>
-          );
-
-          return divider ? [divider, element] : element;
-        })}
+        {navItems.map((item) => renderIcon(item))}
+        {/* Divider */}
+        <div className="w-5 h-[1px] bg-[#D2D2D7] mx-auto my-[2px]" />
+        {renderMailIcon()}
       </motion.nav>
 
-      {/* Mobile bottom bar */}
+      {/* Mobile bottom bar — hidden above 768px */}
       <motion.nav
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
-        className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex md:hidden gap-2 glass-pill border border-border rounded-[28px] p-2"
+        className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex md:hidden items-center gap-2 rounded-[28px] p-2"
+        style={{
+          background: 'rgba(245,245,247,0.88)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid #D2D2D7',
+        }}
       >
-        {navItems.map((item, i) => {
-          const Icon = item.icon;
-          const isActive = item.href === '/' && pathname === '/';
-          const isExternal = item.href.startsWith('mailto:');
-
-          const className = `flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 ${
-            isActive
-              ? 'bg-text-primary text-white'
-              : 'text-text-muted hover:bg-bg-card-hover hover:text-text-primary'
-          }`;
-
-          const divider = i === 1 ? (
-            <div key="divider-mobile" className="h-[1px] w-[20px] bg-border-hover my-auto md:w-[1px] md:h-[20px]" />
-          ) : null;
-
-          const element = isExternal ? (
-            <a key={item.label} href={item.href} className={className} aria-label={item.label}>
-              <Icon className="h-4 w-4" />
-            </a>
-          ) : item.href.startsWith('#') ? (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={(e) => handleClick(e, item.href)}
-              className={className}
-              aria-label={item.label}
-            >
-              <Icon className="h-4 w-4" />
-            </a>
-          ) : (
-            <Link key={item.label} href={item.href} className={className} aria-label={item.label}>
-              <Icon className="h-4 w-4" />
-            </Link>
-          );
-
-          return divider ? [divider, element] : element;
-        })}
+        {navItems.map((item) => renderIcon(item))}
+        <div className="h-5 w-[1px] bg-[#D2D2D7] my-auto" />
+        {renderMailIcon()}
       </motion.nav>
     </>
   );

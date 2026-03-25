@@ -2,42 +2,30 @@
 
 import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import Link from 'next/link';
-import { projects } from '@/lib/content';
-import ProjectCard from './ProjectCard';
 import ProjectCarousel from './ProjectCarousel';
-import SectionLabel from './SectionLabel';
 
 export default function ProjectsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section id="projects" className="py-section">
-      <div className="mx-auto max-w-content px-6" ref={ref}>
+    <section id="projects" className="py-16 md:py-20">
+      <div ref={ref}>
         <m.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-8 flex items-end justify-between"
+          className="px-14 mb-8"
         >
-          <div>
-            <SectionLabel>Experience</SectionLabel>
-            <h2 className="text-section text-text-primary mt-2">Projects</h2>
-          </div>
-          <Link
-            href="/projects"
-            className="text-sm text-text-primary hover:text-text-secondary transition-colors duration-200"
-          >
-            View All →
-          </Link>
+          <h2 className="text-[34px] font-semibold tracking-[-0.02em] text-[#1D1D1F]">
+            Projects
+          </h2>
+          <p className="text-[15px] text-[#86868B] mt-1">
+            Hardware design, embedded security, and systems programming
+          </p>
         </m.div>
 
-        <ProjectCarousel>
-          {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
-        </ProjectCarousel>
+        <ProjectCarousel />
       </div>
     </section>
   );
