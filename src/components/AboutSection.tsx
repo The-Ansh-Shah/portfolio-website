@@ -89,41 +89,36 @@ export default function AboutSection() {
 
           {/* ROW 2: What Inspires Me (tall) + Code Block */}
 
-          {/* Card D — What inspires me | span 5 | TALL with big text like Kellie */}
+          {/* Card D — What inspires me + Code block combined | span 12 full width */}
           <m.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.24, ease }}
-            className="md:col-span-5 rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-10 md:p-12 min-h-[300px] flex flex-col justify-between"
+            className="md:col-span-12 rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-10 md:p-12"
           >
-            <div>
-              <span className="text-[13px] font-medium text-[#86868B] uppercase tracking-widest">
-                What inspires me?
-              </span>
-              <h3 className="mt-4 text-[clamp(28px,3.5vw,38px)] font-semibold text-[#1D1D1F] leading-[1.15] tracking-tight">
-                Building efficient, fast, and scalable silicon solutions.
-              </h3>
-            </div>
-            {/* Decorative bottom — subtle circuit-like dots */}
-            <div className="flex items-center gap-2 mt-8">
-              <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />
-              <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />
-              <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />
-              <div className="h-3 w-3 rounded-full bg-[#86868B]" />
-              <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />
-              <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />
-              <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />
-            </div>
-          </m.div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              {/* Left — text */}
+              <div className="flex flex-col justify-between h-full">
+                <span className="text-[13px] font-medium text-[#86868B] uppercase tracking-widest">
+                  What inspires me?
+                </span>
+                <h3 className="mt-4 text-[clamp(28px,3.5vw,38px)] font-semibold text-[#1D1D1F] leading-[1.15] tracking-tight">
+                  Building efficient, fast, and scalable silicon solutions.
+                </h3>
+                <div className="flex items-center gap-2 mt-8">
+                  <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />
+                  <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />
+                  <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />
+                  <div className="h-3 w-3 rounded-full bg-[#86868B]" />
+                  <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />
+                  <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />
+                  <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />
+                </div>
+              </div>
 
-          {/* Card E — Code block | span 7 */}
-          <m.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.32, ease }}
-            className="md:col-span-7"
-          >
-            <CodeBlock code={verilogSnippet} />
+              {/* Right — code block inset */}
+              <CodeBlock code={verilogSnippet} />
+            </div>
           </m.div>
         </div>
       </div>

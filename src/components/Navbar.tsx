@@ -34,7 +34,7 @@ export default function Navbar() {
     const Icon = item.icon;
     const isActive = item.href === '/' ? pathname === '/' : false;
 
-    const className = `flex h-[34px] w-[34px] items-center justify-center rounded-full transition-all duration-200 ${
+    const className = `flex h-[44px] w-[44px] items-center justify-center rounded-full transition-all duration-200 ${
       isActive
         ? 'bg-[#1D1D1F] text-white'
         : 'text-[#86868B] hover:bg-[#EDEDF0] hover:text-[#1D1D1F]'
@@ -49,25 +49,25 @@ export default function Navbar() {
           className={className}
           aria-label={item.label}
         >
-          <Icon className="h-[14px] w-[14px]" />
+          <Icon className="h-[18px] w-[18px]" />
         </a>
       );
     }
 
     return (
       <Link key={item.label} href={item.href} className={className} aria-label={item.label}>
-        <Icon className="h-[14px] w-[14px]" />
+        <Icon className="h-[18px] w-[18px]" />
       </Link>
     );
   };
 
   const renderMailIcon = () => {
     const Icon = mailItem.icon;
-    const className = `flex h-[34px] w-[34px] items-center justify-center rounded-full transition-all duration-200 text-[#86868B] hover:bg-[#EDEDF0] hover:text-[#1D1D1F]`;
+    const className = `flex h-[44px] w-[44px] items-center justify-center rounded-full transition-all duration-200 text-[#86868B] hover:bg-[#EDEDF0] hover:text-[#1D1D1F]`;
 
     return (
       <a key={mailItem.label} href={mailItem.href} className={className} aria-label={mailItem.label}>
-        <Icon className="h-[14px] w-[14px]" />
+        <Icon className="h-[18px] w-[18px]" />
       </a>
     );
   };
@@ -79,7 +79,7 @@ export default function Navbar() {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.3, ease: 'easeOut' }}
-        className="fixed left-4 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-2 rounded-[28px] p-3 px-[10px]"
+        className="fixed left-5 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-3 rounded-[32px] p-4 px-3"
         style={{
           background: 'rgba(245,245,247,0.88)',
           backdropFilter: 'blur(12px)',
@@ -89,7 +89,7 @@ export default function Navbar() {
       >
         {navItems.map((item) => renderIcon(item))}
         {/* Divider */}
-        <div className="w-5 h-[1px] bg-[#D2D2D7] mx-auto my-[2px]" />
+        <div className="w-6 h-[1px] bg-[#D2D2D7] mx-auto my-1" />
         {renderMailIcon()}
       </motion.nav>
 

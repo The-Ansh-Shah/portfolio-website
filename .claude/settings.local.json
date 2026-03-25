@@ -17,7 +17,16 @@
       "Bash(do grep -l \"motion\\\\.\" \"$file\")",
       "Bash(echo:*)",
       "Bash(done)",
-      "WebFetch(domain:kellieho.framer.ai)"
+      "WebFetch(domain:kellieho.framer.ai)",
+      "Bash(ls -lh /Users/anshs/Code/project-website/public/images/headshot.jpg /Users/anshs/Code/project-website/public/images/projects/* /Users/anshs/Code/project-website/public/images/icons/*)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/anshs/Code/project-website/public/images/headshot.jpg)",
+      "Bash(sips -Z 800 /Users/anshs/Code/project-website/public/images/headshot.jpg --setProperty formatOptions 70)",
+      "Bash(sips -Z 96 \"/Users/anshs/Code/project-website/public/images/icons/brushed-metal-apple-mac-icon-29.png\")",
+      "Bash(sips -Z 96 \"/Users/anshs/Code/project-website/public/images/icons/249-2494952_penguin-clipart-profile-linux-logo-vector.png\")",
+      "Bash(sips -Z 96 \"/Users/anshs/Code/project-website/public/images/icons/Python-logo-notext.svg.png\")",
+      "Bash(sips -Z 96 \"/Users/anshs/Code/project-website/public/images/icons/RISC-V_icon.svg.png\")",
+      "Bash(sips -Z 96 \"/Users/anshs/Code/project-website/public/images/icons/C_Logo.png\")",
+      "Bash(npm uninstall:*)"
     ]
   }
 }

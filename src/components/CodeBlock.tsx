@@ -47,7 +47,7 @@ function highlightVerilog(code: string): React.ReactNode[] {
 
 export default function CodeBlock({ code }: CodeBlockProps) {
   return (
-    <div className="rounded-[20px] bg-[#2C2C2A] border border-[#3A3A38] overflow-hidden h-full min-h-[300px] flex flex-col">
+    <div className="rounded-[20px] bg-[#2C2C2A] border border-[#3A3A38] overflow-hidden h-full max-h-[280px] flex flex-col">
       {/* macOS traffic lights + filename */}
       <div className="flex items-center px-5 pt-4 pb-2">
         <div className="flex gap-[7px]">
