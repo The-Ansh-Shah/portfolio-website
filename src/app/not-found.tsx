@@ -6,7 +6,7 @@ export default function NotFound() {
     <section className="flex min-h-[calc(100vh-16rem)] items-center justify-center bg-bg-primary py-20">
       <div className="mx-auto max-w-content px-6 text-center">
         <h1 className="mb-4 text-hero text-text-primary">404</h1>
-        <h2 className="mb-4 text-h2 text-text-primary">
+        <h2 className="mb-4 text-section text-text-primary">
           Page Not Found
         </h2>
         <p className="mb-8 text-body text-text-secondary">

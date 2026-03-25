@@ -2,56 +2,66 @@
 
 import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { skills } from '@/lib/content';
-import AnimatedSection from './AnimatedSection';
-import { sectionReveal } from '@/lib/animations';
+import { Cpu, Layers, Terminal, CheckCircle, type LucideIcon } from 'lucide-react';
+import { techStack } from '@/lib/content';
+import TechCard from './TechCard';
+import SectionLabel from './SectionLabel';
 
-const categoryTitles: Record<string, string> = {
-  architecture: 'Architecture',
-  hardware_design: 'Hardware Design',
-  low_level_systems: 'Low-Level Systems',
-  verification: 'Verification',
+const iconMap: Record<string, LucideIcon> = {
+  Cpu,
+  Layers,
+  Terminal,
+  CheckCircle,
 };
 
 export default function SkillsSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '0px 0px -100px 0px', amount: 0.1 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section id="skills" className="py-20 md:py-32 bg-bg-primary">
-      <div className="mx-auto max-w-content px-6">
-        <AnimatedSection variants={sectionReveal} className="mb-16 text-center">
-          <h2 className="text-h2 text-text-primary">
-            Technical Skills
-          </h2>
-        </AnimatedSection>
-
+    <section id="skills" className="py-section">
+      <div className="mx-auto max-w-content px-6" ref={ref}>
         <m.div
-          ref={ref}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: { staggerChildren: 0.08 },
-            },
-          }}
-          className="grid gap-12 md:grid-cols-2"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mb-8"
         >
-          {Object.entries(skills).map(([category, skillList]) => (
-            <m.div
-              key={category}
-              variants={sectionReveal}
-            >
-              <h3 className="text-lg font-semibold text-text-primary mb-2">
-                {categoryTitles[category] || category}
-              </h3>
-              <p className="text-body text-text-secondary">
-                {skillList.join(', ')}
-              </p>
-            </m.div>
-          ))}
+          <SectionLabel>Toolkit</SectionLabel>
+          <h2 className="text-section text-text-primary mt-2">Tech Stack</h2>
         </m.div>
+
+        <div className="space-y-10">
+          {techStack.map((category, catIndex) => {
+            const CategoryIcon = iconMap[category.icon] || Cpu;
+            return (
+              <div key={category.title}>
+                <m.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: catIndex * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="flex items-center gap-2 mb-4"
+                >
+                  <CategoryIcon className="h-4 w-4 text-text-muted" />
+                  <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
+                    {category.title}
+                  </h3>
+                </m.div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {category.items.map((item, itemIndex) => (
+                    <TechCard
+                      key={item.name}
+                      icon={iconMap[item.icon] || Cpu}
+                      name={item.name}
+                      description={item.description}
+                      delay={catIndex * 0.08 + itemIndex * 0.04}
+                    />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

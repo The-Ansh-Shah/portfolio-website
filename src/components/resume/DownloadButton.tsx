@@ -16,7 +16,7 @@ export default function DownloadButton({ variant = 'fixed' }: DownloadButtonProp
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.4 }}
-        className="fixed top-16 right-6 z-40 flex items-center gap-2 rounded-button border border-border bg-bg-primary/90 backdrop-blur-md px-4 py-2 text-sm font-medium text-text-primary shadow-sm transition-all duration-200 hover:shadow-md hover:bg-bg-primary"
+        className="fixed top-18 right-6 z-40 flex items-center gap-2 rounded-button border border-border bg-bg-card/90 backdrop-blur-md px-4 py-2 text-sm font-medium text-text-primary shadow-card transition-all duration-200 hover:shadow-card-hover hover:border-border-hover"
       >
         <Download className="h-4 w-4" />
         <span className="hidden sm:inline">Download PDF</span>

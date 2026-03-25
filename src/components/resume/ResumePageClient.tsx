@@ -23,8 +23,8 @@ export default function ResumePageClient() {
       <ResumeProjects />
       <ResumeSkills />
 
-      {/* Back to portfolio */}
       <div className="mx-auto max-w-content px-6 py-20 text-center">
+        <div className="h-px bg-border mb-12" />
         <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,7 +34,7 @@ export default function ResumePageClient() {
         >
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 rounded-button border border-border px-5 py-2.5 text-sm text-text-secondary transition-all duration-200 hover:border-text-tertiary hover:text-text-primary"
+            className="group inline-flex items-center gap-2 rounded-button border border-border px-5 py-2.5 text-sm text-text-secondary transition-all duration-200 hover:border-border-hover hover:text-text-primary"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
             Back to Portfolio

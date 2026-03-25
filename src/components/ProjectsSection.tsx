@@ -1,32 +1,43 @@
 'use client';
 
+import { m, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import Link from 'next/link';
 import { projects } from '@/lib/content';
 import ProjectCard from './ProjectCard';
-import AnimatedSection from './AnimatedSection';
-import { sectionReveal } from '@/lib/animations';
+import ProjectCarousel from './ProjectCarousel';
+import SectionLabel from './SectionLabel';
 
 export default function ProjectsSection() {
-  return (
-    <section id="projects" className="py-20 md:py-32 bg-bg-secondary">
-      <div className="mx-auto max-w-content px-6">
-        <AnimatedSection
-          variants={sectionReveal}
-          className="mb-16 text-center"
-        >
-          <h2 className="text-h2 text-text-primary">
-            Featured Projects
-          </h2>
-        </AnimatedSection>
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-        <div className="grid gap-8 md:grid-cols-2">
+  return (
+    <section id="projects" className="py-section">
+      <div className="mx-auto max-w-content px-6" ref={ref}>
+        <m.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mb-8 flex items-end justify-between"
+        >
+          <div>
+            <SectionLabel>Work</SectionLabel>
+            <h2 className="text-section text-text-primary mt-2">Projects</h2>
+          </div>
+          <Link
+            href="/projects"
+            className="text-sm text-accent hover:text-accent-hover transition-colors duration-200"
+          >
+            View All →
+          </Link>
+        </m.div>
+
+        <ProjectCarousel>
           {projects.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index}
-            />
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
-        </div>
+        </ProjectCarousel>
       </div>
     </section>
   );

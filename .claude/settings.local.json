@@ -16,7 +16,8 @@
       "Bash(while read file)",
       "Bash(do grep -l \"motion\\\\.\" \"$file\")",
       "Bash(echo:*)",
-      "Bash(done)"
+      "Bash(done)",
+      "WebFetch(domain:kellieho.framer.ai)"
     ]
   }
 }

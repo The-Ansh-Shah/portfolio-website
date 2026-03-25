@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import './globals.css';
@@ -8,7 +10,7 @@ import LayoutClient from '@/components/LayoutClient';
 
 export const metadata: Metadata = {
   title: 'Ansh Shah | EECS @ UC Berkeley',
-  description: 'Computer Architecture Engineer specializing in RISC-V CPU design, ASIC implementation, and embedded systems security. UC Berkeley EECS student passionate about building efficient systems at the hardware-software interface.',
+  description: 'Hardware engineer specializing in RISC-V CPU design, ASIC implementation, and embedded systems security. UC Berkeley EECS student building efficient systems at the hardware-software interface.',
 };
 
 export default function RootLayout({
@@ -17,11 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
       </head>
-      <body className="min-h-screen flex flex-col overflow-x-hidden font-sans">
+      <body className="min-h-screen flex flex-col overflow-x-hidden font-sans bg-bg-primary text-text-primary">
         <Navbar />
         <main className="flex-1">
           <LayoutClient>{children}</LayoutClient>
