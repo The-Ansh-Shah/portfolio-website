@@ -4,7 +4,14 @@ import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
 
-const toolboxCategories = [
+interface ToolItem {
+  badge: string;
+  name: string;
+  desc: string;
+  icon?: string;
+}
+
+const toolboxCategories: { title: string; items: ToolItem[] }[] = [
   {
     title: 'Architecture',
     items: [
