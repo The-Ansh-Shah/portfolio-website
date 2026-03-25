@@ -43,10 +43,10 @@ const config: Config = {
         'card-title': ['18px', { lineHeight: '1.4', fontWeight: '600' }],
         'body': ['16px', { lineHeight: '1.65', fontWeight: '400' }],
         'caption': ['14px', { lineHeight: '1.45', fontWeight: '400' }],
-        'label': ['13px', { lineHeight: '1.3', fontWeight: '500', letterSpacing: '0.1em' }],
+        'label': ['11px', { lineHeight: '1.3', fontWeight: '500', letterSpacing: '0.08em' }],
       },
       maxWidth: {
-        'content': '900px',
+        'content': '1200px',
         'content-wide': '1200px',
       },
       spacing: {

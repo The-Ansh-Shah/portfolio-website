@@ -31,16 +31,16 @@ export default function SkillsSection() {
               transition={{ duration: 0.5, delay: catIndex * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
               className="rounded-card bg-bg-card border border-border p-6 hover:shadow-card-hover transition-shadow duration-300"
             >
-              <h3 className="text-label uppercase text-text-muted tracking-[0.08em] mb-4">
+              <h3 className="text-[14px] font-semibold text-text-primary tracking-[0.02em] mb-4 text-center">
                 {category.title}
               </h3>
               <div className="space-y-3">
                 {category.items.map((item) => (
-                  <div key={item.name} className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-btn-sm bg-bg-card-hover">
+                  <div key={item.name} className="flex items-center justify-center gap-3">
+                    <div className="flex h-[30px] w-[30px] flex-shrink-0 items-center justify-center rounded-lg bg-bg-card-hover">
                       <span className="text-[10px] font-semibold font-mono text-text-secondary leading-none">{item.badge}</span>
                     </div>
-                    <span className="text-[15px] font-semibold text-text-primary">{item.name}</span>
+                    <span className="text-[13px] font-normal text-text-secondary">{item.name}</span>
                   </div>
                 ))}
               </div>

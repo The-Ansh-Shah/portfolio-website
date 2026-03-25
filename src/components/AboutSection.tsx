@@ -34,9 +34,9 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:col-span-4 rounded-card bg-bg-card border border-border p-5 hover:shadow-card-hover transition-shadow duration-300"
+            className="md:col-span-5 rounded-card bg-bg-card border border-border p-5 hover:shadow-card-hover transition-shadow duration-300 flex items-center justify-center"
           >
-            <p className="text-[17px] font-medium text-text-primary leading-snug">
+            <p className="text-[24px] font-medium text-text-primary leading-snug text-center">
               Hardware engineer with a passion for digital IC design.
             </p>
           </m.div>
@@ -46,10 +46,10 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.08, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:col-span-3 rounded-card bg-bg-card border border-border p-5 hover:shadow-card-hover transition-shadow duration-300"
+            className="md:col-span-3 rounded-card bg-bg-card border border-border p-5 hover:shadow-card-hover transition-shadow duration-300 text-center"
           >
             <SectionLabel>Based in</SectionLabel>
-            <p className="mt-2 text-base font-semibold text-text-primary">{personalInfo.location}</p>
+            <p className="mt-2 text-[18px] font-semibold text-text-primary">{personalInfo.location}</p>
           </m.div>
 
           {/* Hobbies card — CSS-only cycling */}
@@ -57,14 +57,14 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.16, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:col-span-5 rounded-card bg-bg-card border border-border p-5 hover:shadow-card-hover transition-shadow duration-300 overflow-hidden"
+            className="md:col-span-4 rounded-card bg-bg-card border border-border p-5 hover:shadow-card-hover transition-shadow duration-300 overflow-hidden text-center"
           >
             <SectionLabel>I also like...</SectionLabel>
-            <div className="mt-2 h-[30px] overflow-hidden">
+            <div className="mt-2 h-[36px] overflow-hidden">
               <div className="animate-hobby-scroll">
                 {hobbies.map((hobby) => (
-                  <div key={hobby.label} className="h-[30px] flex items-center">
-                    <span className="text-[22px] font-semibold text-text-primary">
+                  <div key={hobby.label} className="h-[36px] flex items-center justify-center">
+                    <span className="text-[26px] font-semibold text-text-primary">
                       {hobby.emoji} {hobby.label}
                     </span>
                   </div>
@@ -79,11 +79,11 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.24, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:col-span-7 rounded-card bg-bg-card border border-border p-5 hover:shadow-card-hover transition-shadow duration-300"
+            className="md:col-span-7 rounded-card bg-bg-card border border-border p-5 hover:shadow-card-hover transition-shadow duration-300 text-center flex flex-col justify-center"
           >
             <SectionLabel>Focus</SectionLabel>
-            <p className="mt-2 text-body text-text-secondary">
-              CPU microarchitecture, ASIC implementation, embedded security, and processor tracing research at the SLICE Lab.
+            <p className="mt-2 text-[17px] font-medium text-text-muted">
+              CPU design · Embedded security · Processor tracing
             </p>
           </m.div>
 

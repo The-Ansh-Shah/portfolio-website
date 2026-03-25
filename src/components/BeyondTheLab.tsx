@@ -48,24 +48,22 @@ export default function BeyondTheLab() {
             transition={{ duration: 0.5, delay: 0.08, ease: [0.25, 0.1, 0.25, 1] }}
             className="rounded-card bg-bg-card border border-border p-6 md:p-8 hover:shadow-card-hover transition-shadow duration-300"
           >
-            <div className="flex items-start gap-5">
+            <div className="flex flex-col items-center text-center">
               {/* Large HKN badge area */}
-              <div className="flex-shrink-0 flex items-center justify-center h-16 w-16 rounded-btn-sm bg-berkeley-blue">
-                <span className="text-lg font-bold text-berkeley-gold leading-none">HKN</span>
+              <div className="flex items-center justify-center h-[90px] w-[90px] rounded-xl bg-berkeley-blue mb-4">
+                <span className="text-[22px] font-bold text-berkeley-gold leading-none">HKN</span>
               </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold text-text-primary">Eta Kappa Nu (HKN)</h3>
-                <p className="text-sm text-text-muted mt-1">Industrial Relations Officer & Treasurer</p>
-                <p className="text-body text-text-secondary mt-3 leading-relaxed">
-                  Connecting thousands of Berkeley EECS students to industry. Organizing career fairs, networking events, and weekly tutoring for 400+ students.
-                </p>
-                <p className="text-sm text-text-muted mt-3">
-                  Interested in hosting your company?{' '}
-                  <a href="mailto:indrel@hkn.eecs.berkeley.edu" className="text-text-primary font-medium hover:underline">
-                    indrel@hkn.eecs.berkeley.edu
-                  </a>
-                </p>
-              </div>
+              <h3 className="text-[22px] font-semibold text-text-primary">Eta Kappa Nu</h3>
+              <p className="text-[15px] text-text-muted mt-1">Industrial Relations Officer & Treasurer</p>
+              <p className="text-[16px] text-text-muted mt-3">
+                Connecting Berkeley EECS to industry.
+              </p>
+              <p className="text-[12px] text-text-muted mt-3">
+                Interested in hosting your company?{' '}
+                <a href="mailto:indrel@hkn.eecs.berkeley.edu" className="text-text-primary font-medium hover:underline">
+                  indrel@hkn.eecs.berkeley.edu
+                </a>
+              </p>
             </div>
           </m.div>
 

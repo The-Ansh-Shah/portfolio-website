@@ -33,7 +33,7 @@ export default function Navbar() {
         transition={{ duration: 0.5, delay: 0.3, ease: 'easeOut' }}
         className="fixed left-4 lg:left-5 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-2.5 glass-pill border border-border rounded-[28px] p-2.5"
       >
-        {navItems.map((item) => {
+        {navItems.map((item, i) => {
           const Icon = item.icon;
           const isActive = item.href === '/' && pathname === '/';
           const isExternal = item.href.startsWith('mailto:');
@@ -44,33 +44,31 @@ export default function Navbar() {
               : 'text-text-muted hover:bg-bg-card-hover hover:text-text-primary'
           }`;
 
-          if (isExternal) {
-            return (
-              <a key={item.label} href={item.href} className={className} aria-label={item.label}>
-                <Icon className="h-4 w-4" />
-              </a>
-            );
-          }
+          const divider = i === 1 ? (
+            <div key="divider" className="w-[1px] h-[20px] bg-border-hover mx-auto" />
+          ) : null;
 
-          if (item.href.startsWith('#')) {
-            return (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => handleClick(e, item.href)}
-                className={className}
-                aria-label={item.label}
-              >
-                <Icon className="h-4 w-4" />
-              </a>
-            );
-          }
-
-          return (
+          const element = isExternal ? (
+            <a key={item.label} href={item.href} className={className} aria-label={item.label}>
+              <Icon className="h-4 w-4" />
+            </a>
+          ) : item.href.startsWith('#') ? (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleClick(e, item.href)}
+              className={className}
+              aria-label={item.label}
+            >
+              <Icon className="h-4 w-4" />
+            </a>
+          ) : (
             <Link key={item.label} href={item.href} className={className} aria-label={item.label}>
               <Icon className="h-4 w-4" />
             </Link>
           );
+
+          return divider ? [divider, element] : element;
         })}
       </motion.nav>
 
@@ -81,7 +79,7 @@ export default function Navbar() {
         transition={{ duration: 0.4, delay: 0.3 }}
         className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex md:hidden gap-2 glass-pill border border-border rounded-[28px] p-2"
       >
-        {navItems.map((item) => {
+        {navItems.map((item, i) => {
           const Icon = item.icon;
           const isActive = item.href === '/' && pathname === '/';
           const isExternal = item.href.startsWith('mailto:');
@@ -92,33 +90,31 @@ export default function Navbar() {
               : 'text-text-muted hover:bg-bg-card-hover hover:text-text-primary'
           }`;
 
-          if (isExternal) {
-            return (
-              <a key={item.label} href={item.href} className={className} aria-label={item.label}>
-                <Icon className="h-4 w-4" />
-              </a>
-            );
-          }
+          const divider = i === 1 ? (
+            <div key="divider-mobile" className="h-[1px] w-[20px] bg-border-hover my-auto md:w-[1px] md:h-[20px]" />
+          ) : null;
 
-          if (item.href.startsWith('#')) {
-            return (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => handleClick(e, item.href)}
-                className={className}
-                aria-label={item.label}
-              >
-                <Icon className="h-4 w-4" />
-              </a>
-            );
-          }
-
-          return (
+          const element = isExternal ? (
+            <a key={item.label} href={item.href} className={className} aria-label={item.label}>
+              <Icon className="h-4 w-4" />
+            </a>
+          ) : item.href.startsWith('#') ? (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleClick(e, item.href)}
+              className={className}
+              aria-label={item.label}
+            >
+              <Icon className="h-4 w-4" />
+            </a>
+          ) : (
             <Link key={item.label} href={item.href} className={className} aria-label={item.label}>
               <Icon className="h-4 w-4" />
             </Link>
           );
+
+          return divider ? [divider, element] : element;
         })}
       </motion.nav>
     </>
