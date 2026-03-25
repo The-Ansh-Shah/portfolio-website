@@ -85,7 +85,7 @@ export default function SkillsSection() {
                   {category.items.map((item) => (
                     <div key={item.name} className="flex items-center gap-4">
                       {/* Icon badge — image if available, text fallback */}
-                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-[14px] bg-[#F5F5F7] border border-[#E8E8ED] overflow-hidden">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden">
                         {item.icon ? (
                           <Image
                             src={item.icon}

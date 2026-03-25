@@ -3,14 +3,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { m } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
 import { personalInfo } from '@/lib/content';
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
 export default function HeroSection() {
   return (
-    <section id="hero" className="relative min-h-[90vh] flex items-center py-20 md:py-28">
+    <section id="hero" className="relative flex items-center justify-center min-h-[85vh] pt-[5vh]">
       <div className="mx-auto max-w-content-wide px-6 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 lg:gap-16 items-center">
           {/* Left — text content */}
@@ -29,7 +28,7 @@ export default function HeroSection() {
               hardware systems.
             </m.h1>
 
-            {/* Credential line with circle badges */}
+            {/* Credential line */}
             <m.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -47,7 +46,7 @@ export default function HeroSection() {
               </span>
             </m.div>
 
-            {/* Social links */}
+            {/* Social links — real logos */}
             <m.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -58,30 +57,30 @@ export default function HeroSection() {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-btn-sm border border-border bg-bg-card text-text-secondary hover:text-text-primary hover:border-border-hover transition-all duration-200"
+                className="flex h-10 w-10 items-center justify-center rounded-btn-sm border border-border bg-bg-card hover:border-border-hover hover:scale-105 transition-all duration-200"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="h-[18px] w-[18px]" />
+                <Image src="/images/icons/linkedin.png" alt="LinkedIn" width={20} height={20} className="object-contain" />
               </a>
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-btn-sm border border-border bg-bg-card text-text-secondary hover:text-text-primary hover:border-border-hover transition-all duration-200"
+                className="flex h-10 w-10 items-center justify-center rounded-btn-sm border border-border bg-bg-card hover:border-border-hover hover:scale-105 transition-all duration-200"
                 aria-label="GitHub"
               >
-                <Github className="h-[18px] w-[18px]" />
+                <Image src="/images/icons/github.svg" alt="GitHub" width={20} height={20} className="object-contain" />
               </a>
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="flex h-10 w-10 items-center justify-center rounded-btn-sm border border-border bg-bg-card text-text-secondary hover:text-text-primary hover:border-border-hover transition-all duration-200"
+                className="flex h-10 w-10 items-center justify-center rounded-btn-sm border border-border bg-bg-card hover:border-border-hover hover:scale-105 transition-all duration-200"
                 aria-label="Email"
               >
-                <Mail className="h-[18px] w-[18px]" />
+                <Image src="/images/icons/mail-icon.png" alt="Email" width={20} height={20} className="object-contain" />
               </a>
             </m.div>
 
-            {/* CTA — black buttons */}
+            {/* CTA */}
             <m.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -91,16 +90,15 @@ export default function HeroSection() {
               <a
                 href="/resume/Ansh_Shah_resume.pdf"
                 download="Ansh_Shah_Resume.pdf"
-                className="group inline-flex items-center gap-2 rounded-button bg-accent px-7 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-accent-hover"
+                className="inline-flex items-center rounded-button bg-accent px-7 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-accent-hover"
               >
                 Download Resume
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </a>
               <Link
                 href="/projects"
                 className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors duration-200"
               >
-                See my work →
+                See my work
               </Link>
             </m.div>
           </div>
