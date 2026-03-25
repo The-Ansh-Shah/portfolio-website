@@ -20,9 +20,9 @@ export const bio = [
 ];
 
 export const hobbies = [
-  { emoji: "🏛️", label: "Teaching architecture" },
+  { emoji: "💻", label: "Teaching architecture" },
   { emoji: "🏋️", label: "Working out" },
-  { emoji: "🎮", label: "Stardew Valley" },
+  { emoji: "🧑‍🌾", label: "Stardew Valley" },
   { emoji: "🎸", label: "Playing guitar" },
 ];
 

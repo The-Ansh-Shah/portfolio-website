@@ -13,7 +13,7 @@ const spotifyTracks = [
 
 function Equalizer() {
   return (
-    <div className="flex items-end gap-[2px] h-[14px]">
+    <div className="flex items-end gap-[2px] h-[16px]">
       <div className="w-[3px] rounded-[1px] bg-[#1DB954] animate-eq1" />
       <div className="w-[3px] rounded-[1px] bg-[#1DB954] animate-eq2" />
       <div className="w-[3px] rounded-[1px] bg-[#1DB954] animate-eq3" />
@@ -29,37 +29,38 @@ export default function BeyondTheLab() {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section className="py-16 md:py-20">
-      <div className="mx-auto max-w-content px-14" ref={ref}>
+    <section className="py-12 md:py-20">
+      <div className="mx-auto max-w-[1200px] px-6 md:px-10" ref={ref}>
         <m.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease }}
-          className="mb-4"
+          className="mb-8"
         >
-          <h2 className="text-[32px] font-semibold text-[#1D1D1F]">
+          <span className="text-[13px] font-medium text-[#86868B] uppercase tracking-widest">
+            Outside of engineering
+          </span>
+          <h2 className="mt-2 text-[clamp(36px,4.5vw,52px)] font-semibold tracking-tight text-[#1D1D1F] leading-[1.1]">
             Other things I&apos;m up to...
           </h2>
         </m.div>
 
-        {/* HKN Card — full width, center-aligned */}
+        {/* HKN Card — full width, generous padding */}
         <m.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.08, ease }}
-          className="rounded-[20px] bg-[#F5F5F7] border border-[#E8E8ED] mb-5 text-center"
-          style={{ padding: '40px 32px' }}
+          className="rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] mb-5 text-center p-12 md:p-16"
         >
-          {/* Logo badge */}
-          <div className="mx-auto mb-4 flex items-center justify-center h-[90px] w-[90px] rounded-[16px] bg-[#003262]">
-            <span className="text-[24px] font-bold text-[#FDB515] leading-none">HKN</span>
+          <div className="mx-auto mb-6 flex items-center justify-center h-[100px] w-[100px] rounded-[20px] bg-[#003262]">
+            <span className="text-[28px] font-bold text-[#FDB515] leading-none">HKN</span>
           </div>
-          <h3 className="text-[22px] font-semibold text-[#1D1D1F]">Eta Kappa Nu</h3>
-          <p className="text-[15px] text-[#86868B] mt-1">IR Officer & Treasurer</p>
-          <p className="text-[17px] text-[#86868B] mt-2">
+          <h3 className="text-[28px] font-semibold text-[#1D1D1F]">Eta Kappa Nu</h3>
+          <p className="text-[17px] text-[#86868B] mt-2">IR Officer & Treasurer</p>
+          <p className="text-[20px] text-[#86868B] mt-4 max-w-[500px] mx-auto">
             Connecting Berkeley EECS to industry.
           </p>
-          <p className="text-[12px] text-[#86868B] mt-3">
+          <p className="text-[14px] text-[#86868B] mt-6">
             Interested in hosting?{' '}
             <a
               href="mailto:indrel@hkn.eecs.berkeley.edu"
@@ -70,53 +71,43 @@ export default function BeyondTheLab() {
           </p>
         </m.div>
 
-        {/* Spotify Card — full width */}
+        {/* Spotify Card */}
         <m.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.16, ease }}
-          className="rounded-[20px] bg-[#F5F5F7] border border-[#E8E8ED]"
-          style={{ padding: '28px 32px' }}
+          className="rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-8 md:p-10"
         >
-          {/* Header row */}
-          <div className="flex items-center justify-between mb-[14px]">
-            <span className="text-[11px] uppercase tracking-[0.08em] text-[#86868B] font-medium">
+          <div className="flex items-center justify-between mb-5">
+            <span className="text-[13px] uppercase tracking-widest text-[#86868B] font-medium">
               What I&apos;m listening to
             </span>
-            <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="#1DB954">
+            <svg className="h-[22px] w-[22px]" viewBox="0 0 24 24" fill="#1DB954">
               <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
             </svg>
           </div>
 
-          {/* Dark player card */}
-          <div className="rounded-[14px] bg-[#161616]" style={{ padding: '14px 16px' }}>
+          <div className="rounded-[16px] bg-[#161616] p-5">
             {spotifyTracks.map((track, i) => (
               <div
                 key={track.num}
-                className={`flex items-center gap-[10px] py-2 ${
+                className={`flex items-center gap-4 py-3 ${
                   i < spotifyTracks.length - 1 ? 'border-b border-[#2A2A2A]' : ''
                 }`}
               >
-                {/* Track number */}
-                <span className="w-[14px] text-right text-[11px] text-[#5A5A5E] flex-shrink-0">
+                <span className="w-4 text-right text-[13px] text-[#5A5A5E] flex-shrink-0">
                   {track.num}
                 </span>
-
-                {/* Album art / Equalizer */}
-                <div className="h-[42px] w-[42px] rounded-[6px] bg-[#2A2A2A] flex-shrink-0 flex items-center justify-center">
+                <div className="h-11 w-11 rounded-[8px] bg-[#2A2A2A] flex-shrink-0 flex items-center justify-center">
                   {track.playing ? <Equalizer /> : null}
                 </div>
-
-                {/* Song info */}
                 <div className="flex-1 min-w-0">
-                  <p className={`text-[13px] font-medium truncate ${track.playing ? 'text-[#1DB954]' : 'text-[#E5E5E7]'}`}>
+                  <p className={`text-[15px] font-medium truncate ${track.playing ? 'text-[#1DB954]' : 'text-[#E5E5E7]'}`}>
                     {track.title}
                   </p>
-                  <p className="text-[11px] text-[#6E6E73] truncate">{track.artist}</p>
+                  <p className="text-[13px] text-[#6E6E73] truncate">{track.artist}</p>
                 </div>
-
-                {/* Duration */}
-                <span className="text-[11px] text-[#5A5A5E] flex-shrink-0">{track.duration}</span>
+                <span className="text-[13px] text-[#5A5A5E] flex-shrink-0">{track.duration}</span>
               </div>
             ))}
           </div>

@@ -50,25 +50,21 @@
     text-wrap: balance;
   }
 
-  /* Floating nav pill glass */
   .glass-pill {
     background: rgba(245, 245, 247, 0.88);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
 
-  /* Syntax highlighting — monochrome gray */
   .syntax-keyword { color: #B0B0B4; }
   .syntax-comment { color: #6E6E73; }
   .syntax-default { color: #8A8A8E; }
 
-  /* Marquee hover pause */
   .marquee-container:hover .animate-marquee,
   .marquee-container:hover .animate-marquee-reverse {
     animation-play-state: paused;
   }
 
-  /* Wave emoji animation */
   @keyframes wave {
     0%, 100% { transform: rotate(0deg); }
     15% { transform: rotate(14deg); }
@@ -79,7 +75,6 @@
     70%, 100% { transform: rotate(0deg); }
   }
 
-  /* Scrollbar styling for carousels */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
