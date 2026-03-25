@@ -9,7 +9,7 @@ const ease = [0.25, 0.1, 0.25, 1] as const;
 
 export default function HeroSection() {
   return (
-    <section id="hero" className="relative flex items-center justify-center min-h-[85vh] pt-[5vh]">
+    <section id="hero" className="relative flex items-center justify-center min-h-[70vh] md:min-h-[85vh] pt-[5vh]">
       <div className="mx-auto max-w-content-wide px-6 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 lg:gap-16 items-center">
           {/* Left — text content */}
@@ -51,7 +51,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease }}
-              className="flex items-center gap-4 mb-8"
+              className="flex flex-wrap items-center gap-4 mb-8"
             >
               <a
                 href={personalInfo.linkedin}
@@ -110,7 +110,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.15, ease }}
             className="relative mx-auto lg:mx-0"
           >
-            <div className="relative w-[280px] h-[340px] md:w-[320px] md:h-[400px] lg:w-[340px] lg:h-[420px] rounded-bento overflow-hidden shadow-card-hover">
+            <div className="relative w-full max-w-[280px] h-[340px] md:max-w-[320px] md:h-[400px] lg:max-w-[340px] lg:h-[420px] mx-auto rounded-bento overflow-hidden shadow-card-hover">
               <Image
                 src="/images/headshot.jpg"
                 alt="Ansh Shah"

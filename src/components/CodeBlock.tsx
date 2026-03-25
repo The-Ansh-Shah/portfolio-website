@@ -67,7 +67,7 @@ export default function CodeBlock({ code }: CodeBlockProps) {
           WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 95%)',
         }}
       >
-        <pre className="font-mono text-[13px] px-6 pt-2">
+        <pre className="font-mono text-[11px] md:text-[13px] px-6 pt-2">
           <code>{highlightVerilog(code)}</code>
         </pre>
       </div>

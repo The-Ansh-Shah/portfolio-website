@@ -91,12 +91,12 @@ export default function BeyondTheLab() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.08, ease }}
-          className="rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] mb-5 text-center p-12 md:p-16"
+          className="rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] mb-5 text-center p-8 md:p-12 lg:p-16"
         >
-          <div className="mx-auto mb-6 flex items-center justify-center h-[100px] w-[100px] rounded-[20px] bg-[#003262]">
+          <div className="mx-auto mb-6 flex items-center justify-center h-[80px] w-[80px] md:h-[100px] md:w-[100px] rounded-[20px] bg-[#003262]">
             <span className="text-[28px] font-bold text-[#FDB515] leading-none">HKN</span>
           </div>
-          <h3 className="text-[28px] font-semibold text-[#1D1D1F]">Eta Kappa Nu</h3>
+          <h3 className="text-[24px] md:text-[28px] font-semibold text-[#1D1D1F]">Eta Kappa Nu</h3>
           <p className="text-[17px] text-[#86868B] mt-2">IR Officer & Treasurer</p>
           <p className="text-[20px] text-[#86868B] mt-4 max-w-[500px] mx-auto">
             Connecting Berkeley EECS to industry.

@@ -28,7 +28,7 @@ export default function ProjectsSection() {
           </div>
           <Link
             href="/projects"
-            className="hidden md:inline-flex items-center gap-2 rounded-full bg-[#1D1D1F] text-white text-[14px] font-medium px-6 py-3 hover:bg-[#424245] transition-colors duration-200"
+            className="inline-flex items-center gap-2 rounded-full bg-[#1D1D1F] text-white text-[14px] font-medium px-6 py-3 hover:bg-[#424245] transition-colors duration-200"
           >
             View All
           </Link>

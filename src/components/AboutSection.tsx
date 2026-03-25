@@ -17,12 +17,12 @@ export default function AboutSection() {
         {/* ROW 1: About (tall) + right column (Location stacked over Hobbies) */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
 
-          {/* Card A — About | span 7 | TALL card like Kellie's tagline card */}
+          {/* Card A — About | span 7 | TALL tagline card */}
           <m.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, ease }}
-            className="md:col-span-7 rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-10 md:p-12 min-h-[340px] flex flex-col justify-between"
+            className="md:col-span-7 rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-6 md:p-10 lg:p-12 min-h-[340px] flex flex-col justify-between"
           >
             <div>
               <span className="text-[13px] font-medium text-[#86868B] tracking-wide">
@@ -48,7 +48,7 @@ export default function AboutSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.08, ease }}
-              className="rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-8 md:p-10 flex flex-col justify-center items-center text-center min-h-[150px]"
+              className="rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-6 md:p-10 flex flex-col justify-center items-center text-center min-h-[150px]"
             >
               <span className="text-[13px] font-medium text-[#86868B] tracking-wide">
                 Based In
@@ -63,7 +63,7 @@ export default function AboutSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.16, ease }}
-              className="rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-8 md:p-10 overflow-hidden text-center flex-1 flex flex-col justify-center min-h-[170px]"
+              className="rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-6 md:p-10 overflow-hidden text-center flex-1 flex flex-col justify-center min-h-[170px]"
             >
               <span className="text-[13px] font-medium text-[#86868B] tracking-wide">
                 I also like...
@@ -72,13 +72,13 @@ export default function AboutSection() {
                 <div className="animate-hobby-scroll">
                   {hobbies.map((hobby) => (
                     <div key={hobby.label} className="h-[44px] flex items-center justify-center">
-                      <span className="text-[32px] font-semibold text-[#1D1D1F]">
+                      <span className="text-[24px] md:text-[32px] font-semibold text-[#1D1D1F]">
                         {hobby.emoji} {hobby.label}
                       </span>
                     </div>
                   ))}
                   <div className="h-[44px] flex items-center justify-center">
-                    <span className="text-[32px] font-semibold text-[#1D1D1F]">
+                    <span className="text-[24px] md:text-[32px] font-semibold text-[#1D1D1F]">
                       {hobbies[0].emoji} {hobbies[0].label}
                     </span>
                   </div>
@@ -94,7 +94,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.24, ease }}
-            className="md:col-span-12 rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-10 md:p-12"
+            className="md:col-span-12 rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-6 md:p-10 lg:p-12"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
               {/* Left — text */}

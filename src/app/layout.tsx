@@ -25,7 +25,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col overflow-x-hidden font-sans bg-bg-primary text-text-primary">
         <Navbar />
-        <main className="flex-1">
+        <main className="flex-1 pb-20 md:pb-0">
           <LayoutClient>{children}</LayoutClient>
         </main>
         <Footer />

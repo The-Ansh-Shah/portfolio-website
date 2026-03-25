@@ -69,7 +69,7 @@ export default function SkillsSection() {
           </h2>
 
           {/* 2-col grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-16 gap-y-12 mt-12">
             {toolboxCategories.map((category, catIndex) => (
               <m.div
                 key={category.title}

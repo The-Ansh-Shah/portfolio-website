@@ -8,7 +8,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#F5F5F7] border-t border-[#E8E8ED]" style={{ padding: '40px 56px' }}>
+    <footer className="bg-[#F5F5F7] border-t border-[#E8E8ED] px-6 py-8 md:px-14 md:py-10">
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
         {/* Left side */}
         <div>

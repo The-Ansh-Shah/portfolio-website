@@ -50,7 +50,7 @@ export default function ExperienceSection() {
                     {exp.company} · {exp.institution}
                   </p>
                 </div>
-                <span className="text-[14px] text-[#86868B] whitespace-nowrap ml-4">
+                <span className="text-[13px] md:text-[15px] text-[#86868B] whitespace-nowrap ml-2 md:ml-4">
                   {exp.duration}
                 </span>
               </div>
