@@ -11,7 +11,7 @@ const ease = [0.25, 0.1, 0.25, 1] as const;
 export default function HeroSection() {
   return (
     <section id="hero" className="relative min-h-[90vh] flex items-center py-20 md:py-28">
-      <div className="mx-auto max-w-content px-6 w-full">
+      <div className="mx-auto max-w-content-wide px-6 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 lg:gap-16 items-center">
           {/* Left — text content */}
           <div>
@@ -29,19 +29,19 @@ export default function HeroSection() {
               hardware systems.
             </m.h1>
 
-            {/* Credential line with icons */}
+            {/* Credential line with circle badges */}
             <m.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.12, ease }}
-              className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6 text-[15px] text-text-secondary font-normal"
+              className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 text-[12px] text-text-secondary"
             >
-              <span className="inline-flex items-center gap-2">
-                <Image src="/images/icons/Seal_of_University_of_California,_Berkeley.svg" alt="UC Berkeley" width={20} height={20} className="flex-shrink-0" />
-                B.S. in EECS at UC Berkeley
+              <span className="inline-flex items-center gap-1.5">
+                <Image src="/images/icons/Seal_of_University_of_California,_Berkeley.svg" alt="UC Berkeley" width={18} height={18} className="flex-shrink-0 rounded-full" />
+                B.S. EECS at UC Berkeley
               </span>
               <span className="text-text-muted">·</span>
-              <span className="inline-flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5">
                 <Image src="/images/icons/brushed-metal-apple-mac-icon-29.png" alt="Apple" width={18} height={18} className="flex-shrink-0" />
                 SoC Design Verification at Apple
               </span>
@@ -88,13 +88,14 @@ export default function HeroSection() {
               transition={{ duration: 0.5, delay: 0.28, ease }}
               className="flex flex-wrap items-center gap-4"
             >
-              <Link
-                href="/resume"
+              <a
+                href="/resume/Ansh_Shah_resume.pdf"
+                download="Ansh_Shah_Resume.pdf"
                 className="group inline-flex items-center gap-2 rounded-button bg-accent px-7 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-accent-hover"
               >
-                View Resume
+                Download Resume
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </Link>
+              </a>
               <Link
                 href="/projects"
                 className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors duration-200"

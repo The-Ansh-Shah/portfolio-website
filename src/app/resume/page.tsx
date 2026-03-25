@@ -1,11 +1,9 @@
-import type { Metadata } from 'next';
-import ResumePageClient from '@/components/resume/ResumePageClient';
+import { redirect } from 'next/navigation';
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Resume | Ansh Shah',
-  description: 'Interactive resume — Computer Architecture Engineer, UC Berkeley EECS',
 };
 
 export default function ResumePage() {
-  return <ResumePageClient />;
+  redirect('/resume/Ansh_Shah_resume.pdf');
 }

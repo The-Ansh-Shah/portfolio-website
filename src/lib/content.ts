@@ -20,29 +20,31 @@ export const bio = [
 ];
 
 export const hobbies = [
-  { emoji: "🎸", label: "Guitar" },
-  { emoji: "🏃", label: "Running" },
-  { emoji: "📐", label: "Teaching math" },
+  { emoji: "🏛️", label: "Teaching architecture" },
+  { emoji: "🏋️", label: "Working out" },
+  { emoji: "🎮", label: "Stardew Valley" },
+  { emoji: "🎸", label: "Playing guitar" },
 ];
 
-export const verilogSnippet = `// ansh_shah.v — who I am in silicon
+export const verilogSnippet = `// ansh_shah.v
 module engineer (
-  input  wire        clk,        // UC Berkeley, EECS
-  input  wire        rst_n,      // reset assumptions daily
-  output reg  [31:0] impact
+  input  clk, rst_n,
+  output reg [2:0] state
 );
+  localparam PLANNING  = 3'd0,
+             CREATING  = 3'd1,
+             IMPROVING = 3'd2,
+             SHIPPING  = 3'd3;
 
-  // Current focus: SoC Design Verification @ Apple
-  // Research:      Processor tracing @ SLICE Lab
-  // Teaching:      CS 61C — 600+ students
-
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n)
-      impact <= 32'b0;
-    else
-      impact <= impact + 1;  // keep building
+  always @(posedge clk) begin
+    if (!rst_n) state <= PLANNING;
+    else case (state)
+      PLANNING:  state <= CREATING;
+      CREATING:  state <= IMPROVING;
+      IMPROVING: state <= SHIPPING;
+      SHIPPING:  state <= PLANNING;
+    endcase
   end
-
 endmodule`;
 
 export const readingList = [
@@ -74,18 +76,18 @@ export const readingList = [
 ];
 
 export const marqueeTools = [
+  "RISC-V",
   "Verilog",
   "Cadence Innovus",
   "Synopsys VCS",
-  "RISC-V",
-  "Rust",
-  "C/C++",
-  "GDB",
-  "LTSpice",
   "Sky130 PDK",
+  "C/C++",
+  "Rust",
   "SystemVerilog",
+  "CBMC",
   "Chisel",
   "Python",
+  "ARM Thumb",
 ];
 
 export const beyondTheLab = [
@@ -116,32 +118,34 @@ export interface Experience {
   institution: string;
   duration: string;
   bullets: string[];
+  incoming?: boolean;
 }
 
 export const experience: Experience[] = [
   {
     id: 1,
-    company: "SLICE Lab",
-    role: "Undergraduate Researcher",
-    institution: "UC Berkeley EECS",
-    duration: "Apr. 2025 – Present",
-    bullets: [
-      "Creating processor tracing framework for minimal-overhead performance profiling with delta encoding support",
-      "Simulating lossless compression techniques (Huffman, Delta-of-Delta, RLE) to compress trace data",
-      "Programmed decode and compression simulations in Rust; analyzed results using baremetal IDE",
-    ],
+    company: "Apple",
+    role: "SoC Design Verification Intern",
+    institution: "Cupertino, CA",
+    duration: "May – Aug 2026",
+    bullets: [],
+    incoming: true,
   },
   {
     id: 2,
+    company: "SLICE Lab",
+    role: "Undergraduate Researcher",
+    institution: "UC Berkeley EECS",
+    duration: "Apr 2025 – Present",
+    bullets: [],
+  },
+  {
+    id: 3,
     company: "CS 61C",
     role: "Undergraduate Course Staff",
     institution: "UC Berkeley",
-    duration: "Aug. 2025 – Dec. 2025",
-    bullets: [
-      "Supported 600+ students in Berkeley's largest computer architecture and digital logic course",
-      "Held Office Hours, Discussion Mini-Lectures, and debugging sessions (CGDB, Valgrind)",
-      "Created exam walk-throughs to explain challenging concepts and supported video creation",
-    ],
+    duration: "Aug – Dec 2025",
+    bullets: [],
   },
 ];
 
@@ -290,40 +294,31 @@ export const techStack: TechStackCategory[] = [
     items: [
       { name: "RISC-V ISA", description: "Instruction set design & extensions", badge: "RV" },
       { name: "CPU Microarch", description: "Pipeline design & optimization", badge: "μA" },
-      { name: "Caching", description: "L1/L2 hierarchy & coherence", badge: "L$" },
-      { name: "GPU Architecture", description: "Parallel compute fundamentals", badge: "GP" },
-      { name: "Memory Hierarchies", description: "SRAM, DRAM, virtual memory", badge: "MH" },
+      { name: "Pipelining & Caching", description: "L1/L2 hierarchy & coherence", badge: "P$" },
     ],
   },
   {
     title: "Hardware Design",
     items: [
       { name: "Verilog", description: "RTL design and simulation", badge: "VL" },
-      { name: "Chisel", description: "Scala-based hardware generation", badge: "CH" },
-      { name: "ASIC Flow", description: "Synthesis to place & route", badge: "AS" },
-      { name: "Synopsys VCS", description: "Simulation & verification", badge: "VCS" },
       { name: "Cadence Innovus", description: "Physical design & PnR", badge: "CI" },
-      { name: "LTSpice", description: "Analog circuit simulation", badge: "LS" },
+      { name: "Synopsys VCS", description: "Simulation & verification", badge: "VCS" },
     ],
   },
   {
     title: "Low-Level Systems",
     items: [
-      { name: "C/C++", description: "Systems & embedded programming", badge: "C++" },
+      { name: "C/C++", description: "Systems & embedded programming", badge: "C" },
       { name: "Rust", description: "Safe systems programming", badge: "Rs" },
-      { name: "ARM Thumb", description: "Embedded ISA & bootloaders", badge: "ARM" },
-      { name: "Embedded Systems", description: "RP2040, STM32, ESP32", badge: "ES" },
       { name: "Linux/UNIX", description: "Kernel & userspace tooling", badge: "Lx" },
     ],
   },
   {
-    title: "Verification & Test",
+    title: "Verification",
     items: [
       { name: "SystemVerilog", description: "Assertions & testbenches", badge: "SV" },
       { name: "Formal Methods", description: "CBMC bounded model checking", badge: "FM" },
-      { name: "GDB/Valgrind", description: "Debugging & profiling", badge: "GDB" },
-      { name: "Test Equipment", description: "Oscilloscopes & network analyzers", badge: "TE" },
-      { name: "Python/Numpy", description: "Analysis & automation", badge: "Py" },
+      { name: "Python/NumPy", description: "Analysis & automation", badge: "Py" },
     ],
   },
 ];

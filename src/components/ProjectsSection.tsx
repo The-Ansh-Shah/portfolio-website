@@ -22,7 +22,7 @@ export default function ProjectsSection() {
           className="mb-8 flex items-end justify-between"
         >
           <div>
-            <SectionLabel>Work</SectionLabel>
+            <SectionLabel>Experience</SectionLabel>
             <h2 className="text-section text-text-primary mt-2">Projects</h2>
           </div>
           <Link

@@ -7,16 +7,22 @@
     --bg-primary: #FFFFFF;
     --bg-card: #F5F5F7;
     --bg-card-hover: #EDEDF0;
-    --bg-card-alt: #FAFAFA;
-    --bg-code: #1D1D1F;
+    --bg-code: #2C2C2A;
+    --bg-code-border: #3A3A38;
     --text-primary: #1D1D1F;
     --text-secondary: #6E6E73;
     --text-muted: #86868B;
+    --text-code: #8A8A8E;
+    --text-code-kw: #B0B0B4;
+    --text-code-cm: #6E6E73;
     --text-on-dark: #F5F5F7;
     --accent: #1D1D1F;
     --accent-hover: #424245;
-    --border: #D2D2D7;
-    --border-hover: #C4C4C9;
+    --border: #EAEAEC;
+    --border-hover: #D2D2D7;
+    --spotify-green: #1DB954;
+    --berkeley-blue: #003262;
+    --berkeley-gold: #FDB515;
   }
 
   html,
@@ -44,21 +50,17 @@
     text-wrap: balance;
   }
 
-  .glass-nav {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid var(--border);
+  /* Floating nav pill glass */
+  .glass-pill {
+    background: rgba(245, 245, 247, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
-  /* Syntax highlighting colors for code blocks (light text on dark bg) */
-  .syntax-keyword { color: #E8E8ED; }
-  .syntax-string { color: #D4C5A9; }
-  .syntax-comment { color: #7F8C72; }
-  .syntax-number { color: #D4C5A9; }
-  .syntax-type { color: #C8C8CC; }
-  .syntax-signal { color: #B8B8BC; }
-  .syntax-operator { color: #A8A8AC; }
+  /* Syntax highlighting — monochrome gray */
+  .syntax-keyword { color: #B0B0B4; }
+  .syntax-comment { color: #6E6E73; }
+  .syntax-default { color: #8A8A8E; }
 
   /* Marquee hover pause */
   .marquee-container:hover .animate-marquee,

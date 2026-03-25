@@ -3,7 +3,6 @@
 import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { techStack } from '@/lib/content';
-import TechCard from './TechCard';
 import SectionLabel from './SectionLabel';
 
 export default function SkillsSection() {
@@ -11,43 +10,41 @@ export default function SkillsSection() {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section id="skills" className="py-section">
+    <section id="skills" className="py-16 md:py-20">
       <div className="mx-auto max-w-content px-6" ref={ref}>
         <m.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-8"
+          className="mb-6"
         >
           <SectionLabel>Toolkit</SectionLabel>
-          <h2 className="text-section text-text-primary mt-2">Tech Stack</h2>
+          <h2 className="text-section text-text-primary mt-2">My Toolbox</h2>
         </m.div>
 
-        <div className="space-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
           {techStack.map((category, catIndex) => (
-            <div key={category.title}>
-              <m.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: catIndex * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
-                className="mb-4"
-              >
-                <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
-                  {category.title}
-                </h3>
-              </m.div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {category.items.map((item, itemIndex) => (
-                  <TechCard
-                    key={item.name}
-                    badge={item.badge}
-                    name={item.name}
-                    description={item.description}
-                    delay={catIndex * 0.08 + itemIndex * 0.04}
-                  />
+            <m.div
+              key={category.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: catIndex * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+              className="rounded-card bg-bg-card border border-border p-6 hover:shadow-card-hover transition-shadow duration-300"
+            >
+              <h3 className="text-label uppercase text-text-muted tracking-[0.08em] mb-4">
+                {category.title}
+              </h3>
+              <div className="space-y-3">
+                {category.items.map((item) => (
+                  <div key={item.name} className="flex items-center gap-3">
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-btn-sm bg-bg-card-hover">
+                      <span className="text-[10px] font-semibold font-mono text-text-secondary leading-none">{item.badge}</span>
+                    </div>
+                    <span className="text-[15px] font-semibold text-text-primary">{item.name}</span>
+                  </div>
                 ))}
               </div>
-            </div>
+            </m.div>
           ))}
         </div>
       </div>
