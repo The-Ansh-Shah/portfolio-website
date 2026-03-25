@@ -41,7 +41,7 @@ const toolboxCategories: { title: string; items: ToolItem[] }[] = [
     items: [
       { badge: 'Py', name: 'Python', desc: 'Analysis and automation', icon: '/images/icons/Python-logo-notext.svg.png' },
       { badge: 'SV', name: 'SystemVerilog', desc: 'Assertions and testbenches', icon: '/images/icons/systemverilog.svg' },
-      { badge: 'FM', name: 'Formal Methods', desc: 'CBMC bounded model checking' },,
+      { badge: 'FM', name: 'Formal Methods', desc: 'CBMC bounded model checking' },
     ],
   },
 ];
