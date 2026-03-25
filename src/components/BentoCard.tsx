@@ -40,7 +40,7 @@ export default function BentoCard({
 
   const variantClass = {
     default: 'bg-bg-card border-border',
-    accent: 'bg-bg-accent-subtle border-accent/20',
+    accent: 'bg-bg-card border-border',
     image: 'bg-bg-card border-border overflow-hidden p-0',
   }[variant];
 

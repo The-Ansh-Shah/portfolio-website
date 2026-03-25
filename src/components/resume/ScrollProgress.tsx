@@ -12,7 +12,7 @@ export default function ScrollProgress() {
 
   return (
     <m.div
-      className="fixed top-14 left-0 right-0 z-40 h-[2px] origin-left bg-accent"
+      className="fixed top-12 left-0 right-0 z-40 h-[2px] origin-left bg-text-primary"
       style={{ scaleX }}
     />
   );

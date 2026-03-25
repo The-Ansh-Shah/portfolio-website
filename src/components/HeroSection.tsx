@@ -19,31 +19,31 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease }}
-              className="text-[clamp(40px,6vw,72px)] font-bold leading-[1.08] tracking-[-0.04em] text-text-primary mb-6"
+              className="text-[clamp(40px,6vw,72px)] font-bold leading-[1.08] tracking-[-0.04em] text-text-primary mb-5"
             >
               Hi, I&apos;m Ansh{' '}
               <span className="inline-block animate-[wave_2s_ease-in-out_infinite] origin-[70%_70%]">👋</span>
               <br />
               I design & build
               <br />
-              <span className="text-accent">hardware systems.</span>
+              hardware systems.
             </m.h1>
 
-            {/* Credential badges */}
+            {/* Credential line with icons */}
             <m.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.12, ease }}
-              className="flex flex-wrap gap-2 mb-6"
+              className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6 text-[15px] text-text-secondary font-normal"
             >
-              <span className="inline-flex items-center rounded-button border border-border bg-bg-card px-4 py-1.5 text-sm text-text-secondary">
-                EECS @ UC Berkeley
+              <span className="inline-flex items-center gap-2">
+                <Image src="/images/icons/Seal_of_University_of_California,_Berkeley.svg" alt="UC Berkeley" width={20} height={20} className="flex-shrink-0" />
+                B.S. in EECS at UC Berkeley
               </span>
-              <span className="inline-flex items-center rounded-button border border-border bg-bg-card px-4 py-1.5 text-sm text-text-secondary">
-                3.953 GPA
-              </span>
-              <span className="inline-flex items-center rounded-button border border-accent/30 bg-accent/10 px-4 py-1.5 text-sm text-accent">
-                HKN Member
+              <span className="text-text-muted">·</span>
+              <span className="inline-flex items-center gap-2">
+                <Image src="/images/icons/brushed-metal-apple-mac-icon-29.png" alt="Apple" width={18} height={18} className="flex-shrink-0" />
+                SoC Design Verification at Apple
               </span>
             </m.div>
 
@@ -81,7 +81,7 @@ export default function HeroSection() {
               </a>
             </m.div>
 
-            {/* CTA */}
+            {/* CTA — black buttons */}
             <m.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

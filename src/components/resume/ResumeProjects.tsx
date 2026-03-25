@@ -48,7 +48,7 @@ export default function ResumeProjects() {
                 {project.github && (
                   <>
                     <span className="text-text-muted">&middot;</span>
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-caption text-accent hover:text-accent-hover transition-colors duration-200">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-caption text-text-primary hover:text-text-secondary transition-colors duration-200 underline">
                       Source →
                     </a>
                   </>

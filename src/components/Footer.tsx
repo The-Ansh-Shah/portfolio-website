@@ -13,13 +13,13 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-bg-card-alt border-t border-border py-20 md:py-30">
+    <footer className="bg-bg-card border-t border-border py-20 md:py-30">
       <div className="mx-auto max-w-content px-6">
         <div className="text-center mb-12">
           <h2 className="text-section text-text-primary mb-4">Let&apos;s Talk</h2>
           <a
             href={`mailto:${personalInfo.email}`}
-            className="inline-block text-xl md:text-2xl font-medium text-accent hover:text-accent-hover transition-colors duration-200"
+            className="inline-block text-xl md:text-2xl font-medium text-text-primary hover:text-text-secondary transition-colors duration-200 underline decoration-border hover:decoration-text-primary"
           >
             {personalInfo.email}
           </a>

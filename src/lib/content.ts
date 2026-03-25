@@ -25,16 +25,25 @@ export const hobbies = [
   { emoji: "📐", label: "Teaching math" },
 ];
 
-export const verilogSnippet = `always @(posedge clk) begin
-  if (rst) begin
-    state <= IDLE;
-    dirty <= 1'b0;
-  end else case (state)
-    IDLE:    if (req) state <= TAG_CHECK;
-    TAG_CHECK: state <= hit ? DONE : WRITEBACK;
-    WRITEBACK: if (mem_ready) state <= FILL;
-  endcase
-end`;
+export const verilogSnippet = `// ansh_shah.v — who I am in silicon
+module engineer (
+  input  wire        clk,        // UC Berkeley, EECS
+  input  wire        rst_n,      // reset assumptions daily
+  output reg  [31:0] impact
+);
+
+  // Current focus: SoC Design Verification @ Apple
+  // Research:      Processor tracing @ SLICE Lab
+  // Teaching:      CS 61C — 600+ students
+
+  always @(posedge clk or negedge rst_n) begin
+    if (!rst_n)
+      impact <= 32'b0;
+    else
+      impact <= impact + 1;  // keep building
+  end
+
+endmodule`;
 
 export const readingList = [
   {
@@ -267,59 +276,54 @@ export const skills: SkillCategory = {
 export interface TechStackItem {
   name: string;
   description: string;
-  icon: string; // lucide-react icon name
+  badge: string; // monogram badge text (e.g. "VL", "SV") or "lucide:IconName"
 }
 
 export interface TechStackCategory {
   title: string;
-  icon: string;
   items: TechStackItem[];
 }
 
 export const techStack: TechStackCategory[] = [
   {
     title: "Architecture",
-    icon: "Cpu",
     items: [
-      { name: "RISC-V ISA", description: "Instruction set design & extensions", icon: "Cpu" },
-      { name: "CPU Microarch", description: "Pipeline design & optimization", icon: "Cpu" },
-      { name: "Caching", description: "L1/L2 hierarchy & coherence", icon: "Cpu" },
-      { name: "GPU Architecture", description: "Parallel compute fundamentals", icon: "Cpu" },
-      { name: "Memory Hierarchies", description: "SRAM, DRAM, virtual memory", icon: "Cpu" },
+      { name: "RISC-V ISA", description: "Instruction set design & extensions", badge: "RV" },
+      { name: "CPU Microarch", description: "Pipeline design & optimization", badge: "μA" },
+      { name: "Caching", description: "L1/L2 hierarchy & coherence", badge: "L$" },
+      { name: "GPU Architecture", description: "Parallel compute fundamentals", badge: "GP" },
+      { name: "Memory Hierarchies", description: "SRAM, DRAM, virtual memory", badge: "MH" },
     ],
   },
   {
     title: "Hardware Design",
-    icon: "Layers",
     items: [
-      { name: "Verilog", description: "RTL design and simulation", icon: "Layers" },
-      { name: "Chisel", description: "Scala-based hardware generation", icon: "Layers" },
-      { name: "ASIC Flow", description: "Synthesis to place & route", icon: "Layers" },
-      { name: "Synopsys VCS", description: "Simulation & verification", icon: "Layers" },
-      { name: "Cadence Innovus", description: "Physical design & PnR", icon: "Layers" },
-      { name: "LTSpice", description: "Analog circuit simulation", icon: "Layers" },
+      { name: "Verilog", description: "RTL design and simulation", badge: "VL" },
+      { name: "Chisel", description: "Scala-based hardware generation", badge: "CH" },
+      { name: "ASIC Flow", description: "Synthesis to place & route", badge: "AS" },
+      { name: "Synopsys VCS", description: "Simulation & verification", badge: "VCS" },
+      { name: "Cadence Innovus", description: "Physical design & PnR", badge: "CI" },
+      { name: "LTSpice", description: "Analog circuit simulation", badge: "LS" },
     ],
   },
   {
     title: "Low-Level Systems",
-    icon: "Terminal",
     items: [
-      { name: "C/C++", description: "Systems & embedded programming", icon: "Terminal" },
-      { name: "Rust", description: "Safe systems programming", icon: "Terminal" },
-      { name: "ARM Thumb", description: "Embedded ISA & bootloaders", icon: "Terminal" },
-      { name: "Embedded Systems", description: "RP2040, STM32, ESP32", icon: "Terminal" },
-      { name: "Linux/UNIX", description: "Kernel & userspace tooling", icon: "Terminal" },
+      { name: "C/C++", description: "Systems & embedded programming", badge: "C++" },
+      { name: "Rust", description: "Safe systems programming", badge: "Rs" },
+      { name: "ARM Thumb", description: "Embedded ISA & bootloaders", badge: "ARM" },
+      { name: "Embedded Systems", description: "RP2040, STM32, ESP32", badge: "ES" },
+      { name: "Linux/UNIX", description: "Kernel & userspace tooling", badge: "Lx" },
     ],
   },
   {
     title: "Verification & Test",
-    icon: "CheckCircle",
     items: [
-      { name: "SystemVerilog", description: "Assertions & testbenches", icon: "CheckCircle" },
-      { name: "Formal Methods", description: "CBMC bounded model checking", icon: "CheckCircle" },
-      { name: "GDB/Valgrind", description: "Debugging & profiling", icon: "CheckCircle" },
-      { name: "Test Equipment", description: "Oscilloscopes & network analyzers", icon: "CheckCircle" },
-      { name: "Python/Numpy", description: "Analysis & automation", icon: "CheckCircle" },
+      { name: "SystemVerilog", description: "Assertions & testbenches", badge: "SV" },
+      { name: "Formal Methods", description: "CBMC bounded model checking", badge: "FM" },
+      { name: "GDB/Valgrind", description: "Debugging & profiling", badge: "GDB" },
+      { name: "Test Equipment", description: "Oscilloscopes & network analyzers", badge: "TE" },
+      { name: "Python/Numpy", description: "Analysis & automation", badge: "Py" },
     ],
   },
 ];

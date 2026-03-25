@@ -34,7 +34,7 @@ export default function ResumeExperience() {
                   {exp.startDate} — {exp.endDate}
                 </span>
               </div>
-              <p className="text-body text-accent mb-1">
+              <p className="text-body text-text-primary font-medium mb-1">
                 {exp.organization}{exp.department ? ` · ${exp.department}` : ''}
               </p>
               <p className="text-caption text-text-muted mb-4">{exp.location}</p>

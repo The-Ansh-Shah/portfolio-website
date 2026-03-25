@@ -27,7 +27,7 @@ export default function ProjectsSection() {
           </div>
           <Link
             href="/projects"
-            className="text-sm text-accent hover:text-accent-hover transition-colors duration-200"
+            className="text-sm text-text-primary hover:text-text-secondary transition-colors duration-200"
           >
             View All →
           </Link>

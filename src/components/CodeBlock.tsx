@@ -12,7 +12,6 @@ function highlightVerilog(code: string): React.ReactNode[] {
     let remaining = line;
     let key = 0;
 
-    // Simple tokenizer for Verilog
     while (remaining.length > 0) {
       // Comments
       const commentMatch = remaining.match(/^(\/\/.*)/);
@@ -67,16 +66,16 @@ function highlightVerilog(code: string): React.ReactNode[] {
   });
 }
 
-export default function CodeBlock({ code, language = 'verilog' }: CodeBlockProps) {
+export default function CodeBlock({ code }: CodeBlockProps) {
   return (
-    <div className="rounded-card bg-bg-card-alt border border-border p-5 overflow-x-auto">
-      <div className="flex items-center gap-2 mb-3">
-        <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-        <div className="h-3 w-3 rounded-full bg-[#febc2e]" />
-        <div className="h-3 w-3 rounded-full bg-[#28c840]" />
-        <span className="ml-2 text-xs text-text-muted font-mono">{language}</span>
-      </div>
-      <pre className="font-mono text-sm leading-relaxed">
+    <div
+      className="relative rounded-bento bg-bg-code overflow-hidden"
+      style={{
+        maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+        WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+      }}
+    >
+      <pre className="font-mono text-[13px] leading-relaxed p-7 md:p-9 text-text-on-dark">
         <code>{highlightVerilog(code)}</code>
       </pre>
     </div>

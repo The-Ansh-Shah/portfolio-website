@@ -26,7 +26,7 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
         <h3 className="text-xl font-semibold text-text-primary">{experience.role}</h3>
         <span className="text-caption text-text-muted whitespace-nowrap ml-4">{experience.duration}</span>
       </div>
-      <p className="text-body text-accent mb-1">{experience.company}</p>
+      <p className="text-body text-text-primary font-medium mb-1">{experience.company}</p>
       <p className="text-caption text-text-muted mb-5">{experience.institution}</p>
 
       <ul className="space-y-2.5">

@@ -9,22 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'bg-primary': '#0a0a0a',
-        'bg-card': '#141414',
-        'bg-card-hover': '#1a1a1a',
-        'bg-card-alt': '#0f0f0f',
-        'bg-accent-subtle': 'rgba(0,113,227,0.06)',
-        'text-primary': '#F5F5F7',
-        'text-secondary': '#A1A1A6',
-        'text-muted': '#6E6E73',
+        'bg-primary': '#FFFFFF',
+        'bg-card': '#F5F5F7',
+        'bg-card-hover': '#EDEDF0',
+        'bg-card-alt': '#FAFAFA',
+        'bg-code': '#1D1D1F',
+        'text-primary': '#1D1D1F',
+        'text-secondary': '#6E6E73',
+        'text-muted': '#86868B',
+        'text-on-dark': '#F5F5F7',
         accent: {
-          DEFAULT: '#0071E3',
-          hover: '#0077ED',
-          warm: '#FF6B35',
+          DEFAULT: '#1D1D1F',
+          hover: '#424245',
         },
         border: {
-          DEFAULT: '#2a2a2a',
-          hover: '#3a3a3a',
+          DEFAULT: '#D2D2D7',
+          hover: '#C4C4C9',
         },
       },
       fontFamily: {
@@ -55,8 +55,8 @@ const config: Config = {
         'sm-el': '10px',
       },
       boxShadow: {
-        'card': '0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px #2a2a2a',
-        'card-hover': '0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px #3a3a3a',
+        'card': 'none',
+        'card-hover': '0 4px 16px rgba(0,0,0,0.06)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out forwards',

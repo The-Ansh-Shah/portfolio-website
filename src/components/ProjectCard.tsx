@@ -53,12 +53,12 @@ export default function ProjectCard({ project, index = 0, variant = 'carousel' }
           <p className="text-caption text-text-muted mb-4">{project.technologies.join(' · ')}</p>
           <div className="flex items-center gap-4">
             {project.github && (
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-sm text-accent hover:text-accent-hover transition-colors duration-200">
+              <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-sm text-text-primary hover:text-text-secondary transition-colors duration-200 underline">
                 Code →
               </a>
             )}
             {project.demo && (
-              <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-sm text-accent hover:text-accent-hover transition-colors duration-200">
+              <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-sm text-text-primary hover:text-text-secondary transition-colors duration-200 underline">
                 Demo →
               </a>
             )}
@@ -99,7 +99,7 @@ export default function ProjectCard({ project, index = 0, variant = 'carousel' }
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm text-accent hover:text-accent-hover transition-colors duration-200"
+            className="inline-flex items-center gap-1 text-sm text-text-primary hover:text-text-secondary transition-colors duration-200 underline"
           >
             View Details <ArrowRight className="h-3.5 w-3.5" />
           </a>

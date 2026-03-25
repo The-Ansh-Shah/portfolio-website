@@ -1,11 +1,10 @@
 'use client';
 
-import { m, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { m, useInView, AnimatePresence } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 import { MapPin } from 'lucide-react';
 import {
   identityTagline,
-  whatDrivesMe,
   personalInfo,
   verilogSnippet,
   marqueeTools,
@@ -15,6 +14,34 @@ import BentoCard from './BentoCard';
 import CodeBlock from './CodeBlock';
 import Marquee from './Marquee';
 import SectionLabel from './SectionLabel';
+
+function HobbyCycler() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % hobbies.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="overflow-hidden h-[44px] relative">
+      <AnimatePresence mode="wait">
+        <m.div
+          key={index}
+          initial={{ y: 40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -40, opacity: 0 }}
+          transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+          className="text-[30px] font-semibold text-text-primary"
+        >
+          {hobbies[index].emoji} {hobbies[index].label}
+        </m.div>
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function AboutSection() {
   const ref = useRef(null);
@@ -52,17 +79,15 @@ export default function AboutSection() {
             </div>
           </BentoCard>
 
-          {/* What drives me card */}
-          <BentoCard variant="accent" delay={0.24}>
-            <p className="text-caption text-text-muted mb-2 uppercase tracking-widest font-medium">What drives me</p>
-            <p className="text-lg font-semibold text-accent">{whatDrivesMe}</p>
+          {/* "I also like…" cycling hobby card */}
+          <BentoCard delay={0.24}>
+            <p className="text-[13px] uppercase tracking-[0.08em] text-text-muted font-medium mb-3">I also like…</p>
+            <HobbyCycler />
           </BentoCard>
 
-          {/* Verilog code snippet card */}
+          {/* Verilog code snippet card — dark contrast element */}
           <BentoCard colSpan={2} delay={0.32} className="p-0" hover={false}>
-            <div className="p-6 md:p-8">
-              <CodeBlock code={verilogSnippet} language="verilog" />
-            </div>
+            <CodeBlock code={verilogSnippet} />
           </BentoCard>
         </div>
 
@@ -78,20 +103,6 @@ export default function AboutSection() {
               </span>
             ))}
           </Marquee>
-        </div>
-
-        {/* Hobbies card */}
-        <div className="mt-4">
-          <BentoCard delay={0.4}>
-            <p className="text-caption text-text-muted mb-3">I also like…</p>
-            <div className="flex flex-wrap gap-3">
-              {hobbies.map((hobby) => (
-                <span key={hobby.label} className="text-body text-text-secondary">
-                  {hobby.emoji} {hobby.label}
-                </span>
-              ))}
-            </div>
-          </BentoCard>
         </div>
       </div>
     </section>

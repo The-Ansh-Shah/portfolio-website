@@ -50,10 +50,10 @@ export default function Navbar() {
         scrolled ? 'glass-nav' : 'bg-transparent'
       )}
     >
-      <div className="mx-auto flex h-14 max-w-content items-center justify-between px-6">
+      <div className="mx-auto flex h-12 max-w-content items-center justify-between px-6">
         <Link
           href="/"
-          className="text-sm font-semibold text-text-primary transition-colors duration-200 hover:text-text-secondary"
+          className="text-sm font-medium text-text-primary transition-colors duration-200 hover:text-text-secondary"
         >
           Ansh Shah
         </Link>
@@ -116,7 +116,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden border-t border-border bg-bg-primary/95 backdrop-blur-xl overflow-hidden"
+            className="md:hidden border-t border-border bg-white/95 backdrop-blur-xl overflow-hidden"
           >
             <ul className="mx-auto max-w-content px-6 py-3 space-y-1">
               {navItems.map((item) => {

@@ -4,18 +4,19 @@
 
 @layer base {
   :root {
-    --bg-primary: #0a0a0a;
-    --bg-card: #141414;
-    --bg-card-hover: #1a1a1a;
-    --bg-card-alt: #0f0f0f;
-    --text-primary: #F5F5F7;
-    --text-secondary: #A1A1A6;
-    --text-muted: #6E6E73;
-    --accent: #0071E3;
-    --accent-hover: #0077ED;
-    --accent-warm: #FF6B35;
-    --border: #2a2a2a;
-    --border-hover: #3a3a3a;
+    --bg-primary: #FFFFFF;
+    --bg-card: #F5F5F7;
+    --bg-card-hover: #EDEDF0;
+    --bg-card-alt: #FAFAFA;
+    --bg-code: #1D1D1F;
+    --text-primary: #1D1D1F;
+    --text-secondary: #6E6E73;
+    --text-muted: #86868B;
+    --text-on-dark: #F5F5F7;
+    --accent: #1D1D1F;
+    --accent-hover: #424245;
+    --border: #D2D2D7;
+    --border-hover: #C4C4C9;
   }
 
   html,
@@ -33,8 +34,8 @@
   }
 
   ::selection {
-    background-color: var(--accent);
-    color: #fff;
+    background-color: #1D1D1F;
+    color: #F5F5F7;
   }
 }
 
@@ -44,20 +45,20 @@
   }
 
   .glass-nav {
-    background: rgba(10, 10, 10, 0.8);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-bottom: 1px solid var(--border);
   }
 
-  /* Syntax highlighting colors for code blocks */
-  .syntax-keyword { color: #569cd6; }
-  .syntax-string { color: #6a9955; }
-  .syntax-comment { color: #6E6E73; }
-  .syntax-number { color: #b5cea8; }
-  .syntax-type { color: #4ec9b0; }
-  .syntax-signal { color: #dcdcaa; }
-  .syntax-operator { color: #d4d4d4; }
+  /* Syntax highlighting colors for code blocks (light text on dark bg) */
+  .syntax-keyword { color: #E8E8ED; }
+  .syntax-string { color: #D4C5A9; }
+  .syntax-comment { color: #7F8C72; }
+  .syntax-number { color: #D4C5A9; }
+  .syntax-type { color: #C8C8CC; }
+  .syntax-signal { color: #B8B8BC; }
+  .syntax-operator { color: #A8A8AC; }
 
   /* Marquee hover pause */
   .marquee-container:hover .animate-marquee,
