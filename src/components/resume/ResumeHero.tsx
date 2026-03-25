@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { Mail, MapPin, Linkedin, Github, Download, ChevronDown } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Github } from 'lucide-react';
 import { resumeData } from '@/lib/resumeData';
 
 export default function ResumeHero() {
@@ -13,63 +13,39 @@ export default function ResumeHero() {
   ];
 
   return (
-    <section className="relative flex min-h-[60vh] items-center justify-center overflow-hidden">
-      {/* Layered gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-accent/30 via-accent/10 to-transparent" />
-      <div className="absolute inset-0 dot-matrix opacity-60" />
-
-      {/* Radial spotlight */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-muted/5 blur-[100px]" />
-
-      <div className="container relative mx-auto max-w-4xl px-6 py-24 md:py-32">
+    <section className="flex min-h-[50vh] items-center justify-center bg-bg-primary" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+      <div className="mx-auto max-w-content px-6">
         <div className="text-center">
-          {/* Overline label */}
-          <m.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-6"
-          >
-            <span className="inline-block rounded-full border border-muted/20 bg-muted/5 px-4 py-1.5 text-xs font-medium tracking-widest uppercase text-muted/60">
-              Resume
-            </span>
-          </m.div>
-
-          {/* Name — animated gradient */}
           <m.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-4 text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl"
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="text-hero text-text-primary mb-4"
           >
-            <span className="animate-gradient bg-gradient-to-r from-white via-muted to-secondary bg-[length:200%_auto] bg-clip-text text-transparent will-change-[background-position]">
-              {resumeData.name}
-            </span>
+            {resumeData.name}
           </m.h1>
 
-          {/* Tagline */}
           <m.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-10 text-lg text-muted/80 md:text-xl"
+            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.08 }}
+            className="text-subline text-text-secondary mb-10"
           >
             {resumeData.tagline}
           </m.p>
 
-          {/* Contact row — pill badges */}
           <m.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-12 flex flex-wrap items-center justify-center gap-3"
+            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.16 }}
+            className="flex flex-wrap items-center justify-center gap-4"
           >
             {contactItems.map((item, i) => {
               const Icon = item.icon;
               const inner = (
-                <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-xs font-medium text-muted/70 transition-all hover:border-muted/30 hover:text-white hover:bg-accent/20">
+                <span className="inline-flex items-center gap-2 text-caption text-text-secondary transition-colors duration-200 hover:text-text-primary">
                   <Icon className="h-3.5 w-3.5" />
-                  <span className="hidden sm:inline">{item.label}</span>
+                  <span>{item.label}</span>
                 </span>
               );
 
@@ -87,27 +63,8 @@ export default function ResumeHero() {
               );
             })}
           </m.div>
-
-
-          {/* Scroll hint */}
-          <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="flex justify-center"
-          >
-            <m.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <ChevronDown className="h-5 w-5 text-muted/30" />
-            </m.div>
-          </m.div>
         </div>
       </div>
-
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary-dark to-transparent" />
     </section>
   );
 }

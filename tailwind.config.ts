@@ -9,37 +9,62 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#6F4E37',
-          dark: '#5a3d2a',
-        },
+        'bg-primary': '#FBFBFD',
+        'bg-secondary': '#F5F5F7',
+        'bg-dark': '#1D1D1F',
+        'text-primary': '#1D1D1F',
+        'text-secondary': '#6E6E73',
+        'text-tertiary': '#86868B',
         accent: {
-          DEFAULT: '#A67B5B',
-          deep: '#8a6548',
+          DEFAULT: '#0071E3',
+          hover: '#0077ED',
         },
-        secondary: {
-          DEFAULT: '#ECB176',
-          muted: '#d99a5f',
-        },
-        muted: {
-          DEFAULT: '#FED8B1',
-          light: '#ffe9cc',
-        },
+        border: '#D2D2D7',
+        glass: 'rgba(255,255,255,0.72)',
       },
       fontFamily: {
-        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        sans: [
+          '"SF Pro Display"',
+          '"SF Pro Text"',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          'sans-serif',
+        ],
+      },
+      fontSize: {
+        'hero': ['clamp(56px, 5vw, 80px)', { lineHeight: '1.05', letterSpacing: '-0.03em', fontWeight: '600' }],
+        'h2': ['clamp(40px, 3.5vw, 48px)', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '600' }],
+        'h3': ['clamp(24px, 2vw, 28px)', { lineHeight: '1.2', fontWeight: '600' }],
+        'body': ['17px', { lineHeight: '1.47', fontWeight: '400' }],
+        'caption': ['14px', { lineHeight: '1.43', fontWeight: '400' }],
+        'subline': ['21px', { lineHeight: '1.38', fontWeight: '400' }],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '30': '7.5rem',
+      },
+      maxWidth: {
+        'content': '980px',
+        'paragraph': '680px',
+      },
+      borderRadius: {
+        'card': '20px',
+        'button': '9999px',
+        'image': '16px',
+        'btn-sm': '12px',
+      },
+      boxShadow: {
+        'sm': '0 2px 8px rgba(0,0,0,0.04)',
+        'md': '0 4px 24px rgba(0,0,0,0.08)',
+        'lg': '0 8px 40px rgba(0,0,0,0.12)',
       },
       animation: {
-        'fade-in': 'fadeIn 0.6s ease-out forwards',
-        'slide-up': 'slideUp 0.6s ease-out forwards',
+        'fade-in': 'fadeIn 0.5s ease-out forwards',
       },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '0%': { opacity: '0', transform: 'translateY(12px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },

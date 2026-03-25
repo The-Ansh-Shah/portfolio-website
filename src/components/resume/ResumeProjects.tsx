@@ -1,86 +1,66 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { FolderGit2, Github, ExternalLink } from 'lucide-react';
 import { resumeData } from '@/lib/resumeData';
 import { sectionReveal, viewportOnce } from '@/lib/animations';
-import TimelineItem from './TimelineItem';
 
 export default function ResumeProjects() {
   return (
-    <section className="relative py-20 md:py-24">
-      {/* Ambient glow */}
-      <div className="absolute inset-0 ambient-glow pointer-events-none" />
-
-      <div className="container relative mx-auto max-w-4xl px-6">
-        {/* Section header */}
+    <section className="py-16 md:py-20 bg-bg-secondary">
+      <div className="mx-auto max-w-content px-6">
         <m.div
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
           variants={sectionReveal}
-          className="mb-12"
+          className="mb-8"
         >
-          <div className="flex items-center gap-3 mb-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted/10 border border-muted/15">
-              <FolderGit2 className="h-4 w-4 text-muted/70" />
-            </div>
-            <h2 className="text-2xl font-bold text-white md:text-3xl tracking-tight">Projects</h2>
-          </div>
-          <div className="h-px w-20 shimmer-line rounded-full" />
+          <h2 className="text-h2 text-text-primary">Projects</h2>
         </m.div>
 
-        {/* Timeline */}
-        <div>
+        <div className="space-y-10">
           {resumeData.projects.map((project, index) => (
-            <TimelineItem
+            <m.div
               key={project.id}
-              date={project.date}
-              title={project.title}
-              subtitle={project.description}
-              isLast={index === resumeData.projects.length - 1}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOnce}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
             >
-              {/* Bullets */}
-              <ul className="space-y-2.5">
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="text-lg font-semibold text-text-primary">{project.title}</h3>
+                <span className="text-caption text-text-tertiary whitespace-nowrap ml-4">{project.date}</span>
+              </div>
+              <p className="text-[15px] text-text-secondary mb-3">{project.description}</p>
+
+              <ul className="space-y-1.5">
                 {project.bullets.map((bullet, i) => (
-                  <m.li
-                    key={i}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={viewportOnce}
-                    transition={{ duration: 0.3, delay: i * 0.08 }}
-                    className="flex items-start gap-2.5 text-sm text-muted/75 leading-relaxed"
-                  >
-                    <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-muted/40" />
+                  <li key={i} className="flex items-start gap-2.5 text-body text-text-secondary">
+                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-text-tertiary" />
                     {bullet}
-                  </m.li>
+                  </li>
                 ))}
               </ul>
 
-              {/* Tech tags + GitHub link */}
-              <div className="mt-4 flex flex-wrap items-center gap-2">
-                {project.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full border border-muted/12 bg-muted/5 px-2.5 py-0.5 text-xs font-medium text-muted/65 transition-all hover:border-muted/25 hover:text-white hover:bg-muted/10 cursor-default"
-                  >
-                    {tech}
-                  </span>
-                ))}
+              <div className="mt-3 flex items-center gap-3">
+                <span className="text-caption text-text-tertiary">
+                  {project.technologies.join(' · ')}
+                </span>
                 {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ml-1 inline-flex items-center gap-1.5 rounded-full border border-muted/12 bg-muted/5 px-3 py-0.5 text-xs font-medium text-muted/55 transition-all hover:border-muted/30 hover:text-white hover:bg-muted/10"
-                  >
-                    <Github className="h-3 w-3" />
-                    <span>Source</span>
-                    <ExternalLink className="h-2.5 w-2.5 opacity-50" />
-                  </a>
+                  <>
+                    <span className="text-text-tertiary">&middot;</span>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-caption font-medium text-accent transition-colors duration-200 hover:text-accent-hover"
+                    >
+                      Source
+                    </a>
+                  </>
                 )}
               </div>
-            </TimelineItem>
+            </m.div>
           ))}
         </div>
       </div>

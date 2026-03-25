@@ -1,5 +1,3 @@
-// Personal and professional content extracted from resume
-
 export const personalInfo = {
   name: "Ansh Shah",
   email: "ansh_shah@berkeley.edu",
@@ -9,22 +7,8 @@ export const personalInfo = {
   github: "https://github.com/The-Ansh-Shah",
 };
 
-export const typewriterTexts = [
-  "Incoming Silicon Product Engineering Intern @ Intel",
-  "EECS @ UC Berkeley",
-  "Computer Architecture Engineer",
-  "RISC-V CPU Designer",
-  "ASIC Design Enthusiast",
-  "Hardware + Software",
-  "Systems Builder",
-];
-
 export const bio = [
-  "I'm an Electrical Engineering and Computer Science student at UC Berkeley (GPA 3.953) with a passion for computer architecture and hardware-software systems. As a member of HKN (top 25% of EECS students), I organize networking events and tutor 400+ students in circuits and computer architecture.",
-
-  "My work spans both research and teaching. At the SLICE Lab, I develop processor tracing frameworks for performance profiling using Rust, while as Course Staff for CS 61C, I support 600+ students learning computer architecture and RISC-V assembly.",
-
-  "I specialize in CPU design, ASIC implementation, and embedded systems security. My projects include designing a 62.4 MHz RISC-V CPU with cache optimization, analyzing bootloader security vulnerabilities, and implementing neural networks in RISC-V assembly. I'm passionate about building efficient, secure systems at the hardware-software interface.",
+  "I'm an Electrical Engineering and Computer Science student at UC Berkeley (GPA 3.953) with a passion for computer architecture and hardware-software systems. My work spans research at the SLICE Lab, where I develop processor tracing frameworks in Rust, and teaching as Course Staff for CS 61C, supporting 600+ students in computer architecture. I specialize in CPU design, ASIC implementation, and embedded systems security.",
 ];
 
 export interface Experience {
@@ -109,7 +93,7 @@ export const projects: Project[] = [
     ],
     date: "Fall 2025",
     github: "https://github.com/The-Ansh-Shah/DAWGkit-RP2040",
-    featured: true,
+    featured: false,
     thumbnail: "/images/projects/rp2040_poster_tb.jpg",
     images: ["/images/projects/rp2040_poster_tb.jpg"],
   },
@@ -125,7 +109,7 @@ export const projects: Project[] = [
     ],
     date: "Spring 2025",
     github: "https://github.com/The-Ansh-Shah/riscv-neural-network-classifier",
-    featured: true,
+    featured: false,
     thumbnail: "/images/projects/classifier_tb.png",
     images: ["/images/projects/classifier_tb.png"],
   },
@@ -140,7 +124,7 @@ export const projects: Project[] = [
       "Simulated and verified amplification using test equipment",
     ],
     date: "Spring 2025",
-    featured: true,
+    featured: false,
   },
 ];
 

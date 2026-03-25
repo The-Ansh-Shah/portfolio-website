@@ -1,12 +1,9 @@
-// Shared Framer Motion animation variants and configurations
-
 import { Variants } from 'framer-motion';
 
-// Fade in and slide up animation
 export const fadeInUp: Variants = {
   initial: {
     opacity: 0,
-    y: 20,
+    y: 12,
   },
   animate: {
     opacity: 1,
@@ -18,45 +15,40 @@ export const fadeInUp: Variants = {
   },
 };
 
-// Stagger container for child animations
 export const staggerContainer: Variants = {
   animate: {
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.08,
     },
   },
 };
 
-// Card hover effect with lift and scale
 export const cardHover = {
   whileHover: {
-    y: -8,
-    scale: 1.02,
+    scale: 1.01,
     transition: {
-      duration: 0.2,
+      duration: 0.3,
       ease: 'easeOut',
     },
   },
 };
 
-// Section reveal animation (for scroll-triggered sections)
 export const sectionReveal: Variants = {
   hidden: {
     opacity: 0,
-    y: 50,
+    y: 12,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      duration: 0.5,
+      ease: 'easeOut',
     },
   },
 };
 
-// Stagger children with custom delay
-export const staggerChildren = (delay = 0.1): Variants => ({
+export const staggerChildren = (delay = 0.08): Variants => ({
   animate: {
     transition: {
       staggerChildren: delay,
@@ -64,49 +56,8 @@ export const staggerChildren = (delay = 0.1): Variants => ({
   },
 });
 
-// Tag/chip fade and scale animation
-export const tagAnimation = (index: number): Variants => ({
-  hidden: {
-    opacity: 0,
-    scale: 0.8,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.4,
-      delay: index * 0.05,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    },
-  },
-});
-
-// Alternating slide in (left/right) for cards
-export const alternatingSlide = (index: number): Variants => ({
-  hidden: {
-    opacity: 0,
-    x: index % 2 === 0 ? -50 : 50,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.7,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    },
-  },
-});
-
-// Viewport configuration for scroll-triggered animations
 export const viewportOnce = {
   once: true,
   margin: '0px 0px -100px 0px',
-  amount: 0,
-};
-
-// Spring animation config
-export const springConfig = {
-  type: 'spring',
-  stiffness: 380,
-  damping: 30,
+  amount: 0.1,
 };

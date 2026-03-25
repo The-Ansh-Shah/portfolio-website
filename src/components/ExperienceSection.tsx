@@ -7,16 +7,12 @@ import { sectionReveal } from '@/lib/animations';
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="relative py-20 md:py-32">
-      <div className="container mx-auto max-w-6xl px-6">
+    <section id="experience" className="py-20 md:py-32 bg-bg-primary">
+      <div className="mx-auto max-w-content px-6">
         <AnimatedSection variants={sectionReveal} className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
+          <h2 className="text-h2 text-text-primary">
             Experience
           </h2>
-          <div className="mx-auto mb-4 h-1 w-20 rounded-full bg-muted"></div>
-          <p className="text-muted">
-            Research, teaching, and building systems
-          </p>
         </AnimatedSection>
 
         <div className="grid gap-6 md:grid-cols-2">
@@ -24,11 +20,6 @@ export default function ExperienceSection() {
             <ExperienceCard key={exp.id} experience={exp} index={index} />
           ))}
         </div>
-      </div>
-
-      {/* Background decoration */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-20">
-        <div className="absolute left-1/4 top-1/3 h-96 w-96 rounded-full bg-secondary blur-3xl"></div>
       </div>
     </section>
   );
