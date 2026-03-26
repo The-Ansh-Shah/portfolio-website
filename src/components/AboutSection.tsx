@@ -22,7 +22,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, ease }}
-            className="md:col-span-7 rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-6 md:p-10 lg:p-12 min-h-[340px] flex flex-col justify-between"
+            className="md:col-span-7 rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-6 md:p-10 lg:p-12 md:min-h-[340px] flex flex-col justify-between"
           >
             <div>
               <span className="text-[13px] font-medium text-[#86868B] tracking-wide">
