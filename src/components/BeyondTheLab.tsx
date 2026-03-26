@@ -81,7 +81,7 @@ export default function BeyondTheLab() {
           <span className="text-[13px] font-medium text-[#86868B] uppercase tracking-widest">
             Outside of engineering
           </span>
-          <h2 className="mt-2 text-[clamp(36px,4.5vw,52px)] font-semibold tracking-tight text-[#1D1D1F] leading-[1.1]">
+          <h2 className="mt-2 text-[clamp(36px,4.5vw,52px)] font-semibold tracking-tight text-[#1D1D1F] dark:text-[#F5F5F7] leading-[1.1]">
             Other things I&apos;m up to...
           </h2>
         </m.div>
@@ -91,12 +91,12 @@ export default function BeyondTheLab() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.08, ease }}
-          className="rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] mb-5 text-center p-8 md:p-12 lg:p-16"
+          className="rounded-[24px] bg-[#F5F5F7] dark:bg-[#1C1C1E] border border-[#E8E8ED] dark:border-[#2C2C2E] mb-5 text-center p-8 md:p-12 lg:p-16"
         >
           <div className="mx-auto mb-6 flex items-center justify-center h-[80px] w-[80px] md:h-[100px] md:w-[100px] rounded-[20px] bg-[#003262]">
             <span className="text-[28px] font-bold text-[#FDB515] leading-none">HKN</span>
           </div>
-          <h3 className="text-[24px] md:text-[28px] font-semibold text-[#1D1D1F]">Eta Kappa Nu</h3>
+          <h3 className="text-[24px] md:text-[28px] font-semibold text-[#1D1D1F] dark:text-[#F5F5F7]">Eta Kappa Nu</h3>
           <p className="text-[17px] text-[#86868B] mt-2">IR Officer & Treasurer</p>
           <p className="text-[20px] text-[#86868B] mt-4 max-w-[500px] mx-auto">
             Connecting Berkeley EECS to industry.
@@ -105,7 +105,7 @@ export default function BeyondTheLab() {
             Interested in hosting?{' '}
             <a
               href="mailto:indrel@hkn.eecs.berkeley.edu"
-              className="text-[#1D1D1F] font-medium hover:underline"
+              className="text-[#1D1D1F] dark:text-[#F5F5F7] font-medium hover:underline"
             >
               indrel@hkn.eecs.berkeley.edu
             </a>
@@ -117,7 +117,7 @@ export default function BeyondTheLab() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.16, ease }}
-          className="rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] p-8 md:p-10"
+          className="rounded-[24px] bg-[#F5F5F7] dark:bg-[#1C1C1E] border border-[#E8E8ED] dark:border-[#2C2C2E] p-8 md:p-10"
         >
           <div className="flex items-center justify-between mb-5">
             <span className="text-[13px] uppercase tracking-widest text-[#86868B] font-medium">

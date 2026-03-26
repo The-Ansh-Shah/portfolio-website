@@ -3,7 +3,8 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Home, FolderOpen, User, Mail } from 'lucide-react';
+import { Home, FolderOpen, User, Mail, Sun, Moon } from 'lucide-react';
+import { useTheme } from '@/lib/ThemeContext';
 
 const navItems = [
   { icon: Home, href: '/', label: 'Home' },
@@ -15,6 +16,7 @@ const mailItem = { icon: Mail, href: 'mailto:ansh_shah@berkeley.edu', label: 'Em
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
 
   const renderIcon = (item: typeof navItems[0]) => {
     const Icon = item.icon;
@@ -23,7 +25,7 @@ export default function Navbar() {
     const className = `flex h-[44px] w-[44px] items-center justify-center rounded-full transition-all duration-200 ${
       isActive
         ? 'text-[#b36cc4]'
-        : 'text-[#86868B] hover:bg-[#EDEDF0] hover:text-[#1D1D1F]'
+        : 'text-[#86868B] hover:bg-[#EDEDF0] dark:hover:bg-[#2C2C2E] hover:text-[#1D1D1F] dark:hover:text-[#F5F5F7]'
     }`;
 
     return (
@@ -35,7 +37,7 @@ export default function Navbar() {
 
   const renderMailIcon = () => {
     const Icon = mailItem.icon;
-    const className = 'flex h-[44px] w-[44px] items-center justify-center rounded-full bg-[#1D1D1F] text-white transition-all duration-200 hover:bg-[#424245]';
+    const className = 'flex h-[44px] w-[44px] items-center justify-center rounded-full bg-[#1D1D1F] dark:bg-[#F5F5F7] text-white dark:text-[#1D1D1F] transition-all duration-200 hover:bg-[#424245] dark:hover:bg-[#D2D2D7]';
 
     return (
       <a key={mailItem.label} href={mailItem.href} className={className} aria-label={mailItem.label}>
@@ -53,15 +55,26 @@ export default function Navbar() {
         transition={{ duration: 0.5, delay: 0.3, ease: 'easeOut' }}
         className="fixed left-5 top-[45%] -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-3 rounded-[32px] p-4 px-3"
         style={{
-          background: 'rgba(245,245,247,0.88)',
+          background: theme === 'dark' ? 'rgba(28,28,30,0.88)' : 'rgba(245,245,247,0.88)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
-          border: '1px solid #D2D2D7',
+          border: theme === 'dark' ? '1px solid #3A3A3C' : '1px solid #D2D2D7',
         }}
       >
         {navItems.map((item) => renderIcon(item))}
         {/* Divider */}
-        <div className="w-6 h-[1px] bg-[#D2D2D7] mx-auto my-1" />
+        <div className="w-6 h-[1px] bg-[#D2D2D7] dark:bg-[#3A3A3C] mx-auto my-1" />
+        <button
+          onClick={toggleTheme}
+          className="flex h-[44px] w-[44px] items-center justify-center rounded-full text-[#86868B] hover:bg-[#EDEDF0] dark:hover:bg-[#2C2C2E] hover:text-[#1D1D1F] dark:hover:text-[#F5F5F7] transition-all duration-200"
+          aria-label="Toggle dark mode"
+        >
+          {theme === 'light' ? (
+            <Moon className="h-[18px] w-[18px]" />
+          ) : (
+            <Sun className="h-[18px] w-[18px]" />
+          )}
+        </button>
         {renderMailIcon()}
       </motion.nav>
 
@@ -72,14 +85,25 @@ export default function Navbar() {
         transition={{ duration: 0.4, delay: 0.3 }}
         className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex md:hidden items-center gap-2 rounded-[28px] p-2"
         style={{
-          background: 'rgba(245,245,247,0.88)',
+          background: theme === 'dark' ? 'rgba(28,28,30,0.88)' : 'rgba(245,245,247,0.88)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
-          border: '1px solid #D2D2D7',
+          border: theme === 'dark' ? '1px solid #3A3A3C' : '1px solid #D2D2D7',
         }}
       >
         {navItems.map((item) => renderIcon(item))}
-        <div className="h-5 w-[1px] bg-[#D2D2D7] my-auto" />
+        <div className="h-5 w-[1px] bg-[#D2D2D7] dark:bg-[#3A3A3C] my-auto" />
+        <button
+          onClick={toggleTheme}
+          className="flex h-[44px] w-[44px] items-center justify-center rounded-full text-[#86868B] hover:bg-[#EDEDF0] dark:hover:bg-[#2C2C2E] hover:text-[#1D1D1F] dark:hover:text-[#F5F5F7] transition-all duration-200"
+          aria-label="Toggle dark mode"
+        >
+          {theme === 'light' ? (
+            <Moon className="h-[18px] w-[18px]" />
+          ) : (
+            <Sun className="h-[18px] w-[18px]" />
+          )}
+        </button>
         {renderMailIcon()}
       </motion.nav>
     </>

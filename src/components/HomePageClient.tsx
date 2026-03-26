@@ -22,7 +22,7 @@ export default function HomePageClient() {
   }, []);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-black">
       <HeroSection />
       <AboutSection />
       <ProjectsSection />

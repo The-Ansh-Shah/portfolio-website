@@ -22,13 +22,13 @@ export default function ProjectsSection() {
             <span className="text-[13px] font-medium text-[#86868B] uppercase tracking-widest">
               Experience
             </span>
-            <h2 className="mt-2 text-[clamp(36px,4.5vw,52px)] font-semibold tracking-tight text-[#1D1D1F] leading-[1.1]">
+            <h2 className="mt-2 text-[clamp(36px,4.5vw,52px)] font-semibold tracking-tight text-[#1D1D1F] dark:text-[#F5F5F7] leading-[1.1]">
               Projects
             </h2>
           </div>
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 rounded-full bg-[#1D1D1F] text-white text-[14px] font-medium px-6 py-3 hover:bg-[#424245] transition-colors duration-200"
+            className="inline-flex items-center gap-2 rounded-full bg-[#1D1D1F] dark:bg-[#F5F5F7] text-white dark:text-[#1D1D1F] text-[14px] font-medium px-6 py-3 hover:bg-[#424245] dark:hover:bg-[#D2D2D7] transition-colors duration-200"
           >
             View All
           </Link>

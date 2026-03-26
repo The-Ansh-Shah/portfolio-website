@@ -8,7 +8,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#F5F5F7] border-t border-[#E8E8ED] px-6 py-8 md:px-14 md:py-10">
+    <footer className="bg-[#F5F5F7] dark:bg-[#1C1C1E] border-t border-[#E8E8ED] dark:border-[#2C2C2E] px-6 py-8 md:px-14 md:py-10">
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
         {/* Left side */}
         <div>
@@ -17,7 +17,7 @@ export default function Footer() {
           </span>
           <a
             href={`mailto:${personalInfo.email}`}
-            className="block mt-2 text-[18px] font-medium text-[#1D1D1F] hover:underline"
+            className="block mt-2 text-[18px] font-medium text-[#1D1D1F] dark:text-[#F5F5F7] hover:underline"
           >
             {personalInfo.email}
           </a>
@@ -26,7 +26,7 @@ export default function Footer() {
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[13px] text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-200"
+              className="text-[13px] text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-[#F5F5F7] transition-colors duration-200"
             >
               GitHub
             </a>
@@ -35,7 +35,7 @@ export default function Footer() {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[13px] text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-200"
+              className="text-[13px] text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-[#F5F5F7] transition-colors duration-200"
             >
               LinkedIn
             </a>
@@ -47,7 +47,7 @@ export default function Footer() {
           <p className="text-[11px] text-[#86868B]">&copy; 2026 {personalInfo.name}</p>
           <button
             onClick={scrollToTop}
-            className="mt-1 text-[11px] text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-200 cursor-pointer"
+            className="mt-1 text-[11px] text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-[#F5F5F7] transition-colors duration-200 cursor-pointer"
           >
             Back to top ↑
           </button>

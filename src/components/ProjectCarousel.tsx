@@ -30,7 +30,7 @@ export default function ProjectCarousel() {
       {/* Mobile: simple horizontal scroll */}
       <div className="md:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 no-scrollbar">
         {projects.map((project) => (
-          <div key={project.id} className="w-[85vw] flex-shrink-0 snap-start rounded-[20px] bg-[#F5F5F7] border border-[#E8E8ED] overflow-hidden">
+          <div key={project.id} className="w-[85vw] flex-shrink-0 snap-start rounded-[20px] bg-[#F5F5F7] dark:bg-[#1C1C1E] border border-[#E8E8ED] dark:border-[#2C2C2E] overflow-hidden">
             {project.thumbnail && (
               <div className="relative w-full h-[200px]">
                 <Image src={project.thumbnail} alt={project.title} fill className="object-cover" sizes="85vw" />
@@ -38,11 +38,11 @@ export default function ProjectCarousel() {
             )}
             <div className="p-6">
               <span className="text-[13px] text-[#86868B]">{project.date}</span>
-              <h3 className="text-[20px] font-semibold text-[#1D1D1F] mt-1">{project.title}</h3>
+              <h3 className="text-[20px] font-semibold text-[#1D1D1F] dark:text-[#F5F5F7] mt-1">{project.title}</h3>
               <p className="text-[15px] text-[#86868B] mt-2">{project.description}</p>
               <p className="text-[13px] text-[#B0B0B4] mt-3">{project.technologies.join(' · ')}</p>
               {project.github && (
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-[14px] font-medium text-[#1D1D1F] mt-4 inline-block hover:underline">
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-[14px] font-medium text-[#1D1D1F] dark:text-[#F5F5F7] mt-4 inline-block hover:underline">
                   View on GitHub →
                 </a>
               )}
@@ -92,14 +92,31 @@ export default function ProjectCarousel() {
                   pointerEvents: position === 'active' ? 'auto' : 'none',
                 }}
               >
-                <div className="h-full rounded-[24px] bg-[#F5F5F7] border border-[#E8E8ED] overflow-hidden flex flex-row">
+                <div className="h-full rounded-[24px] bg-[#F5F5F7] dark:bg-[#1C1C1E] border border-[#E8E8ED] dark:border-[#2C2C2E] overflow-hidden flex flex-row">
                   {project.thumbnail && (
-                    <div className="relative w-[55%] h-full flex-shrink-0">
+                    <div
+                      className="relative w-[55%] h-full flex-shrink-0 overflow-hidden cursor-crosshair"
+                      onMouseMove={(e) => {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        const x = (e.clientX - rect.left) / rect.width - 0.5;
+                        const y = (e.clientY - rect.top) / rect.height - 0.5;
+                        const img = e.currentTarget.querySelector('img');
+                        if (img) {
+                          img.style.transform = `scale(1.05) translate(${-x * 10}px, ${-y * 10}px)`;
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        const img = e.currentTarget.querySelector('img');
+                        if (img) {
+                          img.style.transform = 'scale(1) translate(0, 0)';
+                        }
+                      }}
+                    >
                       <Image
                         src={project.thumbnail}
                         alt={project.title}
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-300 ease-out"
                         sizes="45vw"
                       />
                     </div>
@@ -107,7 +124,7 @@ export default function ProjectCarousel() {
 
                   <div className="flex-1 flex flex-col justify-center p-12">
                     <span className="text-[13px] text-[#86868B]">{project.date}</span>
-                    <h3 className="text-[clamp(24px,3vw,32px)] font-semibold text-[#1D1D1F] leading-[1.15] tracking-tight mt-2">
+                    <h3 className="text-[clamp(24px,3vw,32px)] font-semibold text-[#1D1D1F] dark:text-[#F5F5F7] leading-[1.15] tracking-tight mt-2">
                       {project.title}
                     </h3>
                     <p className="text-[16px] text-[#86868B] leading-[1.6] mt-4 max-w-[400px]">
@@ -121,7 +138,7 @@ export default function ProjectCarousel() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[15px] font-medium text-[#1D1D1F] mt-6 inline-block hover:underline"
+                        className="text-[15px] font-medium text-[#1D1D1F] dark:text-[#F5F5F7] mt-6 inline-block hover:underline"
                       >
                         View on GitHub →
                       </a>
@@ -137,10 +154,10 @@ export default function ProjectCarousel() {
         <div className="flex items-center justify-center gap-5 mt-8">
           <button
             onClick={prev}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-[#F5F5F7] border border-[#E8E8ED] hover:border-[#D2D2D7] hover:bg-[#EDEDF0] transition-all duration-200"
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-[#F5F5F7] dark:bg-[#1C1C1E] border border-[#E8E8ED] dark:border-[#2C2C2E] hover:border-[#D2D2D7] hover:bg-[#EDEDF0] dark:hover:bg-[#2C2C2E] transition-all duration-200"
             aria-label="Previous project"
           >
-            <ChevronLeft className="h-5 w-5 text-[#1D1D1F]" />
+            <ChevronLeft className="h-5 w-5 text-[#1D1D1F] dark:text-[#F5F5F7]" />
           </button>
 
           <div className="flex items-center gap-2">
@@ -149,7 +166,7 @@ export default function ProjectCarousel() {
                 key={i}
                 onClick={() => setActiveIndex(i)}
                 className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
-                  i === activeIndex ? 'bg-[#1D1D1F] scale-110' : 'bg-[#D2D2D7]'
+                  i === activeIndex ? 'bg-[#1D1D1F] dark:bg-[#F5F5F7] scale-110' : 'bg-[#D2D2D7]'
                 }`}
                 aria-label={`Go to project ${i + 1}`}
               />
@@ -158,10 +175,10 @@ export default function ProjectCarousel() {
 
           <button
             onClick={next}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-[#F5F5F7] border border-[#E8E8ED] hover:border-[#D2D2D7] hover:bg-[#EDEDF0] transition-all duration-200"
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-[#F5F5F7] dark:bg-[#1C1C1E] border border-[#E8E8ED] dark:border-[#2C2C2E] hover:border-[#D2D2D7] hover:bg-[#EDEDF0] dark:hover:bg-[#2C2C2E] transition-all duration-200"
             aria-label="Next project"
           >
-            <ChevronRight className="h-5 w-5 text-[#1D1D1F]" />
+            <ChevronRight className="h-5 w-5 text-[#1D1D1F] dark:text-[#F5F5F7]" />
           </button>
         </div>
       </div>

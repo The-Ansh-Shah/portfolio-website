@@ -64,7 +64,7 @@ export default function SkillsSection() {
           <span className="text-[13px] font-medium text-[#86868B] uppercase tracking-widest">
             Tech Stack
           </span>
-          <h2 className="mt-2 text-[clamp(36px,4.5vw,52px)] font-semibold text-[#1D1D1F] tracking-tight leading-[1.1]">
+          <h2 className="mt-2 text-[clamp(36px,4.5vw,52px)] font-semibold text-[#1D1D1F] dark:text-[#F5F5F7] tracking-tight leading-[1.1]">
             My Toolbox
           </h2>
 
@@ -77,7 +77,7 @@ export default function SkillsSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 + catIndex * 0.08, ease }}
               >
-                <h3 className="text-[16px] font-normal text-[#86868B] pb-3 border-b border-[#E8E8ED]">
+                <h3 className="text-[16px] font-normal text-[#86868B] pb-3 border-b border-[#E8E8ED] dark:border-[#2C2C2E]">
                   {category.title}
                 </h3>
 
@@ -101,7 +101,7 @@ export default function SkillsSection() {
                         )}
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[16px] font-semibold text-[#1D1D1F]">
+                        <p className="text-[16px] font-semibold text-[#1D1D1F] dark:text-[#F5F5F7]">
                           {item.name}
                         </p>
                         <p className="text-[14px] text-[#86868B] mt-0.5">

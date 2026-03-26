@@ -22,7 +22,7 @@ export default function ExperienceSection() {
           <span className="text-[13px] font-medium text-[#86868B] uppercase tracking-widest">
             Experience
           </span>
-          <h2 className="mt-2 text-[clamp(36px,4.5vw,52px)] font-semibold tracking-tight text-[#1D1D1F] leading-[1.1]">
+          <h2 className="mt-2 text-[clamp(36px,4.5vw,52px)] font-semibold tracking-tight text-[#1D1D1F] dark:text-[#F5F5F7] leading-[1.1]">
             Where I&apos;ve worked
           </h2>
         </m.div>
@@ -34,16 +34,16 @@ export default function ExperienceSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.08, ease }}
-              className={`py-6 ${index < experience.length - 1 ? 'border-b border-[#E8E8ED]' : ''}`}
+              className={`py-6 ${index < experience.length - 1 ? 'border-b border-[#E8E8ED] dark:border-[#2C2C2E]' : ''}`}
             >
               <div className="flex items-start justify-between">
                 <div>
                   {exp.incoming && (
-                    <span className="inline-block bg-[#1D1D1F] text-white font-semibold rounded tracking-[0.04em] mb-2 text-[10px] px-2.5 py-1">
+                    <span className="inline-block bg-[#1D1D1F] dark:bg-[#F5F5F7] text-white dark:text-[#1D1D1F] font-semibold rounded tracking-[0.04em] mb-2 text-[10px] px-2.5 py-1">
                       INCOMING
                     </span>
                   )}
-                  <h3 className="text-[18px] font-semibold text-[#1D1D1F]">
+                  <h3 className="text-[18px] font-semibold text-[#1D1D1F] dark:text-[#F5F5F7]">
                     {exp.role}
                   </h3>
                   <p className="text-[15px] text-[#86868B] mt-1">

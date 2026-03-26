@@ -37,7 +37,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease }}
-              className="text-[clamp(36px,6vw,72px)] font-bold leading-[1.08] tracking-[-0.04em] text-text-primary mb-5"
+              className="text-[clamp(36px,6vw,72px)] font-bold leading-[1.08] tracking-[-0.04em] text-text-primary dark:text-[#F5F5F7] mb-5"
             >
               Hi, I&apos;m Ansh{' '}
               <span className="inline-block animate-[wave_2s_ease-in-out_infinite] origin-[70%_70%]">👋</span>
@@ -52,7 +52,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.12, ease }}
-              className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 text-[14px] md:text-[18px] text-text-secondary"
+              className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 text-[14px] md:text-[18px] text-text-secondary dark:text-[#A1A1A6]"
             >
               <span className="inline-flex items-center gap-1.5">
                 <Image src="/images/icons/Seal_of_University_of_California,_Berkeley.svg" alt="UC Berkeley" width={24} height={24} className="flex-shrink-0 rounded-full" />
@@ -109,13 +109,13 @@ export default function HeroSection() {
               <a
                 href="/resume/Ansh_Shah_resume.pdf"
                 download="Ansh_Shah_Resume.pdf"
-                className="inline-flex items-center rounded-button bg-accent px-7 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-accent-hover"
+                className="inline-flex items-center rounded-button bg-accent dark:bg-[#F5F5F7] px-7 py-3 text-sm font-medium text-white dark:text-[#1D1D1F] transition-colors duration-200 hover:bg-accent-hover dark:hover:bg-[#D2D2D7]"
               >
                 Download Resume
               </a>
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors duration-200"
+                className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary dark:text-[#A1A1A6] hover:text-text-primary dark:hover:text-[#F5F5F7] transition-colors duration-200"
               >
                 See my work
               </Link>
