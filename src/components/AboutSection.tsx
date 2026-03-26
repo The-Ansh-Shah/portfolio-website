@@ -36,7 +36,7 @@ export default function AboutSection() {
               </h2>
             </div>
             <p className="mt-8 text-[17px] text-[#86868B] leading-relaxed max-w-[480px]">
-              CPU design · Embedded security · Processor tracing
+              CPU design · Parallel architectures · Hardware acceleration
             </p>
           </m.div>
 
@@ -103,7 +103,7 @@ export default function AboutSection() {
                   What inspires me?
                 </span>
                 <h3 className="mt-4 text-[clamp(28px,3.5vw,38px)] font-semibold text-[#1D1D1F] leading-[1.15] tracking-tight">
-                  Building efficient, fast, and scalable silicon solutions.
+                  Accelerating compute through efficient and scalable silicon solutions.
                 </h3>
                 <div className="flex items-center gap-2 mt-8">
                   <div className="h-2 w-2 rounded-full bg-[#D2D2D7]" />

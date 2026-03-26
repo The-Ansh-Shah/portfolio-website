@@ -124,9 +124,9 @@ export const experience: Experience[] = [
   {
     id: 1,
     company: "Apple",
-    role: "SoC Design Verification Intern",
-    institution: "Cupertino, CA",
-    duration: "May – Aug 2026",
+    role: "Cellular SoC Design Verification Intern",
+    institution: "Sunnyvale, CA",
+    duration: "May 2026 – Aug 2026",
     bullets: [],
     incoming: true,
   },
@@ -135,7 +135,7 @@ export const experience: Experience[] = [
     company: "SLICE Lab",
     role: "Undergraduate Researcher",
     institution: "UC Berkeley EECS",
-    duration: "Apr 2025 – Present",
+    duration: "Apr 2025 – Mar 2026",
     bullets: [],
   },
   {
@@ -143,7 +143,7 @@ export const experience: Experience[] = [
     company: "CS 61C",
     role: "Undergraduate Course Staff",
     institution: "UC Berkeley",
-    duration: "Aug – Dec 2025",
+    duration: "Aug 2025 – Dec 2025",
     bullets: [],
   },
 ];

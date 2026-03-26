@@ -33,15 +33,15 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.12, ease }}
-              className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 text-[12px] text-text-secondary"
+              className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 text-[18px] text-text-secondary"
             >
               <span className="inline-flex items-center gap-1.5">
-                <Image src="/images/icons/Seal_of_University_of_California,_Berkeley.svg" alt="UC Berkeley" width={18} height={18} className="flex-shrink-0 rounded-full" />
+                <Image src="/images/icons/Seal_of_University_of_California,_Berkeley.svg" alt="UC Berkeley" width={24} height={24} className="flex-shrink-0 rounded-full" />
                 B.S. EECS at UC Berkeley
               </span>
               <span className="text-text-muted">·</span>
               <span className="inline-flex items-center gap-1.5">
-                <Image src="/images/icons/brushed-metal-apple-mac-icon-29.png" alt="Apple" width={18} height={18} className="flex-shrink-0" />
+                <Image src="/images/icons/brushed-metal-apple-mac-icon-29.png" alt="Apple" width={24} height={24} className="flex-shrink-0" />
                 SoC Design Verification at Apple
               </span>
             </m.div>
@@ -57,26 +57,26 @@ export default function HeroSection() {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-btn-sm border border-border bg-bg-card hover:border-border-hover hover:scale-105 transition-all duration-200"
+                className="flex h-15 w-15 items-center justify-center rounded-btn-sm hover:scale-105 transition-all duration-200"
                 aria-label="LinkedIn"
               >
-                <Image src="/images/icons/linkedin.png" alt="LinkedIn" width={20} height={20} className="object-contain" />
+                <Image src="/images/icons/linkedin.png" alt="LinkedIn" width={35} height={35} className="object-contain" />
               </a>
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-btn-sm border border-border bg-bg-card hover:border-border-hover hover:scale-105 transition-all duration-200"
+                className="flex h-15 w-15 items-center justify-center rounded-btn-sm hover:scale-105 transition-all duration-200"
                 aria-label="GitHub"
               >
-                <Image src="/images/icons/github.svg" alt="GitHub" width={20} height={20} className="object-contain" />
+                <Image src="/images/icons/github.svg" alt="GitHub" width={35} height={35} className="object-contain" />
               </a>
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="flex h-10 w-10 items-center justify-center rounded-btn-sm border border-border bg-bg-card hover:border-border-hover hover:scale-105 transition-all duration-200"
+                className="flex h-15 w-15 items-center justify-center rounded-btn-sm hover:scale-105 transition-all duration-200"
                 aria-label="Email"
               >
-                <Image src="/images/icons/mail-icon.png" alt="Email" width={20} height={20} className="object-contain" />
+                <Image src="/images/icons/mail-icon.png" alt="Email" width={35} height={35} className="object-contain" />
               </a>
             </m.div>
 
